@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SimpleGetController">
+            <connections>
+                <outlet property="imageView" destination="tvL-df-Eph" id="qsr-CI-k46"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tvL-df-Eph">
+                    <rect key="frame" x="200" y="74" width="200" height="200"/>
+                    <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="Koa-l8-trF"/>
+                        <constraint firstAttribute="height" constant="200" id="QNx-76-TOp"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oyQ-1g-lmw">
+                    <rect key="frame" x="215" y="314" width="171" height="39"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="39" id="BWM-Tr-Huy"/>
+                        <constraint firstAttribute="width" constant="171" id="E7l-tM-Lt7"/>
+                    </constraints>
+                    <state key="normal" title="下载数据"/>
+                    <connections>
+                        <action selector="downloadData:" destination="-1" eventType="touchUpInside" id="GRE-P0-CJy"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="tvL-df-Eph" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="L6z-w4-Bwc"/>
+                <constraint firstItem="oyQ-1g-lmw" firstAttribute="top" secondItem="tvL-df-Eph" secondAttribute="bottom" constant="40" id="fSo-WB-Onw"/>
+                <constraint firstItem="tvL-df-Eph" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="ipl-Ig-lU2"/>
+                <constraint firstItem="oyQ-1g-lmw" firstAttribute="centerX" secondItem="tvL-df-Eph" secondAttribute="centerX" id="mLk-LM-S5R"/>
+            </constraints>
+            <point key="canvasLocation" x="821" y="433"/>
+        </view>
+    </objects>
+</document>

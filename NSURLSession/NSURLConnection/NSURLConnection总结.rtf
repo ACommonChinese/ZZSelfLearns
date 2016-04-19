@@ -1,0 +1,187 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf460
+{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fnil\fcharset134 PingFangSC-Regular;\f2\fmodern\fcharset0 Courier-BoldOblique;
+\f3\fmodern\fcharset0 Courier-Bold;}
+{\colortbl;\red255\green255\blue255;\red170\green13\blue145;\red92\green38\blue153;\red196\green26\blue22;
+\red46\green13\blue110;\red0\green116\blue0;\red50\green50\blue50;\red205\green205\blue205;\red109\green109\blue109;
+\red28\green0\blue207;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww18640\viewh11340\viewkind0
+\deftab560
+\pard\tx560\pardeftab560\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 \CocoaLigature0 - (\cf2 IBAction\cf0 )downloadData:(\cf2 id\cf0 )sender \{\
+    \cf3 NSString\cf0  *urlStr = \cf4 @"http://wiapi.hexun.com/news/getlist4.0.php?pid=100234721&pc=20&pn=1&st=0"\cf0 ;\
+    \cf3 NSURL\cf0  *url = [\cf3 NSURL\cf0  \cf5 URLWithString\cf0 :urlStr];\
+    \cf3 NSURLRequest\cf0  *request = [\cf3 NSURLRequest\cf0  \cf5 requestWithURL\cf0 :url];\
+    \cf6 //  [[NSOperationQueue alloc] init]\cf0 \
+    [\cf3 NSURLConnection\cf0  \cf5 sendAsynchronousRequest\cf0 :request \cf5 queue\cf0 :[\cf3 NSOperationQueue\cf0  \cf5 mainQueue\cf0 ] \cf5 completionHandler\cf0 :^(\cf3 NSURLResponse\cf0  * \cf2 _Nullable\cf0  response, \cf3 NSData\cf0  * \cf2 _Nullable\cf0  data, \cf3 NSError\cf0  * \cf2 _Nullable\cf0  connectionError) \{\
+        \cf3 NSString\cf0  *str = [[\cf3 NSString\cf0  \cf5 alloc\cf0 ] \cf5 initWithData\cf0 :data \cf5 encoding\cf0 :\cf5 NSUTF8StringEncoding\cf0 ];\
+        \cf5 NSLog\cf0 (\cf4 @"%@"\cf0 , str);\
+        \cf5 NSLog\cf0 (\cf4 @"%d"\cf0 , [[\cf3 NSThread\cf0  \cf5 currentThread\cf0 ] \cf5 isMainThread\cf0 ]); \
+    \}];\
+\}\
+\
+
+\f1 \'d4\'da\'d5\'e2\'b8\'f6
+\f0 block
+\f1 \'bf\'e9\'c4\'da\'a3\'ac\'b1\'be\'c0\'fd\'b4\'f2\'d3\'a1
+\f0 [[NSThread currentThread] isMainThread]
+\f1 \'bd\'e1\'b9\'fb\'ce\'aa
+\f0 1, 
+\f1 \'d5\'e2\'b8\'f6\'b4\'ab\'b5\'c4\'b2\'ce\'ca\'fd
+\f0 queue:
+\f1 \'d3\'d0\'b9\'d8\'cf\'b5\'a3\'ac\'c8\'e7\'b9\'fb\'ce\'d2\'c3\'c7\'b4\'ab\'d2\'bb\'b8\'f6
+\f0 [[NSOperationQueue alloc] init]
+\f1 \'a3\'ac\'c4\'c7\'b4\'f2\'d3\'a1\'bd\'e1\'b9\'fb\'be\'cd\'ca\'c7
+\f0 0, 
+\f1 \'bc\'b4\'b7\'c7\'d6\'f7\'cf\'df\'b3\'cc\'a1\'a3
+\f0 \
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+
+\f1 \'c9\'cf\'c3\'e6\'ca\'c7\'cd\'a8\'b9\'fd
+\f0 block
+\f1 \'b7\'bd\'b7\'a8\'bb\'f1\'c8\'a1\'ca\'fd\'be\'dd\'a3\'ac\'d2\'b2\'bf\'c9\'d2\'d4\'cd\'a8\'b9\'fd\'b4\'fa\'c0\'ed\'b7\'bd\'b7\'a8\'bb\'f1\'c8\'a1\'ca\'fd\'be\'dd\'a3\'ba
+\f0 \
+- (\cf2 void\cf0 )connection:(\cf3 NSURLConnection\cf0  *)connection didReceiveResponse:(\cf3 NSURLResponse\cf0  *)response;\
+- (\cf2 void\cf0 )connection:(\cf3 NSURLConnection\cf0  *)connection didReceiveData:(\cf3 NSData\cf0  *)data;
+\fs24 \CocoaLigature1 \
+
+\fs28 \CocoaLigature0 - (\cf2 void\cf0 )connectionDidFinishLoading:(\cf3 NSURLConnection\cf0  *)connection;\
+- (\cf2 void\cf0 )connection:(\cf3 NSURLConnection\cf0  *)connection didFailWithError:(\cf3 NSError\cf0  *)error;\
+- (\cf2 void\cf0 )connection:(\cf3 NSURLConnection\cf0  *)connection   didSendBodyData:(\cf3 NSInteger\cf0 )bytesWritten\
+                                                 totalBytesWritten:(\cf3 NSInteger\cf0 )totalBytesWritten\
+                                         totalBytesExpectedToWrite:(\cf3 NSInteger\cf0 )totalBytesExpectedToWrite; // post\
+
+\itap1\trowd \taflags3 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth3020\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf8 \clbrdrr\brdrs\brdrw20\brdrcf8 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth18200\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrs\brdrw20\brdrcf8 \clbrdrr\brdrnil \clpadt100 \clpadl200 \clpadb100 \clpadr500 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\i\b\fs20 \cf7 \expnd0\expndtw0\kerning0
+\CocoaLigature1 connection
+\f0\i0\b0 \cf0 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\fs28 \cf7 The connection sending the message.\cell \row
+
+\itap1\trowd \taflags3 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth3020\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf8 \clbrdrr\brdrs\brdrw20\brdrcf8 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth18200\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrs\brdrw20\brdrcf8 \clbrdrr\brdrnil \clpadt100 \clpadl200 \clpadb100 \clpadr500 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\i\b\fs20 \cf7 bytesWritten
+\f0\i0\b0 \cf0 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\fs28 \cf7 The number of bytes written in the latest write.\cell \row
+
+\itap1\trowd \taflags3 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth3020\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrnil \clbrdrb\brdrs\brdrw20\brdrcf8 \clbrdrr\brdrs\brdrw20\brdrcf8 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth18200\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrs\brdrw20\brdrcf8 \clbrdrr\brdrnil \clpadt100 \clpadl200 \clpadb100 \clpadr500 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\i\b\fs20 \cf7 totalBytesWritten
+\f0\i0\b0 \cf0 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\fs28 \cf7 The total number of bytes written for this connection.\cell \row
+
+\itap1\trowd \taflags3 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth3020\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrs\brdrw20\brdrcf8 \clpadt140 \clpadl140 \clpadb140 \clpadr140 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth18200\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf8 \clbrdrl\brdrs\brdrw20\brdrcf8 \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt100 \clpadl200 \clpadb100 \clpadr500 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f2\i\b\fs20 \cf7 totalBytesExpectedToWrite
+\f0\i0\b0 \cf0 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\fs28 \cf7 The number of bytes the connection expects to write.\cell \lastrow\row
+\pard\pardeftab720\partightenfactor0
+
+\f3\b\fs26 \cf0 Discussion\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b0\fs28 \cf7 This method provides an estimate of the progress of a URL upload.\
+The value of \cf9 totalBytesExpectedToWrite\cf7  may change during the upload if the request needs to be retransmitted due to a lost connection or an authentication challenge from the server.\cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+\pard\tx560\pardeftab560\pardirnatural\partightenfactor0
+\cf0 \
+
+\f1 \'d5\'e2\'bc\'b8\'b8\'f6\'ca\'c7\'b3\'a3\'d3\'c3\'b7\'bd\'b7\'a8\'a3\'ac\'d4\'da\'d5\'e2\'bc\'b8\'b8\'f6\'b7\'bd\'b7\'a8\'d6\'d0\'b4\'f2\'d3\'a1\'cf\'df\'b3\'cc\'a3\'ac\'d2\'bb\'c2\'c9\'ca\'c7\'d6\'f7\'cf\'df\'b3\'cc\'a1\'a3\'bc\'b4
+\f0 NSURLConnection
+\f1 \'bf\'aa\'c1\'cb\'d2\'bb\'d0\'c2\'cf\'df\'b3\'cc\'c8\'a5\'cf\'c2\'d4\'d8\'ca\'fd\'be\'dd\'a3\'ac\'b5\'ab\'bb\'d8\'b5\'f7\'b4\'fa\'c0\'ed\'b7\'bd\'b7\'a8\'ca\'b1\'ca\'c7\'bb\'d8\'b5\'bd\'c1\'cb\'d6\'f7\'cf\'df\'b3\'cc\'c9\'cf\'b5\'f7\'b5\'c4\'b4\'fa\'c0\'ed\'b7\'bd\'b7\'a8\'a1\'a3
+\f0 \
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+
+\f1 \'ca\'b9\'d3\'c3
+\f0 NSURLConnection post:\
+\cf3 NSString\cf0  *urlStr = \cf4 @"http://xxx.com/login.php"\cf0 ;\
+\cf3 NSMutableURLRequest\cf0  *request = [\cf3 NSMutableURLRequest\cf0  \cf5 requestWithURL\cf0 :[\cf3 NSURL\cf0  \cf5 URLWithString\cf0 :urlStr]];\
+[request \cf5 setTimeoutInterval\cf0 :\cf10 10.0\cf0 ];\
+[request \cf5 setHTTPMethod\cf0 :\cf4 @"POST"\cf0 ];\
+\cf3 NSString\cf0  *bodyString = [NSString stringWithFormat:\cf4 @"username=%@&password=%@"\cf0 , _userNameField.text, _passwordField.text];\
+\cf3 NSData\cf0  *bodyData = [bodyString dataUsingEncoding:NSUTF8StringEncoding];\
+[request \cf5 setHTTPBody\cf0 :bodyData];\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+NSURLRequest
+\f1 \'d3\'d0\'d2\'bb\'b8\'f6\'ca\'f4\'d0\'d4\'bd\'d0
+\f0 cachePolicy
+\f1 \'a3\'ac\'c9\'e8\'d6\'c3\'bb\'ba\'b4\'e6\'b2\'df\'c2\'d4\'a3\'ac\'b5\'ab\'d5\'e2\'ca\'c7\'d2\'bb\'d6\'d6\'c4\'da\'b4\'e6\'bb\'ba\'b4\'e6\'a3\'ac\'b7\'c7\'d3\'b2\'c5\'cc\'bb\'ba\'b4\'e6\'a1\'a3
+\f0 \
+\cf2 typedef\cf0  \cf2 NS_ENUM\cf0 (NSUInteger, NSURLRequestCachePolicy) \{\
+    NSURLRequestUseProtocolCachePolicy = \cf10 0\cf0 , \cf6 // 
+\f1 \'c4\'ac\'c8\'cf\'b5\'c4\'bb\'ba\'b4\'e6\'b2\'df\'c2\'d4
+\f0 ,
+\f1 \'d2\'aa\'d4\'da\'d0\'ad\'d2\'e9\'b5\'c4\'ca\'b5\'cf\'d6\'b7\'bd\'b7\'a8\'d6\'d0\'d6\'b8\'b6\'a8\'bb\'ba\'b4\'e6\'c2\'df\'bc\'ad
+\f0 \cf0 \
+    NSURLRequestReloadIgnoringLocalCacheData = \cf10 1\cf0 , \cf6 // 
+\f1 \'ba\'f6\'c2\'d4\'bb\'ba\'b4\'e6\'b4\'d3\'d4\'ad\'ca\'bc\'b5\'d8\'d6\'b7\'cf\'c2\'d4\'d8
+\f0 \cf0 \
+    NSURLRequestReloadIgnoringLocalAndRemoteCacheData = \cf10 4\cf0 , \cf6 // Unimplemented\cf0 \
+    NSURLRequestReloadIgnoringCacheData = NSURLRequestReloadIgnoringLocalCacheData, \cf6 // 
+\f1 \'ba\'f6\'c2\'d4\'b1\'be\'b5\'d8\'ba\'cd\'d4\'b6\'b3\'cc\'b5\'c4\'bb\'ba\'b4\'e6\'ca\'fd\'be\'dd
+\f0 ,
+\f1 \'d6\'b1\'bd\'d3\'b4\'d3\'d4\'ad\'ca\'bc\'b5\'d8\'d6\'b7\'cf\'c2\'d4\'d8
+\f0 ,
+\f1 \'d3\'eb
+\f0  NSURLRequestReloadIgnoringCacheData
+\f1 \'c0\'e0\'cb\'c6
+\f0 \cf0 \
+    \
+    NSURLRequestReturnCacheDataElseLoad = \cf10 2\cf0 , \cf6 // 
+\f1 \'c3\'bb\'d3\'d0\'bb\'ba\'b4\'e6\'ca\'b1\'b4\'d3\'d4\'ad\'ca\'bc\'b5\'d8\'d6\'b7\'cf\'c2\'d4\'d8
+\f0 \cf0 \
+    NSURLRequestReturnCacheDataDontLoad = \cf10 3\cf0 , \cf6 // 
+\f1 \'d6\'bb\'ca\'b9\'d3\'c3\'bb\'ba\'b4\'e6
+\f0 ,
+\f1 \'c8\'e7\'b9\'fb\'b2\'bb\'b4\'e6\'d4\'da\'bb\'ba
+\f0  
+\f1 \'b4\'e6
+\f0 ,
+\f1 \'c7\'eb\'c7\'f3\'ca\'a7\'b0\'dc
+\f0 ,
+\f1 \'ca\'ca\'d3\'c3\'d3\'da\'c3\'bb\'d3\'d0\'bd\'a8\'c1\'a2\'cd\'f8\'c2\'e7\'c1\'ac\'bd\'d3\'c0\'eb\'cf\'df\'c4\'a3\'ca\'bd
+\f0 \cf0 \
+    \
+    NSURLRequestReloadRevalidatingCacheData = \cf10 5\cf0 , \cf6 // Unimplemented 
+\f1 \'d1\'e9\'d6\'a4\'b1\'be\'b5\'d8\'ca\'fd\'be\'dd\'d3\'eb\'d4\'b6\'b3\'cc
+\f0  
+\f1 \'ca\'fd\'be\'dd\'ca\'c7\'b7\'f1\'cf\'e0\'cd\'ac
+\f0 ,
+\f1 \'c8\'e7\'b9\'fb\'b2\'bb\'cd\'ac\'d4\'f2\'cf\'c2\'d4\'d8\'d4\'b6\'b3\'cc\'ca\'fd\'be\'dd
+\f0 ,
+\f1 \'b7\'f1\'d4\'f2\'ca\'b9\'d3\'c3\'b1\'be\'b5\'d8\'ca\'fd\'be\'dd
+\f0 \cf0 \
+\};\
+\
+
+\f1 \'b9\'d8\'d3\'da
+\f0 NSURLConnection
+\f1 \'b2\'bb\'d7\'f6\'bd\'e9\'c9\'dc\'a3\'ac\'b5\'bd\'b5\'d7\'ce\'aa\'d6\'b9\'a1\'a3
+\f0 \
+\
+}

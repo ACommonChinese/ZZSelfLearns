@@ -1,0 +1,359 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DAA505381CC6041000857E07 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = DAA505371CC6041000857E07 /* placeholder.png */; };
+		DAC009031CC0926100348448 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC009021CC0926100348448 /* main.m */; };
+		DAC009061CC0926100348448 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC009051CC0926100348448 /* AppDelegate.m */; };
+		DAC009091CC0926100348448 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC009081CC0926100348448 /* ViewController.m */; };
+		DAC0090C1CC0926100348448 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC0090A1CC0926100348448 /* Main.storyboard */; };
+		DAC0090E1CC0926100348448 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAC0090D1CC0926100348448 /* Assets.xcassets */; };
+		DAC009111CC0926100348448 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAC0090F1CC0926100348448 /* LaunchScreen.storyboard */; };
+		DAC0091E1CC094BD00348448 /* SimpleGetController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC0091C1CC094BD00348448 /* SimpleGetController.m */; };
+		DAC0091F1CC094BD00348448 /* SimpleGetController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAC0091D1CC094BD00348448 /* SimpleGetController.xib */; };
+		DAC009231CC0B6F200348448 /* SimpleGetDelegateController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC009211CC0B6F200348448 /* SimpleGetDelegateController.m */; };
+		DAC009241CC0B6F200348448 /* SimpleGetDelegateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAC009221CC0B6F200348448 /* SimpleGetDelegateController.xib */; };
+		DAC009281CC0CC0A00348448 /* ResumeDownloadController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC009261CC0CC0A00348448 /* ResumeDownloadController.m */; };
+		DAC009291CC0CC0A00348448 /* ResumeDownloadController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAC009271CC0CC0A00348448 /* ResumeDownloadController.xib */; };
+		DAC009321CC4BD8700348448 /* BackgroundTransferServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC009301CC4BD8700348448 /* BackgroundTransferServiceController.m */; };
+		DAC009331CC4BD8700348448 /* BackgroundTransferServiceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAC009311CC4BD8700348448 /* BackgroundTransferServiceController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DAA505371CC6041000857E07 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		DAC008FE1CC0926100348448 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAC009021CC0926100348448 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DAC009041CC0926100348448 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DAC009051CC0926100348448 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DAC009071CC0926100348448 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		DAC009081CC0926100348448 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DAC0090B1CC0926100348448 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DAC0090D1CC0926100348448 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DAC009101CC0926100348448 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DAC009121CC0926100348448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAC0091B1CC094BD00348448 /* SimpleGetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleGetController.h; sourceTree = "<group>"; };
+		DAC0091C1CC094BD00348448 /* SimpleGetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleGetController.m; sourceTree = "<group>"; };
+		DAC0091D1CC094BD00348448 /* SimpleGetController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleGetController.xib; sourceTree = "<group>"; };
+		DAC009201CC0B6F200348448 /* SimpleGetDelegateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleGetDelegateController.h; sourceTree = "<group>"; };
+		DAC009211CC0B6F200348448 /* SimpleGetDelegateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleGetDelegateController.m; sourceTree = "<group>"; };
+		DAC009221CC0B6F200348448 /* SimpleGetDelegateController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleGetDelegateController.xib; sourceTree = "<group>"; };
+		DAC009251CC0CC0A00348448 /* ResumeDownloadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeDownloadController.h; sourceTree = "<group>"; };
+		DAC009261CC0CC0A00348448 /* ResumeDownloadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeDownloadController.m; sourceTree = "<group>"; };
+		DAC009271CC0CC0A00348448 /* ResumeDownloadController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResumeDownloadController.xib; sourceTree = "<group>"; };
+		DAC0092F1CC4BD8700348448 /* BackgroundTransferServiceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundTransferServiceController.h; sourceTree = "<group>"; };
+		DAC009301CC4BD8700348448 /* BackgroundTransferServiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundTransferServiceController.m; sourceTree = "<group>"; };
+		DAC009311CC4BD8700348448 /* BackgroundTransferServiceController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackgroundTransferServiceController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DAC008FB1CC0926100348448 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DAC008F51CC0926100348448 = {
+			isa = PBXGroup;
+			children = (
+				DAC009001CC0926100348448 /* Demo */,
+				DAC008FF1CC0926100348448 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DAC008FF1CC0926100348448 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DAC008FE1CC0926100348448 /* Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DAC009001CC0926100348448 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				DAC009041CC0926100348448 /* AppDelegate.h */,
+				DAC009051CC0926100348448 /* AppDelegate.m */,
+				DAC009071CC0926100348448 /* ViewController.h */,
+				DAC009081CC0926100348448 /* ViewController.m */,
+				DAC0091B1CC094BD00348448 /* SimpleGetController.h */,
+				DAC0091C1CC094BD00348448 /* SimpleGetController.m */,
+				DAC0091D1CC094BD00348448 /* SimpleGetController.xib */,
+				DAC009201CC0B6F200348448 /* SimpleGetDelegateController.h */,
+				DAC009211CC0B6F200348448 /* SimpleGetDelegateController.m */,
+				DAC009221CC0B6F200348448 /* SimpleGetDelegateController.xib */,
+				DAC009251CC0CC0A00348448 /* ResumeDownloadController.h */,
+				DAC009261CC0CC0A00348448 /* ResumeDownloadController.m */,
+				DAC009271CC0CC0A00348448 /* ResumeDownloadController.xib */,
+				DAC0092F1CC4BD8700348448 /* BackgroundTransferServiceController.h */,
+				DAC009301CC4BD8700348448 /* BackgroundTransferServiceController.m */,
+				DAC009311CC4BD8700348448 /* BackgroundTransferServiceController.xib */,
+				DAC0090A1CC0926100348448 /* Main.storyboard */,
+				DAA505371CC6041000857E07 /* placeholder.png */,
+				DAC0090D1CC0926100348448 /* Assets.xcassets */,
+				DAC0090F1CC0926100348448 /* LaunchScreen.storyboard */,
+				DAC009121CC0926100348448 /* Info.plist */,
+				DAC009011CC0926100348448 /* Supporting Files */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		DAC009011CC0926100348448 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DAC009021CC0926100348448 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DAC008FD1CC0926100348448 /* Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAC009151CC0926100348448 /* Build configuration list for PBXNativeTarget "Demo" */;
+			buildPhases = (
+				DAC008FA1CC0926100348448 /* Sources */,
+				DAC008FB1CC0926100348448 /* Frameworks */,
+				DAC008FC1CC0926100348448 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Demo;
+			productName = Demo;
+			productReference = DAC008FE1CC0926100348448 /* Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DAC008F61CC0926100348448 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = LiuWeiZhen;
+				TargetAttributes = {
+					DAC008FD1CC0926100348448 = {
+						CreatedOnToolsVersion = 7.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = DAC008F91CC0926100348448 /* Build configuration list for PBXProject "Demo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DAC008F51CC0926100348448;
+			productRefGroup = DAC008FF1CC0926100348448 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DAC008FD1CC0926100348448 /* Demo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DAC008FC1CC0926100348448 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAC009111CC0926100348448 /* LaunchScreen.storyboard in Resources */,
+				DAC0090E1CC0926100348448 /* Assets.xcassets in Resources */,
+				DAC0091F1CC094BD00348448 /* SimpleGetController.xib in Resources */,
+				DAC009241CC0B6F200348448 /* SimpleGetDelegateController.xib in Resources */,
+				DAC009291CC0CC0A00348448 /* ResumeDownloadController.xib in Resources */,
+				DAA505381CC6041000857E07 /* placeholder.png in Resources */,
+				DAC0090C1CC0926100348448 /* Main.storyboard in Resources */,
+				DAC009331CC4BD8700348448 /* BackgroundTransferServiceController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DAC008FA1CC0926100348448 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAC009281CC0CC0A00348448 /* ResumeDownloadController.m in Sources */,
+				DAC009091CC0926100348448 /* ViewController.m in Sources */,
+				DAC009061CC0926100348448 /* AppDelegate.m in Sources */,
+				DAC0091E1CC094BD00348448 /* SimpleGetController.m in Sources */,
+				DAC009321CC4BD8700348448 /* BackgroundTransferServiceController.m in Sources */,
+				DAC009231CC0B6F200348448 /* SimpleGetDelegateController.m in Sources */,
+				DAC009031CC0926100348448 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DAC0090A1CC0926100348448 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAC0090B1CC0926100348448 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DAC0090F1CC0926100348448 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAC009101CC0926100348448 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DAC009131CC0926100348448 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DAC009141CC0926100348448 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DAC009161CC0926100348448 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.weizhen.Demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DAC009171CC0926100348448 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.weizhen.Demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DAC008F91CC0926100348448 /* Build configuration list for PBXProject "Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAC009131CC0926100348448 /* Debug */,
+				DAC009141CC0926100348448 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAC009151CC0926100348448 /* Build configuration list for PBXNativeTarget "Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAC009161CC0926100348448 /* Debug */,
+				DAC009171CC0926100348448 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DAC008F61CC0926100348448 /* Project object */;
+}

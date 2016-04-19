@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0N-eL-MJI">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="8Nk-f4-kjE"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="普通下载" id="3RW-hh-HRa">
+                                        <connections>
+                                            <action selector="commonDownload:" destination="BYZ-38-t0r" id="NgV-F9-7QR"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="断点续传下载" id="wgv-hE-VYa">
+                                        <connections>
+                                            <action selector="resumeDownload:" destination="BYZ-38-t0r" id="FBk-FU-Pmg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="后台下载" id="wcr-9V-2Za">
+                                        <connections>
+                                            <action selector="backgroundDownload:" destination="BYZ-38-t0r" id="I9v-6r-ISY"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="V3B-bh-RoM"/>
+                                    <barButtonItem title="取消下载" id="A1k-lK-Tt1">
+                                        <connections>
+                                            <action selector="cancelDownload:" destination="BYZ-38-t0r" id="vJQ-8l-WXg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下载的图片" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0G-uY-Bxm">
+                                <rect key="frame" x="242" y="28" width="116" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="C9C-Zp-tZ1"/>
+                                    <constraint firstAttribute="width" constant="116" id="xfC-Lp-smF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pvS-Ga-EXh">
+                                <rect key="frame" x="0.0" y="64" width="600" height="422"/>
+                                <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下载进度:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHJ-gz-qcu">
+                                <rect key="frame" x="5" y="504" width="73" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="V08-Vi-kp4"/>
+                                    <constraint firstAttribute="width" constant="73" id="dPu-qQ-58N"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9V-3T-Adf">
+                                <rect key="frame" x="92" y="503" width="170" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="nc7-RW-k8i"/>
+                                    <constraint firstAttribute="height" constant="21" id="soS-Ny-qTO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4S1-7H-mio">
+                                <rect key="frame" x="5" y="539" width="590" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="dj4-bO-hKx"/>
+                                </constraints>
+                            </progressView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="4S1-7H-mio" secondAttribute="trailing" constant="5" id="1dS-UN-cFH"/>
+                            <constraint firstItem="y9V-3T-Adf" firstAttribute="leading" secondItem="sHJ-gz-qcu" secondAttribute="trailing" constant="14" id="4qv-Jw-vT5"/>
+                            <constraint firstAttribute="trailing" secondItem="H0N-eL-MJI" secondAttribute="trailing" id="52E-bW-gr1"/>
+                            <constraint firstItem="pvS-Ga-EXh" firstAttribute="top" secondItem="F0G-uY-Bxm" secondAttribute="bottom" constant="15" id="7cG-Dr-uSk"/>
+                            <constraint firstItem="F0G-uY-Bxm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="EFE-PP-EgH"/>
+                            <constraint firstItem="pvS-Ga-EXh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="FJg-GQ-Jid"/>
+                            <constraint firstItem="4S1-7H-mio" firstAttribute="top" secondItem="y9V-3T-Adf" secondAttribute="bottom" constant="15" id="IRC-ka-a3A"/>
+                            <constraint firstItem="y9V-3T-Adf" firstAttribute="top" secondItem="pvS-Ga-EXh" secondAttribute="bottom" constant="17" id="LFu-TD-IAx"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="H0N-eL-MJI" secondAttribute="bottom" id="LTD-sD-rqa"/>
+                            <constraint firstItem="4S1-7H-mio" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="5" id="aPF-dI-shJ"/>
+                            <constraint firstItem="4S1-7H-mio" firstAttribute="top" secondItem="sHJ-gz-qcu" secondAttribute="bottom" constant="14" id="cCT-C0-I2S"/>
+                            <constraint firstItem="H0N-eL-MJI" firstAttribute="top" secondItem="4S1-7H-mio" secondAttribute="bottom" constant="15" id="gGV-Wd-Lut"/>
+                            <constraint firstItem="H0N-eL-MJI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hhV-Nf-trj"/>
+                            <constraint firstItem="F0G-uY-Bxm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hj1-F0-7xM"/>
+                            <constraint firstAttribute="trailing" secondItem="pvS-Ga-EXh" secondAttribute="trailing" id="mLC-8p-FXl"/>
+                            <constraint firstItem="sHJ-gz-qcu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="5" id="v36-Qr-4c4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundDownloadItem" destination="wcr-9V-2Za" id="ouG-vA-rKv"/>
+                        <outlet property="cancelDownloadItem" destination="A1k-lK-Tt1" id="WS6-ry-nR5"/>
+                        <outlet property="commonDownloadItem" destination="3RW-hh-HRa" id="HQz-eg-G0B"/>
+                        <outlet property="imageView" destination="pvS-Ga-EXh" id="8Ph-3V-LHk"/>
+                        <outlet property="progressLabel" destination="y9V-3T-Adf" id="aR3-Of-Yaf"/>
+                        <outlet property="progressView" destination="4S1-7H-mio" id="fWH-kt-sKc"/>
+                        <outlet property="resumeDownloadItem" destination="wgv-hE-VYa" id="L4V-OX-1i2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="565" y="400"/>
+        </scene>
+    </scenes>
+</document>

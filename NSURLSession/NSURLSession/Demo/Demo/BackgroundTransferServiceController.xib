@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BackgroundTransferServiceController">
+            <connections>
+                <outlet property="imageView" destination="cz1-Na-Hqa" id="0z1-PU-hkm"/>
+                <outlet property="progressLabel" destination="uoR-F6-IfA" id="VPg-2K-daJ"/>
+                <outlet property="progressView" destination="MDA-li-xM3" id="Yje-uf-oOT"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cz1-Na-Hqa">
+                    <rect key="frame" x="8" y="73" width="584" height="413"/>
+                    <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                </imageView>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MDA-li-xM3">
+                    <rect key="frame" x="8" y="538" width="584" height="2"/>
+                </progressView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下载进度：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClW-Rp-voT">
+                    <rect key="frame" x="8" y="502" width="85" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="Ymw-SD-een"/>
+                        <constraint firstAttribute="width" constant="85" id="aTK-Ge-yKc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoR-F6-IfA">
+                    <rect key="frame" x="101" y="502" width="491" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="yQa-Op-j9y"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mpg-SL-TNB">
+                    <rect key="frame" x="8" y="556" width="74" height="30"/>
+                    <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="EUw-qF-fRp"/>
+                        <constraint firstAttribute="width" constant="74" id="M6Y-3a-zOK"/>
+                    </constraints>
+                    <state key="normal" title="开始">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="downloadData:" destination="-1" eventType="touchUpInside" id="OJ4-MB-Mrv"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OE5-nJ-ODF">
+                    <rect key="frame" x="263" y="556" width="74" height="30"/>
+                    <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="DoQ-w5-m0s"/>
+                        <constraint firstAttribute="width" constant="74" id="NP5-HZ-oAG"/>
+                    </constraints>
+                    <state key="normal" title="暂停">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="pause:" destination="-1" eventType="touchUpInside" id="eXK-zt-VaG"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0GC-V2-GDP">
+                    <rect key="frame" x="518" y="556" width="74" height="30"/>
+                    <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="74" id="NEP-ZC-vqk"/>
+                        <constraint firstAttribute="height" constant="30" id="jdI-mw-yLr"/>
+                    </constraints>
+                    <state key="normal" title="停止">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="stop:" destination="-1" eventType="touchUpInside" id="pKg-ku-5Yk"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="MDA-li-xM3" firstAttribute="top" secondItem="uoR-F6-IfA" secondAttribute="bottom" constant="15" id="29a-P3-sUO"/>
+                <constraint firstAttribute="trailing" secondItem="cz1-Na-Hqa" secondAttribute="trailing" constant="8" id="4iN-SL-NxW"/>
+                <constraint firstItem="0GC-V2-GDP" firstAttribute="top" secondItem="MDA-li-xM3" secondAttribute="bottom" constant="16" id="8NC-zO-4rc"/>
+                <constraint firstItem="MDA-li-xM3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="DVF-Pu-Rx1"/>
+                <constraint firstAttribute="bottom" secondItem="0GC-V2-GDP" secondAttribute="bottom" constant="14" id="M83-hY-9HW"/>
+                <constraint firstItem="cz1-Na-Hqa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="73" id="Mq9-U7-nGK"/>
+                <constraint firstAttribute="bottom" secondItem="cz1-Na-Hqa" secondAttribute="bottom" constant="114" id="U5b-4P-scu"/>
+                <constraint firstAttribute="trailing" secondItem="uoR-F6-IfA" secondAttribute="trailing" constant="8" id="Uca-wf-i43"/>
+                <constraint firstItem="MDA-li-xM3" firstAttribute="top" secondItem="ClW-Rp-voT" secondAttribute="bottom" constant="15" id="VQ2-Kj-Xxr"/>
+                <constraint firstItem="ClW-Rp-voT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="bHS-Km-rKz"/>
+                <constraint firstItem="cz1-Na-Hqa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="cCu-0b-LCT"/>
+                <constraint firstAttribute="bottom" secondItem="mpg-SL-TNB" secondAttribute="bottom" constant="14" id="g9r-QO-VbR"/>
+                <constraint firstAttribute="trailing" secondItem="0GC-V2-GDP" secondAttribute="trailing" constant="8" id="r22-Bp-13t"/>
+                <constraint firstItem="mpg-SL-TNB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="t8u-yy-Cpk"/>
+                <constraint firstItem="OE5-nJ-ODF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="tKz-Ag-zrb"/>
+                <constraint firstItem="uoR-F6-IfA" firstAttribute="leading" secondItem="ClW-Rp-voT" secondAttribute="trailing" constant="8" id="vcb-7K-lbV"/>
+                <constraint firstAttribute="bottom" secondItem="OE5-nJ-ODF" secondAttribute="bottom" constant="14" id="vgU-zg-NQb"/>
+                <constraint firstAttribute="trailing" secondItem="MDA-li-xM3" secondAttribute="trailing" constant="8" id="zjp-we-ddw"/>
+            </constraints>
+            <point key="canvasLocation" x="352" y="322"/>
+        </view>
+    </objects>
+</document>
