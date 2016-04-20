@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    </head>
+    
+    <body>
+        <script src="jquery-1.8.3.min.js"></script>
+        <a href="#" id="test" style="width:100px; background-color: #ff0000; height: 100px; display: inline-block;">test</a>
+        
+        <input type="button" value="测试log" onclick="onShare('测试');" style="width:100px; background-color: #ffff00; height: 100px; display: inline-block;" />
+        
+        <script>
+            if(window.CordovaInterface) {
+                $("#test").click(function() {
+                        window.CordovaInterface.execute("share");
+                })
+            }
+        </script>
+    </body>
+</html>
