@@ -1,0 +1,2845 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" id="sixapart-standard"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="Movable Type  5.2.2">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="1_files/styles.css" type="text/css">
+<link rel="start" href="http://www.ruanyifeng.com/blog/" title="Home">
+<link rel="alternate" type="application/atom+xml" title="Recent Entries" href="http://feeds.feedburner.com/ruanyifeng">
+<script src="1_files/analytics.js" async=""></script><script type="text/javascript" src="1_files/mt.js"></script>
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="http://www.ruanyifeng.com/blog/2007/01/guestbook.html">
+<dc:title>卡尔维诺中文站留言板</dc:title>
+<dc:description>这个帖子专门用作卡尔维诺中文站的留言板，欢迎大家留言和提问。...</dc:description>
+<dc:creator>阮一峰</dc:creator>
+<dc:date>2007-01-04T18:54:26+08:00</dc:date>
+<license rdf:resource="http://creativecommons.org/licenses/by-nc-nd/3.0/" />
+</Work>
+<License rdf:about="http://creativecommons.org/licenses/by-nc-nd/3.0/">
+</License>
+</rdf:RDF>
+-->
+
+
+    
+    <link rel="prev" href="http://www.ruanyifeng.com/blog/2014/01/whale_shark.html" title="浙江温州的鲸鲨屠宰场">
+    <link rel="next" href="http://www.ruanyifeng.com/blog/2014/02/css_transition_and_animation.html" title="CSS动画简介">
+    
+    <title>SSL/TLS协议运行机制的概述 - 阮一峰的网络日志</title>
+<script charset="utf-8" type="text/javascript" src="1_files/bsStatic.txt"></script><script charset="utf-8" type="text/javascript" src="1_files/fingerprint2.js"></script><script charset="utf-8" type="text/javascript" src="1_files/bs-engine.txt"></script></head>
+<body id="scrapbook" class="mt-entry-archive one-column">
+<script>
+if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent)) document.body.classList.add('mobile');
+</script>
+    <div id="container">
+        <div id="container-inner">
+
+            <div id="header">
+    <div id="header-inner">
+        <div id="header-content">
+
+
+            <div id="header-name">阮一峰的网络日志 <span id="site_location"> » <a href="http://www.ruanyifeng.com/blog/" accesskey="1">首页</a></span><span id="site_archive"> » <a href="http://www.ruanyifeng.com/blog/archives.html">档案</a></span>
+</div>
+
+<div id="google_search">
+<!-- SiteSearch Google -->
+<form action="http://www.ruanyifeng.com/blog/search.html" id="cse-search-box">
+      <div>
+        <input name="cx" value="016304377626642577906:b_e9skaywzq" type="hidden">
+    <input name="cof" value="FORID:11" type="hidden">
+    <input name="ie" value="UTF-8" type="hidden">
+        <input name="q" size="20" class="searchbox" id="sbi" type="text">
+        <input src="1_files/top_search_submit.gif" class="searchbox_submit" value="" alt="搜索" name="sa" type="image">
+      </div>
+    </form>
+<!-- SiteSearch Google -->
+</div>
+<div id="feed_icon">
+<a href="http://www.ruanyifeng.com/feed.html" title="订阅Feed">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAUzSURBVHjavFdbbFRVFF3nPjoz7dTWTittaW0jUDRAUqaNojyqREnEQKgfUj9MqqAmhqRt/OCD4CuY+Kckoh+aiGKC+gMJbdHoRysJ8dkhhmJLNdDKtJU+6GMK87j3Hs85d2Z6HzNtMYWb3Dn3NWftvfba+5xNYDl+e6Fkj6yqb/oDRbWq14vlPBLRKCITkxf0ROLt+hNjp1PPSRK4kA3vF1dXNRcWlyA2OQU9eos9opAkAiKxD+XkKO6t15aRWO7J/MgmAZU8MEgexgZHMX518Dh72sYMmVKShnxWuWHdHtxKIDIYTgMuDzgfmSOIQkYMpdUF8OY92Hytt4/jvkg47czzU16iQovM3QFwmNck+Yyduu7D6NA0Z6JR4THntFs9V4tWQg6Ui3s6MwKDncsFTnXKLJhDSeUK3AgPtyhccDzmVs999buRt/1Vm4i0od+hX7+MRG87jPGB/w1u8FPj9xEw7McVrnYuOCvtpjTth3J/nTg99c8LRhKhr6D3dTB5R24bXFwbMXBsyZzeoXaycEpJ95TB09AGX/NpqLVNtw8urnVzLvHjFNxiFqRy2OOHuqUVnue+ACkoWzo4O6lGzTmuHq6nPvY2m9rVqjrIK2rMEKxqyG5NPAKt+wjo0LklgfNxJkZMA3KJvqRUk3z5UFY3QH14P0h+WUY79HPvgv7VuSg4ZRGY1YgZgqXmORccF17sy2ehnf9AeO085K2HQFbtXBScj0LcpgF2cN+WV+DZ/LJQu6gD4R7oV7pBJwbSgtMvfiPoVp56DySwxm7EtkMs1WdAB7qzggsDJKQYsHucSkOudrkiCPWR/fA2nYCn8SNIK4NptSMyAu3sAdDRkIsJdfth0LzSrODUoPNZ4KI9SxJI5UHk7D4GdQfz2us31c7CoHMjRkKuDPHseCMrONVhNcDJwMJpKFVvg9L4OaTiNWm1x789KCqkrXhVBiEz0WYCT2nAzQAD1/vaETv1GrRfP4Vx5cfMNcDPwvP0h0DhanPym7OIf/+O67vcJ1/PCJ4KgdzaUP6Wz+dU+5yIL6fV+PsHGAOdwlPpvvUOyeeAVGyCdqkDNB6DPjsBSrnndfOGevOh3RhGItxvA+fX1CtbGFhgYUFkFMZPR6F1HnClHq8HyubWtJexX06CRmdt33hrd7nA7SFY4qoGpnYuOKcRykPPgDCBcsHx9Iv+fNL2PueBehCWUfYQIIMGLOCcOmXDXsh1+yCt35tUPfvzGFuSvzvoinXOxqa02qOhM6733nVP2MAdaej2XN11DPKjLZCD+yBvahGCo7JfTKAN9UD7s8Oe9zUNIhz8fWI8DG2k38WCFdxugANcXrvTVd1IEbuv3Jour7Hzn7jLMBNfKs7R3i67gRVrbeCOEDhinmWhAatsqdquM2XzHZINhK2cqTjHr/XZdVJUbgN3MWAVXKbSyg9jesRW2xP9di+lwrL5ojM3m2H/kG9hwcIA37c71W6wJdW2J2S5nrjYbq/t1AHAhJsKQeyfPvf6IMJgghPJhFZ4x0KlfLFvt22du45Au/A1SOlGc0P672XXwhLtOcM0kTTEMMd0qkVmMNXxMd/tsedUjInr4SQDgOfeXMSiN0FCL5WHah4L1qqYXPJOJlttd+a5M+YpcG5poLYKQ5f+6JJ4r8bbJYP47hq4r7QAs9PjYNhHJd4o8l5taiwuOpa7AS4XKqI/5NjJbTnaWK92nLdLuhQAJayRNMiygXPBeQN+Qbvu0zDc3y+aUzhbkGR73sI7ljvUnndx2q3t+X8CDAD66FtrIL864AAAAABJRU5ErkJggg==" alt="" style="border: 0pt none;">
+</a></div>
+
+        </div>
+    </div>
+</div>
+
+
+
+            <div id="content">
+                <div id="content-inner">
+
+
+                    <div id="alpha">
+                        <div id="alpha-inner">
+
+
+                            <div id="entry-1799" class="entry-asset asset hentry">
+                                <div class="asset-header">
+<div class="asset-nav entry-nav">
+
+<div class="entry-location">
+<ul>
+<li>上一篇：<a href="http://www.ruanyifeng.com/blog/2014/01/whale_shark.html" title="浙江温州的鲸鲨屠宰场">浙江温州的鲸鲨屠宰场&nbsp;</a></li>
+<li>下一篇：<a href="http://www.ruanyifeng.com/blog/2014/02/css_transition_and_animation.html" title="CSS动画简介">CSS动画简介&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+</ul>
+</div>
+
+
+    
+                                    <div class="entry-categories">
+                                        <p>分类<span class="delimiter">：</span></p>
+                                        <ul>
+                                            <li><a href="http://www.ruanyifeng.com/blog/developer/" rel="tag">开发者手册</a></li>
+                                        </ul>
+                                    </div>
+    
+
+
+                                            
+</div>
+                                </div>
+<article class="hentry">
+                                    <h1 id="page-title" class="asset-name entry-title">SSL/TLS协议运行机制的概述</h1>
+                                            <div id="share_button" style="float:right;padding-right:2em;padding-top:1em;">
+<a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a>
+
+
+
+<script type="text/javascript" charset="utf-8" src="1_files/buttonLite.js"></script>
+<script type="text/javascript" charset="utf-8">
+bShare.addEntry({
+    title: document.getElementById("page-title").innerHTML,
+url:window.location.href
+});
+</script>
+</div>
+                                    <div class="asset-meta">
+                                        
+
+                                            <p class="vcard author">作者： <a class="fn url" href="http://www.ruanyifeng.com/">阮一峰</a></p>
+                                    <p>日期： <a href="http://www.ruanyifeng.com/blog/2014/02/"><abbr class="published" title="2014-02-05T19:24:46+08:00">2014年2月 5日</abbr></a></p>
+
+
+                                    </div>
+                                
+                                <div class="asset-content entry-content" id="main-content">
+
+                                    <!-- div class="asset-body" -->
+                                        <p>互联网的通信安全，建立在SSL/TLS协议之上。</p>
+
+                                    <!-- /div -->
+
+
+                                    <!-- div id="more" class="asset-more" -->
+                                        <p>本文简要介绍SSL/TLS协议的运行机制。文章的重点是设计思想和运行过程，不涉及具体的实现细节。如果想了解这方面的内容，请参阅<a target="_blank" href="http://tools.ietf.org/html/rfc5246">RFC文档</a>。</p>
+
+<p><img src="1_files/bg2014020501.jpg" alt="" title=""></p>
+
+<p><strong>一、作用</strong></p>
+
+<p>不使用SSL/TLS的HTTP通信，就是不加密的通信。所有信息明文传播，带来了三大风险。</p>
+
+<blockquote>
+  <p>（1） <strong>窃听风险</strong>（eavesdropping）：第三方可以获知通信内容。</p>
+
+<p>（2） <strong>篡改风险</strong>（tampering）：第三方可以修改通信内容。</p>
+
+<p>（3） <strong>冒充风险</strong>（pretending）：第三方可以冒充他人身份参与通信。</p>
+</blockquote>
+
+<p>SSL/TLS协议是为了解决这三大风险而设计的，希望达到：</p>
+
+<blockquote>
+  <p>（1） 所有信息都是<strong>加密传播</strong>，第三方无法窃听。</p>
+
+<p>（2） 具有<strong>校验机制</strong>，一旦被篡改，通信双方会立刻发现。</p>
+
+<p>（3） 配备<strong>身份证书</strong>，防止身份被冒充。</p>
+</blockquote>
+
+<p>互联网是开放环境，通信双方都是未知身份，这为协议的设计带来了很大的难度。而且，协议还必须能够经受所有匪夷所思的攻击，这使得SSL/TLS协议变得异常复杂。</p>
+
+<p><strong>二、历史</strong></p>
+
+<p>互联网加密通信协议的历史，几乎与互联网一样长。</p>
+
+<blockquote>
+  <p>1994年，NetScape公司设计了SSL协议（Secure Sockets Layer）的1.0版，但是未发布。</p>
+
+<p>1995年，NetScape公司发布SSL 2.0版，很快发现有严重漏洞。</p>
+
+<p>1996年，SSL 3.0版问世，得到大规模应用。</p>
+
+<p>1999年，互联网标准化组织ISOC接替NetScape公司，发布了SSL的升级版<a target="_blank" href="http://en.wikipedia.org/wiki/Secure_Sockets_Layer">TLS</a> 1.0版。</p>
+
+<p>2006年和2008年，TLS进行了两次升级，分别为TLS 1.1版和TLS 1.2版。最新的变动是2011年TLS 1.2的<a target="_blank" href="http://tools.ietf.org/html/rfc6176">修订版</a>。</p>
+</blockquote>
+
+<p>目前，应用最广泛的是TLS 1.0，接下来是SSL 3.0。但是，主流浏览器都已经实现了TLS 1.2的支持。</p>
+
+<p>TLS 1.0通常被标示为SSL 3.1，TLS 1.1为SSL 3.2，TLS 1.2为SSL 3.3。</p>
+
+<p><strong>三、基本的运行过程</strong></p>
+
+<p>SSL/TLS协议的基本思路是采用<a target="_blank" href="http://en.wikipedia.org/wiki/Public-key_cryptography">公钥加密法</a>，也就是说，客户端先向服务器端索要公钥，然后用公钥加密信息，服务器收到密文后，用自己的私钥解密。</p>
+
+<p>但是，这里有两个问题。</p>
+
+<p><strong>（1）如何保证公钥不被篡改？</strong></p>
+
+<blockquote>
+  <p>解决方法：将公钥放在<a target="_blank" href="http://en.wikipedia.org/wiki/Digital_certificate">数字证书</a>中。只要证书是可信的，公钥就是可信的。</p>
+</blockquote>
+
+<p><strong>（2）公钥加密计算量太大，如何减少耗用的时间？</strong></p>
+
+<blockquote>
+  <p>解决方法：每一次对话（session），客户端和服务器端都生成一个"对话密钥"（session key），用它来加密信息。由于"对话密钥"是对称加密，所以运算速度非常快，而服务器公钥只用于加密"对话密钥"本身，这样就减少了加密运算的消耗时间。</p>
+</blockquote>
+
+<p>因此，SSL/TLS协议的基本过程是这样的：</p>
+
+<blockquote>
+  <p>（1） 客户端向服务器端索要并验证公钥。</p>
+
+<p>（2） 双方协商生成"对话密钥"。</p>
+
+<p>（3） 双方采用"对话密钥"进行加密通信。</p>
+</blockquote>
+
+<p>上面过程的前两步，又称为"握手阶段"（handshake）。</p>
+
+<p><strong>四、握手阶段的详细过程</strong></p>
+
+<p><img src="1_files/bg2014020502.png" alt="" title=""></p>
+
+<p>"握手阶段"涉及四次通信，我们一个个来看。需要注意的是，"握手阶段"的所有通信都是明文的。</p>
+
+<p><strong>4.1 客户端发出请求（ClientHello）</strong></p>
+
+<p>首先，客户端（通常是浏览器）先向服务器发出加密通信的请求，这被叫做ClientHello请求。</p>
+
+<p>在这一步，客户端主要向服务器提供以下信息。</p>
+
+<blockquote>
+  <p>（1） 支持的协议版本，比如TLS 1.0版。</p>
+
+<p>（2） 一个客户端生成的随机数，稍后用于生成"对话密钥"。</p>
+
+<p>（3） 支持的加密方法，比如RSA公钥加密。</p>
+
+<p>（4） 支持的压缩方法。</p>
+</blockquote>
+
+<p>这里需要注意的是，客户端发送的信息之中不包括服务器的域名。也就是说，理论上服务器只能包含一个网站，否则会分不清应该向客户端提供哪一个网站的数字证书。这就是为什么通常一台服务器只能有一张数字证书的原因。</p>
+
+<p>对于虚拟主机的用户来说，这当然很不方便。2006年，TLS协议加入了一个<a target="_blank" href="http://tools.ietf.org/html/rfc4366">Server Name Indication扩展</a>，允许客户端向服务器提供它所请求的域名。</p>
+
+<p><strong>4.2 服务器回应（SeverHello）</strong></p>
+
+<p>服务器收到客户端请求后，向客户端发出回应，这叫做SeverHello。服务器的回应包含以下内容。</p>
+
+<blockquote>
+  <p>（1） 确认使用的加密通信协议版本，比如TLS 1.0版本。如果浏览器与服务器支持的版本不一致，服务器关闭加密通信。</p>
+
+<p>（2） 一个服务器生成的随机数，稍后用于生成"对话密钥"。</p>
+
+<p>（3） 确认使用的加密方法，比如RSA公钥加密。</p>
+
+<p>（4） 服务器证书。</p>
+</blockquote>
+
+<p>除了上面这些信息，如果服务器需要确认客户端的身份，就会再包含一项请求，要求客户端提供"客户端证书"。比如，金融机构往往只允许认证客户连入自己的网络，就会向正式客户提供USB密钥，里面就包含了一张客户端证书。</p>
+
+<p><strong>4.3 客户端回应</strong></p>
+
+<p>客户端收到服务器回应以后，首先验证服务器证书。如果证书不是可信机构颁布、或者证书中的域名与实际域名不一致、或者证书已经过期，就会向访问者显示一个警告，由其选择是否还要继续通信。</p>
+
+<p>如果证书没有问题，客户端就会从证书中取出服务器的公钥。然后，向服务器发送下面三项信息。</p>
+
+<blockquote>
+  <p>（1） 一个随机数。该随机数用服务器公钥加密，防止被窃听。</p>
+
+<p>（2） 编码改变通知，表示随后的信息都将用双方商定的加密方法和密钥发送。</p>
+
+<p>（3） 客户端握手结束通知，表示客户端的握手阶段已经结束。这一项同时也是前面发送的所有内容的hash值，用来供服务器校验。</p>
+</blockquote>
+
+<p>上面第一项的随机数，是整个握手阶段出现的第三个随机数，又称"pre-master key"。有了它以后，客户端和服务器就同时有了三个随机数，接着双方就用事先商定的加密方法，各自生成本次会话所用的同一把"会话密钥"。</p>
+
+<p>至于为什么一定要用三个随机数，来生成"会话密钥"，<a target="_blank" href="http://blog.csdn.net/dog250/article/details/5717162">dog250</a>解释得很好：</p>
+
+<blockquote>
+  <p>"不管是客户端还是服务器，都需要随机数，这样生成的密钥才不会每次都一样。由于SSL协议中证书是静态的，因此十分有必要引入一种随机因素来保证协商出来的密钥的随机性。</p>
+
+<p>对于RSA密钥交换算法来说，pre-master-key本身就是一个随机数，再加上hello消息中的随机，三个随机数通过一个密钥导出器最终导出一个对称密钥。</p>
+
+<p>pre master的存在在于SSL协议不信任每个主机都能产生完全随机的随机数，如果随机数不随机，那么pre master 
+secret就有可能被猜出来，那么仅适用pre master 
+secret作为密钥就不合适了，因此必须引入新的随机因素，那么客户端和服务器加上pre master 
+secret三个随机数一同生成的密钥就不容易被猜出了，一个伪随机可能完全不随机，可是是三个伪随机就十分接近随机了，每增加一个自由度，随机性增加的
+可不是一。"</p>
+</blockquote>
+
+<p>此外，如果前一步，服务器要求客户端证书，客户端会在这一步发送证书及相关信息。</p>
+
+<p><strong>4.4 服务器的最后回应</strong></p>
+
+<p>服务器收到客户端的第三个随机数pre-master key之后，计算生成本次会话所用的"会话密钥"。然后，向客户端最后发送下面信息。</p>
+
+<blockquote>
+  <p>（1）编码改变通知，表示随后的信息都将用双方商定的加密方法和密钥发送。</p>
+
+<p>（2）服务器握手结束通知，表示服务器的握手阶段已经结束。这一项同时也是前面发送的所有内容的hash值，用来供客户端校验。</p>
+</blockquote>
+
+<p>至此，整个握手阶段全部结束。接下来，客户端与服务器进入加密通信，就完全是使用普通的HTTP协议，只不过用"会话密钥"加密内容。</p>
+
+<p><img src="1_files/bg2014020503.gif" alt="" title=""></p>
+
+<p><strong>五、参考链接</strong></p>
+
+<ul>
+<li>MicroSoft TechNet, <a target="_blank" href="http://technet.microsoft.com/en-us/library/cc785811%28v=ws.10%29.aspx">SSL/TLS in Detail</a></li>
+<li>Jeff Moser, <a target="_blank" href="http://www.moserware.com/2009/06/first-few-milliseconds-of-https.html">The First Few Milliseconds of an HTTPS Connection</a></li>
+<li>Wikipedia, <a target="_blank" href="http://en.wikipedia.org/wiki/Transport_Layer_Security">Transport Layer Security</a></li>
+<li>StackExchange, <a target="_blank" href="http://security.stackexchange.com/questions/20803/how-does-ssl-work">How does SSL work?</a></li>
+</ul>
+
+<p>（完）</p>
+
+                                    <!-- /div -->
+
+                                </div>
+    <script type="text/javascript" src="1_files/newwindow.js"></script>
+                                <div class="asset-footer">
+
+<h3>文档信息</h3>
+<ul>
+<li>版权声明：自由转载-非商用-非衍生-保持署名（<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh">创意共享3.0许可证</a>）</li>
+<li>发表日期： <abbr class="published" title="2014-02-05T19:24:46+08:00">2014年2月 5日</abbr></li>
+<li>更多内容： <a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank"> 档案</a>  » 
+<a href="http://www.ruanyifeng.com/blog/developer/"> 开发者手册</a> 
+</li>
+<li>购买文集：<a href="http://www.ruanyifeng.com/blog/2014/12/my-blog-book.html" target="_blank"><img src="data:image/png;base64,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" style="border:0;"> 《如何变得有思想》</a></li>
+<li>社交媒体：<a href="https://twitter.com/ruanyf" target="_blank"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAk1JREFUeNqsVc9rE0EU/mZ3dhPNJl2bVIk/Km09aFBE8GLvnrwJXvwLxIsgCP4Fnit6E8Gb0IMHwUsL9SSNgiAoooJIpE1Joo1h82uT7IxvxmRN3Q32kAdvdrI773vfe+/bDTu9WioDcDAda3Ja8piepQ1avCkCeny0Y+R9KenKwOmHHLvPaKn7AtVOoO8dOWDCMpg+41gMQv5FNEJACgoE8MsPNLDBhgfoutMOsJDmWLmU037C4TApciljwQ/kHoohQxV06+wMXNvE7WINuaSpvdYVKLgWnl3O4zAxU3Z1IYVGT+B5qYWV9z2kbQaT/cOwTsxOUUYF+mB5Dkmi8HG3h2q9hxsFNwRTdvQgxxnXRrMvIdkEhllis/qtiWuLDm4WZnBlPoWnXz28LHdw0uGR7m9Wu3j0qYGEubfn4UlBfXO4gTZltRNMg9w9f0i7kNFxllsBlS0x75gYfxyWTBUjT2W5CSMSPBrQuG21+hiMDS8CeCzF8eSLp13uQ3Ab1IqMFZN8tFHPmgOBF99bYP8Be1Xp6t7OJszJgKpPSiZvaj7uf2hguz2IBQuozDvFH6RDBjuK9wdQDvt0nMpW+8efGyh5UcAeZb2+UcHbnz5Jx4wdlp4yJYU3kLiQtfBwOYeLc8nIwfXtNu69q2Oz4mMxbemYOOOjKarhvq51KUjg3GwiFPIuvcNF6pnSnWK0lOEabNLgQh1aJFAhlGB9rG110B2+oyRNPc0sZbRNFltmLKDKqj4Qrm1ojzOxDz2pyPQ0P7CK4c40/wJ+CzAAGYrXsvfFXR4AAAAASUVORK5CYII=" style="border:0;"> twitter</a>，<a href="http://weibo.com/ruanyf" target="_blank"><img src="data:image/png;base64,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" style="border:0;"> weibo</a></li>
+<li>Feed订阅： <a href="http://www.ruanyifeng.com/feed.html" target="_blank"><img src="data:image/gif;base64,R0lGODlhFAAUANU2APV1GfmrePZ8IeR5VPq2ieNkLf7p3NpFJveCJ/NoFfibVPR1IexiJfvdzuZrNfXGuOhUEueTevaFOfzIpNxDGeZZJNU6IOubifiVTfOnid1aLuZpLOFSJf/28vJtIvGcefaLSd5kNu9iFv/z6//48//t4uFfLfNkCeJNGuGNc/rCof/+/PVxEeldI/V5KeKMbu9nIvB2OvzQtNxMKfOPXP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAADYALAAAAAAUABQAAAb/QJstEjKZCsjCZsl0pIS2QWXaYsA8noVWIEAgFoNhhWNyMESi7Jbr/aZCFdRnZJAFJCwAt+vlOkwtEBk1hDUkExJ6bQJaGyYMLTQTDSOFHQF8jAseSFYiJwkuAQ2FE1xaHjBIMDAgARguJwABJIQTLJswDEgeIgSEJQQILAqVNQEiui1HHgkBhTUGCiwYtR0xLS0VJhtaEgoEBoQkGCfPNSoQY9xaCwAsCBPALgmkJA4cZN0CAAgY/PJqEIDwgVAECjM0bOAnwcAKGQJclKhRgoGDDjUeUDigkN8vQiBOfByAglSDAxw3IBCgYEU0FyJoEPpA4UGNDjMsaHDQR8EdPVYOMmQYQGHAhQgHLIRIsWAlgASsGMRBMWMGBQtYZ7yIsoBRKkhjOMxAiXJGGCEpHGxIYsSIhrcaQmy1EQQAOw==" style="border:0;"></a></li>
+
+</ul>
+                                </div>
+</article>
+                            </div>
+
+   <div id="gegz1">
+   <p style="text-align:center;"><a href="http://www.zhufengpeixun.cn/jscourse/new/js/index.html?ref=ruanyifeng.com" target="_blank"><img alt="珠峰培训" src="1_files/sup_zhufeng_page.png" style="border:none;" height="160" width="600"></a></p>
+   <p style="text-align:center;"><a href="https://h5.jianxun.io/20160321-qianlima?utm_source=event&amp;utm_medium=blog_ad&amp;utm_campaign=qianlima&amp;utm_content=ruanyifeng&amp;utm_term=wangzhan" target="_blank"><img alt="简寻" src="1_files/ruanyifeng-bottombanner.png" style="border:none;" height="160" width="600"></a></p>
+   </div>
+
+<div id="related_entries">
+<h2>相关文章</h2>
+<ul>
+
+<li><strong>2016.03.08: <a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html">Systemd 入门教程：实战篇</a></strong>
+
+                           <div class="entry-body">
+                              上一篇文章，我介绍了 Systemd 的主要命令，今天介绍如何使用它完成一些基本的任务。
+
+                           </div>
+
+</li>
+
+ 
+<li><strong>2016.03.07: <a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html">Systemd 入门教程：命令篇</a></strong>
+
+                           <div class="entry-body">
+                              Systemd 是 Linux 系统工具，用来启动守护进程，已成为大多数发行版的标准配置。
+
+                           </div>
+
+</li>
+
+ 
+<li><strong>2016.02.28: <a href="http://www.ruanyifeng.com/blog/2016/02/linux-daemon.html">Linux 守护进程的启动方法</a></strong>
+
+                           <div class="entry-body">
+                              "守护进程"（daemon）就是一直在后台运行的进程（daemon）。
+
+                           </div>
+
+</li>
+
+ 
+<li><strong>2016.01.06: <a href="http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html">Commit message 和 Change log 编写指南</a></strong>
+
+                           <div class="entry-body">
+                              Git 每次提交代码，都要写 Commit message（提交说明），否则就不允许提交。
+
+                           </div>
+
+</li>
+
+ 
+</ul>
+</div>
+
+
+<div id="gd1">
+<h2>广告<a href="http://www.ruanyifeng.com/support.html">（购买广告位）</a></h2>
+<div id="gd1-inner">
+<div id="gd1-left">
+<a href="http://a.maka.im/pcviewer/BA7L1P6B?utm_source=ruanyifeng.com" title="一灯学堂" target="_blank"><img alt="一灯学堂" src="1_files/sup_yideng.png" style="border:none;"></a>
+<br>
+<a href="http://www.zhinengshe.com/?utm_source=ruanyifeng.com" title="智能社" target="_blank"><img alt="智能社" src="1_files/sup_zhinengshe.jpg" style="border:none;"></a>
+</div>
+<div id="gd1-right">
+
+<a href="http://100offer.com/join/ruanyifeng?utm_source=ruanyifeng&amp;utm_medium=dis&amp;utm_campaign=ruanyifeng" target="_blank"><img src="1_files/sup_1000ffer_2.jpg" style="border:none;"></a><br>
+<a href="http://www.ruanyifeng.com/support.html" target="_blank"><img src="1_files/sup_sale_s.png" style="border:none;"></a>
+
+</div>
+</div>
+</div>
+                    
+
+                    <div id="comments" class="comments">
+
+
+    
+    
+        
+    <h2 class="comments-header">留言（64条）</h2>
+
+    <div id="comments-content" class="comments-content" style="clear: left;">
+        
+        <div id="comment-299445" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">west</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-299445">
+            <p>好文。全面而易懂</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February  5, 2014  8:09 PM">2014年2月 5日 20:09</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-299445">#</a>
+ | <a href="#comment-text" title="引用west的这条留言" onclick="return CommentQuote('comment-quote-299445','west');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-299446" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">李狗蛋</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-299446">
+            <p>坏蛋总不放过任何一丝做恶的机会,太多不要脸的运营商在链路劫持强插广告,直接修改用户的HTTP数据包,再就是NSA之流肆无忌惮的窃听</p>
+
+<p>发现一个HTTPS有意思的地方,只要53端口数据被转发,不管域名对应的DNS解析IP是不是域名真实IP,只要最后都是53端口转发到真实IP之上,就不会弹HTTPS证书错误</p>
+
+<p>比如 <a href="https://a.com/" rel="nofollow">https://a.com</a> 对应 ipa 不通</p>
+
+<p>那么劫持DNS解析  <a href="https://a.com/" rel="nofollow">https://a.com</a> 到 ipb上 (ipb是通的)</p>
+
+<p>只要在ipb上设置 ipb:53转发到 ipa:53</p>
+
+<p>这样访问 <a href="https://a.com/" rel="nofollow">https://a.com</a> 就通了,而且没证书错误 </p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February  5, 2014  8:10 PM">2014年2月 5日 20:10</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-299446">#</a>
+ | <a href="#comment-text" title="引用李狗蛋的这条留言" onclick="return CommentQuote('comment-quote-299446','李狗蛋');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-299459" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">Niclau</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-299459">
+            <p>启用Server Name Indication扩展后，第一步客户端发送请求，同时明文发送域名到server?</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February  6, 2014 11:32 AM">2014年2月 6日 11:32</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-299459">#</a>
+ | <a href="#comment-text" title="引用Niclau的这条留言" onclick="return CommentQuote('comment-quote-299459','Niclau');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-299464" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">古明地恋</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-299464">
+            <p>您好，我有一个疑问。<br>
+第一步是用服务器公钥加密的。而服务器公钥包含在证书中。但是如果入侵者获取到服务器证书，并用于解密之后的key，再用key来解密通信内容，这样怎么防范？</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February  6, 2014  3:57 PM">2014年2月 6日 15:57</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-299464">#</a>
+ | <a href="#comment-text" title="引用古明地恋的这条留言" onclick="return CommentQuote('comment-quote-299464','古明地恋');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-299505" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://barretlee.com" href="http://barretlee.com/" target="_blank" rel="nofollow">Barret Lee</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-299505">
+            <p>阮老师写的文章都是鞭辟入里啊，一般是站在那些角度去阐述一个观点或者描述一个事物呢？</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February  6, 2014 11:38 PM">2014年2月 6日 23:38</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-299505">#</a>
+ | <a href="#comment-text" title="引用Barret Lee的这条留言" onclick="return CommentQuote('comment-quote-299505','Barret Lee');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-299547" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">harchiko</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-299547">
+            <p>Smart !智慧的发明!!</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February  7, 2014 10:21 PM">2014年2月 7日 22:21</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-299547">#</a>
+ | <a href="#comment-text" title="引用harchiko的这条留言" onclick="return CommentQuote('comment-quote-299547','harchiko');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-299550" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://thbattle.net" href="http://thbattle.net/" target="_blank" rel="nofollow">魂魄妖梦</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-299550">
+            <blockquote>
+<pre>引用古明地恋的发言：</pre>
+
+<p>您好，我有一个疑问。<br>
+第一步是用服务器公钥加密的。而服务器公钥包含在证书中。但是如果入侵者获取到服务器证书，并用于解密之后的key，再用key来解密通信内容，这样怎么防范？</p>
+
+</blockquote>
+
+<p>服务器证书只包含公钥，无法解密key。解密需要用私钥。</p>
+
+<p>私钥一般放在server端。<br>
+如果能拿到私钥，基本上可以肯定被入侵了。<br>
+这时候获取私钥都不算个事了你说是不。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February  8, 2014 12:10 AM">2014年2月 8日 00:10</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-299550">#</a>
+ | <a href="#comment-text" title="引用魂魄妖梦的这条留言" onclick="return CommentQuote('comment-quote-299550','魂魄妖梦');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-299560" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://www.hidict.cn" href="http://www.hidict.cn/" target="_blank" rel="nofollow">lucas</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-299560">
+            <p>阮兄的文章非常值得一读，简洁又能把事情的来龙去脉讲的清清楚楚的，不简单。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February  8, 2014  9:47 AM">2014年2月 8日 09:47</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-299560">#</a>
+ | <a href="#comment-text" title="引用lucas的这条留言" onclick="return CommentQuote('comment-quote-299560','lucas');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-299643" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">CJey</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-299643">
+            <blockquote>
+<pre>引用Niclau的发言：</pre>
+
+<p>启用Server Name Indication扩展后，第一步客户端发送请求，同时明文发送域名到server?</p>
+
+</blockquote>
+
+<p>对的, 确实是明文, 否则服务端无法确定向客户端推送哪张证书<br>
+而且, 也没法使用密文, 因为密钥尚未协商好<br>
+再者, 使用密文也没有意义, 篡改域名只能影响服务端返回的证书, 而所有的证书本来就都是公开的</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February  9, 2014 11:41 AM">2014年2月 9日 11:41</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-299643">#</a>
+ | <a href="#comment-text" title="引用CJey的这条留言" onclick="return CommentQuote('comment-quote-299643','CJey');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-299647" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">CJey</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-299647">
+            <p>@李狗蛋：</p>
+
+<p>不太能理解你想表达的意思<br>
+不过, SSL/TLS协议并不关心双方的IP, DNS劫持是无法攻击SSL/TLS的<br>
+所以, 我觉得你的这个测试结果另有原因</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February  9, 2014 11:53 AM">2014年2月 9日 11:53</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-299647">#</a>
+ | <a href="#comment-text" title="引用CJey的这条留言" onclick="return CommentQuote('comment-quote-299647','CJey');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-299698" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">onion</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-299698">
+            <p>其实，看阮兄的博客主要目的就是学习阮兄的总结与再表达能力，对于这篇来说，真的不懂，但是感觉看得很舒服，层次清晰，用语准确，赞！</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February 10, 2014 11:43 AM">2014年2月10日 11:43</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-299698">#</a>
+ | <a href="#comment-text" title="引用onion的这条留言" onclick="return CommentQuote('comment-quote-299698','onion');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-299797" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">masstensor</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-299797">
+            <p>文章写的浅显易懂，看了很有收获。不过，需要说明的是，使用PKI机制进行密钥交换只是TLS规范的一种实现形式，还有其他的形式可以用于密钥交换，比如SRP和PSK协议。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February 11, 2014 10:19 AM">2014年2月11日 10:19</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-299797">#</a>
+ | <a href="#comment-text" title="引用masstensor的这条留言" onclick="return CommentQuote('comment-quote-299797','masstensor');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-299924" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://twd2.me" href="http://twd2.me/" target="_blank" rel="nofollow">twd2</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-299924">
+            <blockquote>
+<pre>引用CJey的发言：</pre>
+
+<p></p>
+
+<p>对的, 确实是明文, 否则服务端无法确定向客户端推送哪张证书<br>
+而且, 也没法使用密文, 因为密钥尚未协商好<br>
+再者, 使用密文也没有意义, 篡改域名只能影响服务端返回的证书, 而所有的证书本来就都是公开的</p>
+
+</blockquote>
+
+<p>如果有中间人通过判断域名，来决定是否阻断连接怎么办呢<br>
+</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February 13, 2014 12:30 AM">2014年2月13日 00:30</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-299924">#</a>
+ | <a href="#comment-text" title="引用twd2的这条留言" onclick="return CommentQuote('comment-quote-299924','twd2');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-300219" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">nuooo</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-300219">
+            <p>请考虑介绍下常用于SPDY的HTTPS falst start握手，它比标准的握手少一个“server finished"的步骤</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February 16, 2014  3:13 AM">2014年2月16日 03:13</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-300219">#</a>
+ | <a href="#comment-text" title="引用nuooo的这条留言" onclick="return CommentQuote('comment-quote-300219','nuooo');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-300808" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">sunny</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-300808">
+            <p>好文章。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February 23, 2014 11:35 AM">2014年2月23日 11:35</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-300808">#</a>
+ | <a href="#comment-text" title="引用sunny的这条留言" onclick="return CommentQuote('comment-quote-300808','sunny');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-300876" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">点虎</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-300876">
+            <p>感谢！<br>
+没有微信公众号？</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February 24, 2014 10:35 AM">2014年2月24日 10:35</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-300876">#</a>
+ | <a href="#comment-text" title="引用点虎的这条留言" onclick="return CommentQuote('comment-quote-300876','点虎');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-301361" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">hyh</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-301361">
+            <p>文中的 SeverHello 是不是应该是 ServerHello?</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February 27, 2014  8:54 PM">2014年2月27日 20:54</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-301361">#</a>
+ | <a href="#comment-text" title="引用hyh的这条留言" onclick="return CommentQuote('comment-quote-301361','hyh');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-301599" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://glacjay.info" href="http://glacjay.info/" target="_blank" rel="nofollow">GlacJAY</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-301599">
+            <p>只有第一次的握手过程是明文的，之后的自动重协商通信是用上一次的密钥来加密的。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="March  1, 2014  1:19 PM">2014年3月 1日 13:19</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-301599">#</a>
+ | <a href="#comment-text" title="引用GlacJAY的这条留言" onclick="return CommentQuote('comment-quote-301599','GlacJAY');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-302421" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">yd</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-302421">
+            <p>您好，我有一个疑问。</p>
+
+<p>第一步，服务器端的响应内容包含证明服务器自身的证书，客户端得到证书后进行有效性验证，<br>
+请问客户端是如何进行验证的？根据哪些信息验证的？</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="March 11, 2014  3:43 PM">2014年3月11日 15:43</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-302421">#</a>
+ | <a href="#comment-text" title="引用yd的这条留言" onclick="return CommentQuote('comment-quote-302421','yd');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-302701" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">dcb110</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-302701">
+            <p>查了好多文章，终于在这里把整个握手流程以及中间一些疑问搞清楚了，现在再去看那些代码，清楚了很多，感谢博主。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="March 13, 2014  1:45 PM">2014年3月13日 13:45</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-302701">#</a>
+ | <a href="#comment-text" title="引用dcb110的这条留言" onclick="return CommentQuote('comment-quote-302701','dcb110');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-319807" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">Bravluna</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-319807">
+            <blockquote>
+<pre>引用yd的发言：</pre>
+
+<p>您好，我有一个疑问。</p>
+
+<p>第一步，服务器端的响应内容包含证明服务器自身的证书，客户端得到证书后进行有效性验证，<br>
+请问客户端是如何进行验证的？根据哪些信息验证的？</p>
+
+</blockquote>
+
+<p>证书里是服务器的公钥和身份信息，这些是经过证书颁发机构即CA公证过的，客户端拿到后去CA验证，看这个公钥是不是服务器的，若不是说明证书是伪造的，当然如果证书经过数字签名证书就不可能被伪造了</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="April 30, 2014 11:29 PM">2014年4月30日 23:29</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-319807">#</a>
+ | <a href="#comment-text" title="引用Bravluna的这条留言" onclick="return CommentQuote('comment-quote-319807','Bravluna');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-324952" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://www.zeroling.com" href="http://www.zeroling.com/" target="_blank" rel="nofollow">ZeroLing</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-324952">
+            <p>来支持一下阮老师写的东西</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="May 24, 2014  4:47 PM">2014年5月24日 16:47</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-324952">#</a>
+ | <a href="#comment-text" title="引用ZeroLing的这条留言" onclick="return CommentQuote('comment-quote-324952','ZeroLing');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-325862" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://sexywp.com" href="http://sexywp.com/" target="_blank" rel="nofollow">Charles</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-325862">
+            <p>看来说清楚这个东西，还是太过难了一点，这个文章也太过概述了，感觉很多关键点没有说清楚啊，看得我好累。不过还是感谢阮老师，已经让我省了不少时间了。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="May 29, 2014 11:12 PM">2014年5月29日 23:12</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-325862">#</a>
+ | <a href="#comment-text" title="引用Charles的这条留言" onclick="return CommentQuote('comment-quote-325862','Charles');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-331300" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">heliar</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-331300">
+            <blockquote>
+<pre>引用yd的发言：</pre>
+
+<p>您好，我有一个疑问。</p>
+
+<p>第一步，服务器端的响应内容包含证明服务器自身的证书，客户端得到证书后进行有效性验证，<br>
+请问客户端是如何进行验证的？根据哪些信息验证的？</p>
+
+</blockquote>
+
+<p>这里还有一个信任链的问题，一般都是有一家第三方的根证书签名机构办法证书，我们相信这个第三方机构，从而相信它颁发的证书，当然也有根证书授权下一层的证书颁发机构，然后由这个机构给网站服务器做验证的情况</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="July 19, 2014  2:29 AM">2014年7月19日 02:29</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-331300">#</a>
+ | <a href="#comment-text" title="引用heliar的这条留言" onclick="return CommentQuote('comment-quote-331300','heliar');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-334937" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">Pingia</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-334937">
+            <p>我感觉4。3部分 的（1）步和（2）(3)两步中间还有些步骤可以注明清楚点。<br>
+事实上服务端和客户端在拥有pms后计算出来的密钥并不是会话密钥，而是一个中间密钥，最终的会话密钥是通过这个中间密钥计算出来的。至于这个计算方法，我也不清楚是什么？有知道的朋友望告知。</p>
+
+<p>还有这一部分最后一句：<br>
+此外，如果前一步，服务器要求客户端证书，客户端会在这一步发送证书及相关信息。</p>
+
+<p>我感觉客户端发送证书应该是在这一步骤之前。<br>
+</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="August 23, 2014  1:31 PM">2014年8月23日 13:31</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-334937">#</a>
+ | <a href="#comment-text" title="引用Pingia的这条留言" onclick="return CommentQuote('comment-quote-334937','Pingia');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-337947" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://blog.csdn.net/wzy_1988" href="http://blog.csdn.net/wzy_1988" target="_blank" rel="nofollow">王正一</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-337947">
+            <p>通俗易懂，太赞了</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September 15, 2014  2:26 PM">2014年9月15日 14:26</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-337947">#</a>
+ | <a href="#comment-text" title="引用王正一的这条留言" onclick="return CommentQuote('comment-quote-337947','王正一');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-340450" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">freenet</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-340450">
+            <p>讲得非常好！学习了...</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="October  2, 2014  4:58 PM">2014年10月 2日 16:58</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-340450">#</a>
+ | <a href="#comment-text" title="引用freenet的这条留言" onclick="return CommentQuote('comment-quote-340450','freenet');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-341035" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://www.kongch.com" href="http://www.kongch.com/" target="_blank" rel="nofollow">ikong</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-341035">
+            <pre>需要注意的是，"握手阶段"的所有通信都是明文的。</pre>
+这句话不对吧？pre master key应该是客户端用服务端公钥加密之后再发送给服务端的，这不能算明文吧？
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="October  9, 2014  2:56 AM">2014年10月 9日 02:56</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-341035">#</a>
+ | <a href="#comment-text" title="引用ikong的这条留言" onclick="return CommentQuote('comment-quote-341035','ikong');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-341439" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://stooges.com.my" href="http://stooges.com.my/" target="_blank" rel="nofollow">兴杰</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-341439">
+            <p>提问一下，<br>
+握手的第3步，pre-master key 如果被拦截，是否可以被伪造或篡改？ <br>
+因为只使用服务器的公钥加密。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="October 14, 2014 12:09 PM">2014年10月14日 12:09</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-341439">#</a>
+ | <a href="#comment-text" title="引用兴杰的这条留言" onclick="return CommentQuote('comment-quote-341439','兴杰');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-341567" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://feix.github.io" href="http://feix.github.io/" target="_blank" rel="nofollow">feix</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-341567">
+            <p>关于 至于为什么一定要用三个随机数，来生成"会话密钥" 这个地方，其实还有一点：pre-master key 
+用服务器的公钥加密，可以防止第三方冒充服务器，因为任何人都可以获取已经公开的服务器公钥与客户段进行通信。想要获得 pre-master key 
+明文只有利用服务器的私钥进行解密，所以这里进行了服务器的身份验证，也防止了中间人攻击。</p>
+
+<p>另外，当服务器需要验证客户端时，客户端在发送 pre-master key 之前需要发送客户端公钥到服务器，可以选择对 
+pre-master key 用客户端的私钥签名然后再用服务器公钥加密，则服务器收到 pre-master key 同时对客户端进行了身份验证。<br>
+</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="October 16, 2014  1:27 AM">2014年10月16日 01:27</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-341567">#</a>
+ | <a href="#comment-text" title="引用feix的这条留言" onclick="return CommentQuote('comment-quote-341567','feix');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-341900" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://www.chinassl.com" href="http://www.chinassl.com/" target="_blank" rel="nofollow">中国证书CHINASSL</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-341900">
+            <p>好文章，通俗易懂的介绍SSL，本文将引用的中国证书CHINASSL博客，谢谢</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="October 21, 2014 10:38 AM">2014年10月21日 10:38</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-341900">#</a>
+ | <a href="#comment-text" title="引用中国证书CHINASSL的这条留言" onclick="return CommentQuote('comment-quote-341900','中国证书CHINASSL');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-346505" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://www.cnblogs.com/zjdyl/" href="http://www.cnblogs.com/zjdyl/" target="_blank" rel="nofollow">lp</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-346505">
+            <p>有个问题，握手时是明文通信，那就会被截获到公钥、三个随机数，这样对话密钥不久可以知道了？那后面的对话加密不就会被解密？</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="December 20, 2014  1:41 AM">2014年12月20日 01:41</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-346505">#</a>
+ | <a href="#comment-text" title="引用lp的这条留言" onclick="return CommentQuote('comment-quote-346505','lp');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-346507" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">goodboy1983</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-346507">
+            <p>如果有个proxy, 先和客户端建立连接（不下发服务器证书，也不要求客户端上报证书），再和SP建立连接。 
+对服务器下发的证书默认接受。 相当于 CLIENT-PROXY之间是互相不认证证书，PROXY-WEB SERVER之间是验证服务器证书。 
+是否有安全隐患？</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="December 20, 2014  3:02 AM">2014年12月20日 03:02</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-346507">#</a>
+ | <a href="#comment-text" title="引用goodboy1983的这条留言" onclick="return CommentQuote('comment-quote-346507','goodboy1983');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-346630" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">nowlater</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-346630">
+            <p>@goodboy1983: 应该不会有安全隐患吧，pre-master 
+key是用服务器端公钥加密的，client-proxy无法解密，不能获取到pre-master 
+key。在安全要求更高的金融领域，服务器端会认证客户端，比如银行会给客户发u盾。这就更安全了。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="December 26, 2014 11:54 AM">2014年12月26日 11:54</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-346630">#</a>
+ | <a href="#comment-text" title="引用nowlater的这条留言" onclick="return CommentQuote('comment-quote-346630','nowlater');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-347203" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://jie6jie@163.com" href="http://163.com/" target="_blank" rel="nofollow">哈哈</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-347203">
+            <p>服务器收到客户端的第三个随机数pre-master key之后，计算生成本次会话所用的"会话密钥"。  这个会话密钥怎么计算的呢？</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="January 13, 2015  7:57 PM">2015年1月13日 19:57</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-347203">#</a>
+ | <a href="#comment-text" title="引用哈哈的这条留言" onclick="return CommentQuote('comment-quote-347203','哈哈');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-347231" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">youyingyang</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-347231">
+            <p>阮一峰同志是一座宝库<br>
+4年之前就开始看您的博客，但是基本只看人文社科类和科普性质的，视野很开阔，写的很棒。<br>
+最近随着自己的兴趣变化，开始学习编程，没想到搜“RESTful架构”，第一篇文章就是您的，写的太好了，明白如水！<br>
+高手有很多，但是乐意长时间坚持分享，而且做科普做的这么好的高手太少了！<br>
+感谢！</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="January 15, 2015  3:43 PM">2015年1月15日 15:43</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-347231">#</a>
+ | <a href="#comment-text" title="引用youyingyang的这条留言" onclick="return CommentQuote('comment-quote-347231','youyingyang');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-348753" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://hilojack.com" href="http://hilojack.com/" target="_blank" rel="nofollow">hilojack</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-348753">
+            <blockquote>
+<pre>引用CJey的发言：</pre>
+
+<p></p>
+
+<p>对的, 确实是明文, 否则服务端无法确定向客户端推送哪张证书<br>
+而且, 也没法使用密文, 因为密钥尚未协商好<br>
+再者, 使用密文也没有意义, 篡改域名只能影响服务端返回的证书, 而所有的证书本来就都是公开的</p>
+
+</blockquote>
+
+<p>将域名加密还是有意义的，比如GFW 或者 Hacker 等想知道你请求了哪些网站，酱紫</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="March 23, 2015 11:57 PM">2015年3月23日 23:57</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-348753">#</a>
+ | <a href="#comment-text" title="引用hilojack的这条留言" onclick="return CommentQuote('comment-quote-348753','hilojack');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-348758" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://hilojack.com" href="http://hilojack.com/" target="_blank" rel="nofollow">hilojack</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-348758">
+            <p>关于TLS/SSL 四次握手的一个疑问。<br>
+在协商会话密钥的阶段：<br>
+客户端的请求是用服务端的公钥加密的，第三方截获后是没有办法解密的；<br>
+服务端返回的请求是用服务端的私钥加密的，第三方截获后可以通过公钥解密的。</p>
+
+<p>这引发我的疑问，在最后第4步，服务端返回的会话密钥(Session Key) 是用服务端的私钥加密的，那第三方不就可以解密出这个Session Key 吗？有了这个Session Key 后不就可以破译出通信数据吗？</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="March 24, 2015 12:01 PM">2015年3月24日 12:01</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-348758">#</a>
+ | <a href="#comment-text" title="引用hilojack的这条留言" onclick="return CommentQuote('comment-quote-348758','hilojack');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-349217" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">Zhaodawei</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-349217">
+            <blockquote>
+<pre>引用hilojack的发言：</pre>
+
+<p>关于TLS/SSL 四次握手的一个疑问。<br>
+在协商会话密钥的阶段：<br>
+客户端的请求是用服务端的公钥加密的，第三方截获后是没有办法解密的；<br>
+服务端返回的请求是用服务端的私钥加密的，第三方截获后可以通过公钥解密的。</p>
+
+<p>这引发我的疑问，在最后第4步，服务端返回的会话密钥(Session Key) 是用服务端的私钥加密的，那第三方不就可以解密出这个Session Key 吗？有了这个Session Key 后不就可以破译出通信数据吗？</p>
+
+</blockquote>
+
+<p>第四步服务器不会返回会话密钥！！！会话密钥是客户端和服务端各自通过三个随机数和一个密钥导出器最终导出的</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="April 22, 2015  4:06 PM">2015年4月22日 16:06</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-349217">#</a>
+ | <a href="#comment-text" title="引用Zhaodawei的这条留言" onclick="return CommentQuote('comment-quote-349217','Zhaodawei');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-349218" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">zhaodawei</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-349218">
+            <p>文中说“三个随机数通过一个密钥导出器最终导出一个对称密钥”，密钥导出器是什么？服务的公钥吗？</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="April 22, 2015  4:54 PM">2015年4月22日 16:54</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-349218">#</a>
+ | <a href="#comment-text" title="引用zhaodawei的这条留言" onclick="return CommentQuote('comment-quote-349218','zhaodawei');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-349225" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">zhaodawei</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-349225">
+            <blockquote>
+<pre>引用lp的发言：</pre>
+
+<p>有个问题，握手时是明文通信，那就会被截获到公钥、三个随机数，这样对话密钥不久可以知道了？那后面的对话加密不就会被解密？</p>
+
+</blockquote>
+第三个随机数是公钥加密的，只有服务的私钥才能解密。
+
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="April 22, 2015  7:23 PM">2015年4月22日 19:23</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-349225">#</a>
+ | <a href="#comment-text" title="引用zhaodawei的这条留言" onclick="return CommentQuote('comment-quote-349225','zhaodawei');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-349513" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">shun.aaron</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-349513">
+            <p>请教一个问题：<br>
+如果网络中有一台设备，这个设备具有了https服务器的证书和私钥，是不是意味着：这个设备能够通过服务器的私钥来计算出第三个随机数，然后根据相关算法来计算出服务器和client之间的通信秘钥？<br>
+这样就代表了服务器和client之间的通信内容不在是私密性的了？</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="May  9, 2015  1:58 PM">2015年5月 9日 13:58</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-349513">#</a>
+ | <a href="#comment-text" title="引用shun.aaron的这条留言" onclick="return CommentQuote('comment-quote-349513','shun.aaron');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-350459" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">passerbywhu</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-350459">
+            <blockquote>
+<pre>引用shun.aaron的发言：</pre>
+
+<p>请教一个问题：<br>
+如果网络中有一台设备，这个设备具有了https服务器的证书和私钥，是不是意味着：这个设备能够通过服务器的私钥来计算出第三个随机数，然后根据相关算法来计算出服务器和client之间的通信秘钥？<br>
+这样就代表了服务器和client之间的通信内容不在是私密性的了？</p>
+
+</blockquote>
+
+<p>HTTPS服务器的私钥你都有了还想怎样。。。-_-</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="June 25, 2015 11:36 AM">2015年6月25日 11:36</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-350459">#</a>
+ | <a href="#comment-text" title="引用passerbywhu的这条留言" onclick="return CommentQuote('comment-quote-350459','passerbywhu');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-350682" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">danieldong</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-350682">
+            <p>如果key exchange算法是ECDH，那么就不是索要公钥了，也就是说，不采用非对称加密来产生master-key</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="July  8, 2015  5:18 PM">2015年7月 8日 17:18</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-350682">#</a>
+ | <a href="#comment-text" title="引用danieldong的这条留言" onclick="return CommentQuote('comment-quote-350682','danieldong');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-350950" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">撒啊</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-350950">
+            <p>请教一下，为什么在session ticket生效的情况下，依然需要交互随机数？  session ticket生效有，已经不用重新生成对称密钥了。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="July 21, 2015 11:40 PM">2015年7月21日 23:40</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-350950">#</a>
+ | <a href="#comment-text" title="引用撒啊的这条留言" onclick="return CommentQuote('comment-quote-350950','撒啊');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-351008" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://www.c2fun.cn" href="http://www.c2fun.cn/" target="_blank" rel="nofollow">jedihy</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-351008">
+            <p>阮老师这篇博客说的不好。前后都有矛盾，有些地方不明确，容易误导。</p>
+
+<p>如果认定握手是完全明文，按阮老师的说法，那中间人直接就可以攻击了，因为他知道所有信息。关键在于随机数的传递这里，会不会用Server的公钥
+加密。这一点没有强调的话，这篇博客有什么意义，通信安全性的关键在这里。正是用了中间人解不出的信息（需要私钥），所以安全才得到的保障，而并不是因为
+你用了多少个随机数。不加密的话，你来回发一万次随机数中间人也能够看到。后面的对称密钥通信过程就是扯淡了。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="July 27, 2015  9:46 AM">2015年7月27日 09:46</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-351008">#</a>
+ | <a href="#comment-text" title="引用jedihy的这条留言" onclick="return CommentQuote('comment-quote-351008','jedihy');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-351468" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">大山</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-351468">
+            <p>个人觉得随机数应该最后是这样的结果:3个随机数以某种组合并结合加密算法，客户端和服务器端各自都算出来了动态的私钥和
+公钥了，这个时候的通信不再是以服务器最早的公钥和私钥为准，而是在两方都知道公钥私钥的情况下通信，服务器端以私钥加密，客户端以公钥解密，客户端以公
+钥加密，服务器端以私钥解密，至于服务器最原始的公钥和私钥，就是为了保证随机数的安全，不知道这样对不对</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="August 28, 2015 12:57 AM">2015年8月28日 00:57</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-351468">#</a>
+ | <a href="#comment-text" title="引用大山的这条留言" onclick="return CommentQuote('comment-quote-351468','大山');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-351499" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">少时诵诗书</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-351499">
+            <blockquote>
+<pre>引用大山的发言：</pre>
+
+<p>个人觉得随机数应该最后是这样的结果:3个随机数以某种组合并结合加密算法，客户端和服务器端各自都算出来了动态的私钥和公钥了，这个时候的通信不
+再是以服务器最早的公钥和私钥为准，而是在两方都知道公钥私钥的情况下通信，服务器端以私钥加密，客户端以公钥解密，客户端以公钥加密，服务器端以私钥解
+密，至于服务器最原始的公钥和私钥，就是为了保证随机数的安全，不知道这样对不对</p>
+
+</blockquote>
+
+<p>不对，握手完成后就是对称加密，怎么还会有公钥私钥这种非对称加密方法</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="August 31, 2015  1:06 PM">2015年8月31日 13:06</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-351499">#</a>
+ | <a href="#comment-text" title="引用少时诵诗书的这条留言" onclick="return CommentQuote('comment-quote-351499','少时诵诗书');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-351614" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">小白</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-351614">
+            <p>大致是看明白了，谁能提供一个pcap包 详细分析下就更加好了。我自己抓了包，都是加密的，看不明白呢</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="September  8, 2015  4:30 PM">2015年9月 8日 16:30</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-351614">#</a>
+ | <a href="#comment-text" title="引用小白的这条留言" onclick="return CommentQuote('comment-quote-351614','小白');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-353274" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">YorkYang</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-353274">
+            <p>一个证书可不可以供两个（不同IP）服务器使用？ 文中讲的 "真实IP" 的校验依据是否为发包的IP？</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="December 14, 2015 12:01 PM">2015年12月14日 12:01</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-353274">#</a>
+ | <a href="#comment-text" title="引用YorkYang的这条留言" onclick="return CommentQuote('comment-quote-353274','YorkYang');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-354024" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://无" href="http://%E6%97%A0/" target="_blank" rel="nofollow">gaodi</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-354024">
+            <p>求助各位大神，现在已知Server端私钥，用wireshark截取握手阶段client和server的random和加密了的pre_master_secret,如何具体解析出https中，http报文内容，最好能有C语言实现的函数和代码，多谢。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="January 15, 2016  4:24 PM">2016年1月15日 16:24</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-354024">#</a>
+ | <a href="#comment-text" title="引用gaodi的这条留言" onclick="return CommentQuote('comment-quote-354024','gaodi');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-354057" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">王松</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-354057">
+            <blockquote>
+<pre>引用onion的发言：</pre>
+
+<p>其实，看阮兄的博客主要目的就是学习阮兄的总结与再表达能力，对于这篇来说，真的不懂，但是感觉看得很舒服，层次清晰，用语准确，赞！</p>
+
+</blockquote>
+
+<p>赞，突然发现，写技术博客，排版很重要！</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="January 16, 2016  4:21 PM">2016年1月16日 16:21</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-354057">#</a>
+ | <a href="#comment-text" title="引用王松的这条留言" onclick="return CommentQuote('comment-quote-354057','王松');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-354595" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">Pingia</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-354595">
+            <blockquote>
+<pre>引用masstensor的发言：</pre>
+
+<p>文章写的浅显易懂，看了很有收获。不过，需要说明的是，使用PKI机制进行密钥交换只是TLS规范的一种实现形式，还有其他的形式可以用于密钥交换，比如SRP和PSK协议。</p>
+
+</blockquote>
+
+<p>是这样的，我也想这么一问。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February 21, 2016 12:48 PM">2016年2月21日 12:48</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-354595">#</a>
+ | <a href="#comment-text" title="引用Pingia的这条留言" onclick="return CommentQuote('comment-quote-354595','Pingia');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-354597" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">Pingia</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-354597">
+            <blockquote>
+<pre>引用兴杰的发言：</pre>
+
+<p>提问一下，<br>
+握手的第3步，pre-master key 如果被拦截，是否可以被伪造或篡改？ <br>
+因为只使用服务器的公钥加密。</p>
+
+</blockquote>
+
+<p>后面的步骤需要解密这个key，如果被篡改，将不能解密，之后的步骤都不能继续下去了，然后就没有然后了。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February 21, 2016 12:55 PM">2016年2月21日 12:55</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-354597">#</a>
+ | <a href="#comment-text" title="引用Pingia的这条留言" onclick="return CommentQuote('comment-quote-354597','Pingia');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-354599" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">Pingia</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-354599">
+            <blockquote>
+<pre>引用lp的发言：</pre>
+
+<p>有个问题，握手时是明文通信，那就会被截获到公钥、三个随机数，这样对话密钥不久可以知道了？那后面的对话加密不就会被解密？</p>
+
+</blockquote>
+公钥是公开的，本身就无所谓截获不截获，但是公钥加密的需要配套私钥来解密的。而私钥确是保密的。
+第一个随机数是通过公钥加密传输，需要私钥才能解密的，第二个客户端产生的随机数的确是明文传递的，第三个随机数是在服务端本身产生的，并不传输。
+有两个随机数参数你无法截获，你怎么计算得到正确的对话密钥？
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February 21, 2016  1:03 PM">2016年2月21日 13:03</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-354599">#</a>
+ | <a href="#comment-text" title="引用Pingia的这条留言" onclick="return CommentQuote('comment-quote-354599','Pingia');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-354600" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">Pingia</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-354600">
+            <blockquote>
+<pre>引用hilojack的发言：</pre>
+
+<p></p>
+
+<p>将域名加密还是有意义的，比如GFW 或者 Hacker 等想知道你请求了哪些网站，酱紫</p>
+
+</blockquote>
+
+<p>个人觉得这个 不在ssl协议要解决的范畴之内。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February 21, 2016  1:07 PM">2016年2月21日 13:07</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-354600">#</a>
+ | <a href="#comment-text" title="引用Pingia的这条留言" onclick="return CommentQuote('comment-quote-354600','Pingia');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-354601" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">Pingia</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-354601">
+            <blockquote>
+<pre>引用Pingia的发言：</pre>
+
+<p><br>
+公钥是公开的，本身就无所谓截获不截获，但是公钥加密的需要配套私钥来解密的。而私钥确是保密的。<br>
+第一个随机数是通过公钥加密传输，需要私钥才能解密的，第二个客户端产生的随机数的确是明文传递的，第三个随机数是在服务端本身产生的，并不传输。<br>
+有两个随机数参数你无法截获，你怎么计算得到正确的对话密钥？</p>
+
+</blockquote>
+
+<p><br>
+说错了，第三个也传输给客户端的，只是第一个随机数需要私钥解开，这可以进行防范。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February 21, 2016  1:26 PM">2016年2月21日 13:26</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-354601">#</a>
+ | <a href="#comment-text" title="引用Pingia的这条留言" onclick="return CommentQuote('comment-quote-354601','Pingia');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-354602" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">Pingia</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-354602">
+            <blockquote>
+<pre>引用zhaodawei的发言：</pre>
+
+<p>文中说“三个随机数通过一个密钥导出器最终导出一个对称密钥”，密钥导出器是什么？服务的公钥吗？</p>
+
+</blockquote>
+我也想问这个，说也没说清楚。
+
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February 21, 2016  1:30 PM">2016年2月21日 13:30</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-354602">#</a>
+ | <a href="#comment-text" title="引用Pingia的这条留言" onclick="return CommentQuote('comment-quote-354602','Pingia');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-354603" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">Pingia</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-354603">
+            <blockquote>
+<pre>引用YorkYang的发言：</pre>
+
+<p>一个证书可不可以供两个（不同IP）服务器使用？ 文中讲的 "真实IP" 的校验依据是否为发包的IP？</p>
+
+</blockquote>
+可以的，证书只和域名绑定。只要你把这些Ip的服务器绑定到一个域名下就可以。但配置的时候你必须使用同一个服务端根证书。
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February 21, 2016  1:46 PM">2016年2月21日 13:46</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-354603">#</a>
+ | <a href="#comment-text" title="引用Pingia的这条留言" onclick="return CommentQuote('comment-quote-354603','Pingia');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-354619" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">bencanber</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-354619">
+            <blockquote>
+<pre>引用古明地恋的发言：</pre>
+
+<p>您好，我有一个疑问。<br>
+第一步是用服务器公钥加密的。而服务器公钥包含在证书中。但是如果入侵者获取到服务器证书，并用于解密之后的key，再用key来解密通信内容，这样怎么防范？</p>
+
+</blockquote>
+
+<p>解密只能使用服务器的私钥解密，而证书中只包含服务器的公钥，所以不会被破解</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="February 22, 2016  3:07 PM">2016年2月22日 15:07</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-354619">#</a>
+ | <a href="#comment-text" title="引用bencanber的这条留言" onclick="return CommentQuote('comment-quote-354619','bencanber');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-354740" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">pengfei</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-354740">
+            <p>我有个疑问，比如我控制着代理服务器<br>
+我知道  协商协议版本都是1.0   我也知道三次随机数第一次客户给服务器的 10，第二次服务器给客户端的 1050 
+第三次客户端给服务器的119，然后还知道他们协商的加密算法 RSA.  
+那我就可以自己按照加密算法RSA，用我看到的三个随机数生成一个秘钥了，这样我不是还是可以解开你的通信内容吗？<br>
+</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="March  3, 2016 12:01 PM">2016年3月 3日 12:01</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-354740">#</a>
+ | <a href="#comment-text" title="引用pengfei的这条留言" onclick="return CommentQuote('comment-quote-354740','pengfei');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-354745" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://www.cnblogs.com/chen4342024/" href="http://www.cnblogs.com/chen4342024/" target="_blank" rel="nofollow">andy_chen</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-354745">
+            <p>"握手阶段"的所有通信都是明文的。<br>
+对于这个，不知我的理解可否正确？<br>
+1.客户端-&gt;服务器：随机数，支持的加密方法<br>
+2.服务器-&gt;客户端：随机数，确定加密方法<br>
+3.客户端-&gt;服务器：随机数（公钥加密）</p>
+
+<p>这样，第一第二的随机数虽然可能被其他人截取，但是由于第三个随机数是通过公钥加密的，所以，只有对应的私钥可以解密，是安全的。</p>
+
+<p>所以通过这三个随机数以及第二步确定的对称加密的方法，客户端以及服务端各自生成对话密钥。之后就通过这个对话密钥来进行通信<br>
+</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="March  3, 2016  2:39 PM">2016年3月 3日 14:39</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-354745">#</a>
+ | <a href="#comment-text" title="引用andy_chen的这条留言" onclick="return CommentQuote('comment-quote-354745','andy_chen');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-354746" class="comment">
+    <div class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author"><a title="http://www.cnblogs.com/chen4342024/" href="http://www.cnblogs.com/chen4342024/" target="_blank" rel="nofollow">andy_chen</a></span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-354746">
+            <p>@pengfei：</p>
+
+<p>第三个随机数是通过公钥加密的。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="March  3, 2016  2:41 PM">2016年3月 3日 14:41</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-354746">#</a>
+ | <a href="#comment-text" title="引用andy_chen的这条留言" onclick="return CommentQuote('comment-quote-354746','andy_chen');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    
+        
+        <div id="comment-355806" class="comment">
+    <div id="comment-last" class="inner">
+        <div class="comment-header">
+            <div class="asset-meta">
+<p>
+                <span class="byline">
+                    
+
+                    <span class="vcard author">strangerC</span>
+
+ 说：
+                </span>
+</p>
+            </div>
+        </div>
+        <div class="comment-content" id="comment-quote-355806">
+            <p>除了“如何保证公钥不被篡改？”和“公钥加密计算量太大，如何减少耗用的时间？”这两个问题，还有一个问题：如果都采用公钥加密，那么客户端势必也要知道私钥，才能对服务器端返回的信息。</p>
+        </div>
+<div class="comment-footer">
+<div class="comment-footer-inner">
+<p>
+                   <abbr class="published" title="April 21, 2016  5:31 PM">2016年4月21日 17:31</abbr>
+ | <a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html#comment-355806">#</a>
+ | <a href="#comment-text" title="引用strangerC的这条留言" onclick="return CommentQuote('comment-quote-355806','strangerC');">引用</a>
+</p>
+</div>
+</div>
+    </div>
+</div>
+        
+    </div>
+        
+    
+
+
+    
+    
+    <div class="comments-open" id="comments-open">
+        <h2 class="comments-open-header">我要发表看法</h2>
+        <div class="comments-open-content">
+
+        
+            <div id="comment-greeting"></div>
+
+            <form method="post" action="http://www.ruanyifeng.com/cgi-bin/mtos/mt-comments.cgi" name="comments_form" id="comments-form" onsubmit="return pleaseWait();">
+                <input name="static" value="1" type="hidden">
+                <input name="entry_id" value="1799" type="hidden">
+                <input name="__lang" value="en" type="hidden">
+                <input name="parent_id" value="" id="comment-parent-id" type="hidden">
+                <input name="armor" value="1" type="hidden">
+                <input name="preview" value="" type="hidden">
+                <input name="sid" value="" type="hidden">
+                <div id="comments-open-data">
+            <div id="comments-open-text">
+                    <p><label for="comment-text">您的留言
+                    （HTML标签部分可用）</label></p>
+                    <p><textarea id="comment-text" name="text" rows="10" cols="50"></textarea></p>
+                </div>
+                    <div id="comment-form-name">
+                        <p><label for="comment-author">您的大名：</label></p>
+                        <p><input id="comment-author" name="author" size="30">  <span class="hint"> «-必填</span></p>
+                    </div>
+                    <div id="comment-form-email">
+                        <p><label for="comment-email">电子邮件：</label></p>
+                        <p><input id="comment-email" name="email" size="30">  <span class="hint"> «-必填，不公开</span></p>
+                    </div>
+                    <div id="comment-form-url">
+                        <p><label for="comment-url">个人网址：</label></p>
+                        <p><input id="comment-url" name="url" size="30">  <span class="hint"> «-我信任你，不会填写广告链接</span></p>
+                    </div>
+                    <div id="comment-form-remember-me">
+                        <p>
+                        <label for="comment-bake-cookie">记住个人信息？</label><input id="comment-bake-cookie" name="bakecookie" onclick="!this.checked?forgetMe(document.comments_form):rememberMe(document.comments_form)" value="1" accesskey="r" type="checkbox"></p>
+                    </div>
+                </div>
+                    <div id="comment-form-reply" style="display:none">
+                    <input id="comment-reply" name="comment_reply" value="" onclick="mtSetCommentParentID()" type="checkbox">
+                    <label for="comment-reply" id="comment-reply-label"></label>
+                </div>
+                <div id="comments-open-captcha"></div>
+                <div id="comments-open-footer">
+<div id="wait" style="display:none;">
+<p><strong>正在发表您的评论，请稍候</strong></p>
+<p>
+<input name="percent" size="3" style="font-family:Arial; color:black;text-align:center; border-width:medium; border-style:none;" type="text">           
+<input name="chart" size="46" style="font-family:Arial;font-weight:bolder; color:black; padding:0px; border-style:none;" type="text">
+</p>
+</div>
+
+                    <p><input accesskey="s" name="post" id="comment-submit" value="发表" type="submit">  <span class="hint"> «- 点击按钮</span></p>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+
+    
+
+
+</div>
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        <script type="text/javascript" src="1_files/prism.js"></script>
+
+            <div id="footer">
+    <div id="footer-inner">
+        <div id="footer-content">
+<p><a href="http://www.ruanyifeng.com/contact.html">联系方式</a> | ruanyifeng.com 2003 - 2016
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46829782-1', 'ruanyifeng.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+<!-- Site Meter -->
+<a href="http://sm3.sitemeter.com/stats.asp?site=sm3bomoocom" target="_top">
+<img src="1_files/meter.gif" alt="Site Meter" border="0"></a>
+
+<!-- Copyright (c)2009 Site Meter -->
+
+</p>
+
+        </div>
+    </div>
+</div>
+
+
+<div id="share_button_proto" style="display:none;">
+<a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a>
+
+
+
+<script type="text/javascript" charset="utf-8" src="1_files/buttonLite.js"></script>
+<script type="text/javascript" charset="utf-8">
+bShare.addEntry({
+    title: document.getElementById("page-title").innerHTML,
+url:window.location.href
+});
+</script>
+</div>
+
+<script>
+document.getElementById("share_button").innerHTML=document.getElementById("share_button_proto").innerHTML;
+</script>
+
+
+
+
+        </div>
+    </div>
+
+</body></html>
