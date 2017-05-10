@@ -2,17 +2,22 @@
 <meta charset="UTF-8" />
 <html>
     <head>
+        <style type="text/css">
+        `    .defaultFont {font-size: 35px;}
+        </style>
+        
+        <p>JS <=> Native</p>
         <title>This is the title</title>
         <script type = "text/javascript">
             function buttonClick() {
                 // alert("Test");
-                liuweizhen("hello world!");
+                lianBi("hello world!");
             }
         </script>
     </head>
-    <body>
+    <body class="defaultFont">
         <form>
-            <input type="button" onclick="buttonClick()" value="点击我" />
+            <input class="defaultFont" type="button" onclick="buttonClick()" value="点击我" />
         </form>
         <p>这是段落</p>
         <a href="http://www.baidu.com">百度</a>

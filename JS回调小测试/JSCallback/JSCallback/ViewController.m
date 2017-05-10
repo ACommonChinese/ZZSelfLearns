@@ -42,10 +42,34 @@
 // 2.html
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     JSContext *context=[webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    context[@"liuweizhen"] =
+    // js call Client
+    context[@"lianBi"] =
     ^(NSString *title ,NSString *content ,NSString *url,NSString *image,NSString *mobileNumber) {
-        NSLog(@"Test");
+        NSLog(@"%@", title); // hello world!
     };
+    
+    context[@"lianBi"] =
+    ^(NSString *title ,NSString *content ,NSString *url,NSString *image,NSString *mobileNumber) {
+        NSLog(@"%@", title); // hello world!
+    };
+    
+    NSString *contextName = @"lianBi";
+    context[contextName] =
+    ^(NSString *title ,NSString *content ,NSString *url,NSString *image,NSString *mobileNumber) {
+        NSString *methodName = [NSString stringWithFormat:@"web_%@:", @"scanQRcode"];
+        SEL selector = NSSelectorFromString(methodName);
+        if ([self respondsToSelector:selector]) {
+            [self performSelector:selector withObject:title];
+        }
+        
+    };
+  
+    // oc/native -> JS
+    [webView stringByEvaluatingJavaScriptFromString:@"alert('xxx')"];
+}
+
+- (void)web_scanQRcode:(id)obj {
+    NSLog(@"called! %@", obj);
 }
 
 @end
