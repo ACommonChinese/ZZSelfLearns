@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ 版本判断
+ 使用方法：
+ if (ZZDevice.versionAvailable(__IPHONE_7_0)) {
+    ...
+ }
+ */
 @interface ZZDevice : NSObject
 
 + (BOOL (^)(NSInteger))versionAvailable;
