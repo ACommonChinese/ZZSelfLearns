@@ -48,6 +48,11 @@
         NSLog(@"%@", title); // hello world!
     };
     
+    // 1.html
+    context[@"onShare"] = ^(NSString *title ,NSString *content ,NSString *url,NSString *image) {
+        NSLog(@"title==%@content==%@url==%@image= %@", title,content,url,image);
+    };
+    
     context[@"lianBi"] =
     ^(NSString *title ,NSString *content ,NSString *url,NSString *image,NSString *mobileNumber) {
         NSLog(@"%@", title); // hello world!
@@ -61,7 +66,6 @@
         if ([self respondsToSelector:selector]) {
             [self performSelector:selector withObject:title];
         }
-        
     };
   
     // oc/native -> JS
@@ -70,6 +74,8 @@
 
 - (void)web_scanQRcode:(id)obj {
     NSLog(@"called! %@", obj);
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"1" ofType:@"html"]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 @end
