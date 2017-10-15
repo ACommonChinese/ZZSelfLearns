@@ -14,6 +14,7 @@
 @property (nonatomic) NSDictionary *attributes;
 
 + (ZZAttributeStrItem *)itemWithStr:(NSString *)str attributes:(NSDictionary *)attributes;
++ (ZZAttributeStrItem *)itemWithStr:(NSString *)str font:(UIFont *)font color:(UIColor *)color;
 
 @property (nonatomic, class, readonly) NSDictionary *testStyle;
 @end

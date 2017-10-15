@@ -19,9 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    ZZAttributeStrItem *item = [ZZAttributeStrItem itemWithStr:@"Hello world - Hello China - Hello HeNan - Hello ShangQiu - Hello YuChengXin - Hello DaHou Xiang - Hello Liu Wei Zhen" attributes:ZZAttributeStrItem.testStyle];
     self.label.numberOfLines = 0;
+    
+    NSString *string = @"Hello world - Hello China - Hello HeNan - Hello ShangQiu - Hello YuChengXin - Hello DaHou Xiang - Hello Liu Wei Zhen";
+    
+    ZZAttributeStrItem *item = [ZZAttributeStrItem itemWithStr:string attributes:ZZAttributeStrItem.testStyle];
     self.label.attributedText = [ZZAttributeStrGenerator generateAttributedString:@[item]];
+
+    /**
+    ZZAttributeStrItem *item = [ZZAttributeStrItem itemWithStr:string font:[UIFont boldSystemFontOfSize:30] color:[UIColor redColor]];
+    self.label.attributedText = [ZZAttributeStrGenerator generateAttributedString:@[item]];
+     */
 }
 
 

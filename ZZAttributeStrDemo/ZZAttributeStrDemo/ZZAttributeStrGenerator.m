@@ -19,6 +19,10 @@ static NSDictionary *_testStyle;
     return item;
 }
 
++ (ZZAttributeStrItem *)itemWithStr:(NSString *)str font:(UIFont *)font color:(UIColor *)color {
+    return [self itemWithStr:str attributes:@{NSFontAttributeName : font, NSForegroundColorAttributeName : color}];
+}
+
 + (NSDictionary *)testStyle {
     if (_testStyle == nil) {
         UIFont *font = [UIFont fontWithName:@"Courier" size:38.0];
