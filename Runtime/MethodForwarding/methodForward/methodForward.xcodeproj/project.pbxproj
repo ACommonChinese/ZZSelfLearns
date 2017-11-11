@@ -1,0 +1,284 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DAC8A9FE1FB69B0000C2B250 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC8A9FD1FB69B0000C2B250 /* main.m */; };
+		DAC8AA061FB69B2800C2B250 /* ZZMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC8AA051FB69B2800C2B250 /* ZZMessage.m */; };
+		DAC8AA091FB69F8900C2B250 /* ZZMessageForwarding.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC8AA081FB69F8900C2B250 /* ZZMessageForwarding.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DAC8A9F81FB69B0000C2B250 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DAC8A9FA1FB69B0000C2B250 /* methodForward */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = methodForward; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAC8A9FD1FB69B0000C2B250 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DAC8AA041FB69B2800C2B250 /* ZZMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZMessage.h; sourceTree = "<group>"; };
+		DAC8AA051FB69B2800C2B250 /* ZZMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZMessage.m; sourceTree = "<group>"; };
+		DAC8AA071FB69F8900C2B250 /* ZZMessageForwarding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZMessageForwarding.h; sourceTree = "<group>"; };
+		DAC8AA081FB69F8900C2B250 /* ZZMessageForwarding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZMessageForwarding.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DAC8A9F71FB69B0000C2B250 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DAC8A9F11FB69B0000C2B250 = {
+			isa = PBXGroup;
+			children = (
+				DAC8A9FC1FB69B0000C2B250 /* methodForward */,
+				DAC8A9FB1FB69B0000C2B250 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DAC8A9FB1FB69B0000C2B250 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DAC8A9FA1FB69B0000C2B250 /* methodForward */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DAC8A9FC1FB69B0000C2B250 /* methodForward */ = {
+			isa = PBXGroup;
+			children = (
+				DAC8A9FD1FB69B0000C2B250 /* main.m */,
+				DAC8AA041FB69B2800C2B250 /* ZZMessage.h */,
+				DAC8AA051FB69B2800C2B250 /* ZZMessage.m */,
+				DAC8AA071FB69F8900C2B250 /* ZZMessageForwarding.h */,
+				DAC8AA081FB69F8900C2B250 /* ZZMessageForwarding.m */,
+			);
+			path = methodForward;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DAC8A9F91FB69B0000C2B250 /* methodForward */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAC8AA011FB69B0000C2B250 /* Build configuration list for PBXNativeTarget "methodForward" */;
+			buildPhases = (
+				DAC8A9F61FB69B0000C2B250 /* Sources */,
+				DAC8A9F71FB69B0000C2B250 /* Frameworks */,
+				DAC8A9F81FB69B0000C2B250 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = methodForward;
+			productName = methodForward;
+			productReference = DAC8A9FA1FB69B0000C2B250 /* methodForward */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DAC8A9F21FB69B0000C2B250 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "liuxing8807@126.com";
+				TargetAttributes = {
+					DAC8A9F91FB69B0000C2B250 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = DAC8A9F51FB69B0000C2B250 /* Build configuration list for PBXProject "methodForward" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DAC8A9F11FB69B0000C2B250;
+			productRefGroup = DAC8A9FB1FB69B0000C2B250 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DAC8A9F91FB69B0000C2B250 /* methodForward */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DAC8A9F61FB69B0000C2B250 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAC8A9FE1FB69B0000C2B250 /* main.m in Sources */,
+				DAC8AA061FB69B2800C2B250 /* ZZMessage.m in Sources */,
+				DAC8AA091FB69F8900C2B250 /* ZZMessageForwarding.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DAC8A9FF1FB69B0000C2B250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		DAC8AA001FB69B0000C2B250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		DAC8AA021FB69B0000C2B250 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DAC8AA031FB69B0000C2B250 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DAC8A9F51FB69B0000C2B250 /* Build configuration list for PBXProject "methodForward" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAC8A9FF1FB69B0000C2B250 /* Debug */,
+				DAC8AA001FB69B0000C2B250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAC8AA011FB69B0000C2B250 /* Build configuration list for PBXNativeTarget "methodForward" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAC8AA021FB69B0000C2B250 /* Debug */,
+				DAC8AA031FB69B0000C2B250 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DAC8A9F21FB69B0000C2B250 /* Project object */;
+}
