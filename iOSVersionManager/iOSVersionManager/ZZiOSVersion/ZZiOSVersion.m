@@ -1,14 +1,15 @@
 //
-//  ZZDevice.m
+//  ZZiOSVersion.m
 //  iOSVersionManager
 //
-//  Created by liuweizhen on 2017/10/12.
+//  Created by liuweizhen on 2017/11/11.
 //  Copyright © 2017年 liuxing8807@126.com. All rights reserved.
 //
 
-#import "ZZDevice.h"
+#import "ZZiOSVersion.h"
+@import UIKit;
 
-@implementation ZZDevice
+@implementation ZZiOSVersion
 
 + (BOOL (^)(NSInteger))versionAvailable {
     return ^BOOL(NSInteger versionNumber) {
@@ -25,4 +26,5 @@
         return value >= versionNumber;
     };
 }
+
 @end
