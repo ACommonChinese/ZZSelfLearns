@@ -9,8 +9,6 @@
 
 - **HTTPS** 记录关于iOS下面和https服务器的交互
 
-- **iOSVersionManager** 判断设备版本号
-
 - **ZZAttributeStrDemo** 仅仅是AttributedString的组合显示
 
   ​

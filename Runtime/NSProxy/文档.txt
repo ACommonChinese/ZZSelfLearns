@@ -1,0 +1,138 @@
+参考文档:
+http://www.jianshu.com/p/a7187e014c03
+http://www.360doc.com/content/15/0906/17/26281448_497288561.shtml
+NSProxy is an abstract superclass defining an API for objects that act as stand-ins for other objects or for objects that don’t exist yet. Typically, a message to a proxy is forwarded to the real object or causes the proxy to load (or transform itself into) the real object. Subclasses of NSProxy can be used to implement transparent distributed messaging (for example, NSDistantObject) or for lazy instantiation of objects that are expensive to create.
+NSProxy是一个虚类，你可以通过继承它，并重写这两个方法以实现消息转发到另一个实例
+- (void)forwardInvocation:(NSInvocation *)anInvocation;
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel;
+
+
+#import <Foundation/NSObject.h>
+
+@class NSMethodSignature, NSInvocation;
+
+NS_ASSUME_NONNULL_BEGIN
+
+NS_ROOT_CLASS
+@interface NSProxy <NSObject> {
+    Class	isa;
+}
+
++ (id)alloc;
++ (id)allocWithZone:(nullable NSZone *)zone NS_AUTOMATED_REFCOUNT_UNAVAILABLE;
++ (Class)class;
+
+- (void)forwardInvocation:(NSInvocation *)invocation;
+- (nullable NSMethodSignature *)methodSignatureForSelector:(SEL)sel NS_SWIFT_UNAVAILABLE("NSInvocation and related APIs not available");
+- (void)dealloc;
+- (void)finalize;
+@property (readonly, copy) NSString *description;
+@property (readonly, copy) NSString *debugDescription;
++ (BOOL)respondsToSelector:(SEL)aSelector;
+
+- (BOOL)allowsWeakReference NS_UNAVAILABLE;
+- (BOOL)retainWeakReference NS_UNAVAILABLE;
+
+// - (id)forwardingTargetForSelector:(SEL)aSelector;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+NSProxy是一个比较特殊的类,它不继承于NSObject, 但实现了NSObject协议,主要用于消息转发.
+Objective-C不支持多重继承，但是我们可以使用NSProxy的消息转发机制，来转发可由其它类的对象处理的任务，达成同样的目的, 先来看下Apple给的示例:
+Xcode的Documentation中有示例（搜索ForwardInvocation，在Sample Code类别中），如下：参见NSProxyDemo
+
+-- TargetProxy --
+#import <Foundation/Foundation.h>
+
+@interface TargetProxy : NSProxy {
+    id _realObject1;
+    id _realObject2;
+}
+
+- (id)initWithTarget:(id)t1 target2:(id)t2;
+@end
+
+#import "TargetProxy.h"
+
+@implementation TargetProxy
+
+- (id)initWithTarget:(id)t1 target2:(id)t2 {
+    _realObject1 = t1;
+    _realObject2 = t2;
+    return self;
+}
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
+    NSMethodSignature *sig = [_realObject1 methodSignatureForSelector:sel];
+    if (sig) return sig;
+    sig = [_realObject2 methodSignatureForSelector:sel];
+    return sig;
+}
+
+// Invoke the invocation on whichever real object had a signature for it.
+- (void)forwardInvocation:(NSInvocation *)invocation {
+    id target = [_realObject1 methodSignatureForSelector:[invocation selector]] ? _realObject1 : _realObject2;
+    // SEL selector = invocation.selector;
+    // NSLog(@"调用方法前:%@", NSStringFromSelector(selector));
+    [invocation invokeWithTarget:target];
+    // NSLog(@"调用方法后:%@", NSStringFromSelector(selector));
+}
+
+// Override some of NSProxy's implementations to forward them...
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if ([_realObject1 respondsToSelector:aSelector]) return YES;
+    if ([_realObject2 respondsToSelector:aSelector]) return YES;
+    return NO;
+}
+
+@end
+
+-- main.m --
+/// NSProxy消息转发
+void test1() {
+    // Create an empty mutable string, which will be one of the
+    // real objects for the proxy.
+    NSMutableString *string = [[NSMutableString alloc] init];
+    // Create an empty mutable array, which will be the other
+    // real object for the proxy.
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    /// Create a proxy to wrap the real objects. This is rather artificial(人造的,人为的,虚假的) for the purposes of this example -- you'd rarely have a single proxy convering two objects. But it it spossible.
+    id proxy = [[TargetProxy alloc] initWithTarget:string target2:array];
+    
+    NSString *testStr = @"You are my destiny!";
+    [proxy appendFormat:@"%@", testStr];
+    [proxy appendString:@" This "];
+    [proxy appendString:@"is "];
+    [proxy addObject:string];
+    [proxy appendString:@"a "];
+    [proxy appendString:@"test!"];
+    
+    NSLog(@"count should be 1, it is: %ld", [proxy count]);
+    NSLog(@"get the final string: %@", string);
+}
+
+参见NSProxyDemo2 其他做法
+
+http://blog.csdn.net/oiken/article/details/51814195
+在一些需要使用消息转发而创建代理类时, 不同的程序员都有着不同的使用方法, 有些采用继承于NSObject, 而有一些采用继承自NSProxy. 二者都是Foundation框架中的基类, 并且都实现了<NSObject>这个接口, 从命名和文档中看NSProxy天生就是用来干这个事情的. 但即便如此, 它们却都定义了相同的消息转发的接口, 那我们在使用二者来完成这个工作时有什么差异呢.
+
+为何NSProxy相对于NSObject更适合做消息转发?
+http://blog.csdn.net/oiken/article/details/51814195
+参见: NSProxyDemo3
+
+使用NSProxy实现消息转发 -- 模块化的网络接口层设计
+http://blog.csdn.net/xiaochong2154/article/details/44886973
+参见 NSProxyDemo_4_HttpProxy
+
+Hook的简单示例:
+参见: HookDemo_1
+
+Hook的示例:
+参见: HookDemo_2
+事实发现, 对Hook一个对象的方法到另一个对象的方法是不成功的, 第三方库Aspect也没有提供相关的API, 说明这种方式不可行.
+
+开发者热线 4006701855
+

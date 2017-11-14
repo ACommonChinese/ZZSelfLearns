@@ -1,0 +1,284 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DA81BBBF1FB88DF20080AB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA81BBBE1FB88DF20080AB54 /* main.m */; };
+		DA81BBCD1FB94CBA0080AB54 /* THProxyA.m in Sources */ = {isa = PBXBuildFile; fileRef = DA81BBCC1FB94CBA0080AB54 /* THProxyA.m */; };
+		DA81BBD61FB94D850080AB54 /* THProxyB.m in Sources */ = {isa = PBXBuildFile; fileRef = DA81BBD51FB94D850080AB54 /* THProxyB.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DA81BBB91FB88DF20080AB54 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DA81BBBB1FB88DF20080AB54 /* NSProxyDemo_3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NSProxyDemo_3; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA81BBBE1FB88DF20080AB54 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DA81BBCB1FB94CBA0080AB54 /* THProxyA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THProxyA.h; sourceTree = "<group>"; };
+		DA81BBCC1FB94CBA0080AB54 /* THProxyA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = THProxyA.m; sourceTree = "<group>"; };
+		DA81BBD41FB94D850080AB54 /* THProxyB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THProxyB.h; sourceTree = "<group>"; };
+		DA81BBD51FB94D850080AB54 /* THProxyB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = THProxyB.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DA81BBB81FB88DF20080AB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DA81BBB21FB88DF20080AB54 = {
+			isa = PBXGroup;
+			children = (
+				DA81BBBD1FB88DF20080AB54 /* NSProxyDemo_3 */,
+				DA81BBBC1FB88DF20080AB54 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DA81BBBC1FB88DF20080AB54 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DA81BBBB1FB88DF20080AB54 /* NSProxyDemo_3 */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DA81BBBD1FB88DF20080AB54 /* NSProxyDemo_3 */ = {
+			isa = PBXGroup;
+			children = (
+				DA81BBBE1FB88DF20080AB54 /* main.m */,
+				DA81BBCB1FB94CBA0080AB54 /* THProxyA.h */,
+				DA81BBCC1FB94CBA0080AB54 /* THProxyA.m */,
+				DA81BBD41FB94D850080AB54 /* THProxyB.h */,
+				DA81BBD51FB94D850080AB54 /* THProxyB.m */,
+			);
+			path = NSProxyDemo_3;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DA81BBBA1FB88DF20080AB54 /* NSProxyDemo_3 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA81BBC21FB88DF20080AB54 /* Build configuration list for PBXNativeTarget "NSProxyDemo_3" */;
+			buildPhases = (
+				DA81BBB71FB88DF20080AB54 /* Sources */,
+				DA81BBB81FB88DF20080AB54 /* Frameworks */,
+				DA81BBB91FB88DF20080AB54 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NSProxyDemo_3;
+			productName = NSProxyDemo_3;
+			productReference = DA81BBBB1FB88DF20080AB54 /* NSProxyDemo_3 */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DA81BBB31FB88DF20080AB54 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "liuxing8807@126.com";
+				TargetAttributes = {
+					DA81BBBA1FB88DF20080AB54 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = DA81BBB61FB88DF20080AB54 /* Build configuration list for PBXProject "NSProxyDemo_3" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DA81BBB21FB88DF20080AB54;
+			productRefGroup = DA81BBBC1FB88DF20080AB54 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DA81BBBA1FB88DF20080AB54 /* NSProxyDemo_3 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DA81BBB71FB88DF20080AB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA81BBCD1FB94CBA0080AB54 /* THProxyA.m in Sources */,
+				DA81BBBF1FB88DF20080AB54 /* main.m in Sources */,
+				DA81BBD61FB94D850080AB54 /* THProxyB.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DA81BBC01FB88DF20080AB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		DA81BBC11FB88DF20080AB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		DA81BBC31FB88DF20080AB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DA81BBC41FB88DF20080AB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DA81BBB61FB88DF20080AB54 /* Build configuration list for PBXProject "NSProxyDemo_3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA81BBC01FB88DF20080AB54 /* Debug */,
+				DA81BBC11FB88DF20080AB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA81BBC21FB88DF20080AB54 /* Build configuration list for PBXNativeTarget "NSProxyDemo_3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA81BBC31FB88DF20080AB54 /* Debug */,
+				DA81BBC41FB88DF20080AB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DA81BBB31FB88DF20080AB54 /* Project object */;
+}
