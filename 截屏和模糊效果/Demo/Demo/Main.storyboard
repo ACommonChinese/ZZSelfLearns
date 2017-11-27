@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tiger.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="laT-de-w0B">
+                                <rect key="frame" x="16" y="36" width="343" height="216"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="216" id="iSA-Jc-ySh"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhG-sf-gJG">
+                                <rect key="frame" x="156" y="283" width="62" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="Q8m-yz-tk2"/>
+                                </constraints>
+                                <state key="normal" title="模糊效果"/>
+                                <connections>
+                                    <action selector="blurButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4bO-1S-A5P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dxN-Cj-xlu">
+                                <rect key="frame" x="116.5" y="359" width="141" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="baP-eZ-mnQ"/>
+                                </constraints>
+                                <state key="normal" title="To SecondController"/>
+                                <connections>
+                                    <action selector="presentClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ntV-bc-77t"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="dxN-Cj-xlu" firstAttribute="top" secondItem="rhG-sf-gJG" secondAttribute="bottom" constant="19" id="1ED-tn-WMJ"/>
+                            <constraint firstItem="laT-de-w0B" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="1Tu-Be-HvC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="laT-de-w0B" secondAttribute="trailing" constant="16" id="Llg-04-uFO"/>
+                            <constraint firstItem="rhG-sf-gJG" firstAttribute="top" secondItem="laT-de-w0B" secondAttribute="bottom" constant="31" id="Ru3-hW-rtm"/>
+                            <constraint firstItem="rhG-sf-gJG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Z5n-pG-So7"/>
+                            <constraint firstItem="dxN-Cj-xlu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZwK-4e-Jnz"/>
+                            <constraint firstItem="laT-de-w0B" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="ufx-PO-QY0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="laT-de-w0B" id="Frp-HL-HxZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-289" y="33"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="tiger.jpg" width="1600" height="1200"/>
+    </resources>
+</document>
