@@ -9,11 +9,13 @@
 
 - **HTTPS** 记录关于iOS下面和https服务器的交互
 
-- **ZZAttributeStrDemo** 仅仅是AttributedString的组合显示
+- **ZZAttributeStrDemo** 仅仅是AttributedString的组合显示, 因项目中用到, 备记
 
 - **LBExtension** 使用运行时和KVC自己封装JSON反射, JSON数据和Model层的相互转换
 
 - **截屏和模糊效果**  截屏和模糊效果小示例, 备记
+
+- **多线程** 多线程相关知识汇总
 
   ​
 
