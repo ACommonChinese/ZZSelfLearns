@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,38 +19,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UNU-tp-IOd">
-                                <rect key="frame" x="16" y="269" width="343" height="128"/>
+                                <rect key="frame" x="-1550.5" y="297.5" width="3476" height="72"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bcs-0c-7as">
-                                        <rect key="frame" x="33" y="28" width="302" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="II8-gZ-0Ru">
-                                        <rect key="frame" x="99" y="82" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exd-HC-qBe">
+                                        <rect key="frame" x="51" y="19" width="3373" height="33"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="343" id="4ca-LN-YAQ"/>
-                                    <constraint firstItem="II8-gZ-0Ru" firstAttribute="leading" secondItem="UNU-tp-IOd" secondAttribute="leading" constant="99" id="Acp-gD-cco"/>
-                                    <constraint firstItem="Bcs-0c-7as" firstAttribute="leading" secondItem="UNU-tp-IOd" secondAttribute="leading" constant="33" id="MLc-XS-iF9"/>
-                                    <constraint firstAttribute="bottom" secondItem="II8-gZ-0Ru" secondAttribute="bottom" constant="25" id="Pbd-gP-X4t"/>
-                                    <constraint firstAttribute="trailing" secondItem="Bcs-0c-7as" secondAttribute="trailing" constant="8" id="Rt5-n7-03P"/>
-                                    <constraint firstItem="II8-gZ-0Ru" firstAttribute="top" secondItem="Bcs-0c-7as" secondAttribute="bottom" constant="33" id="RyX-BM-98c"/>
-                                    <constraint firstAttribute="trailing" secondItem="II8-gZ-0Ru" secondAttribute="trailing" constant="202" id="ekj-y9-WG9"/>
-                                    <constraint firstItem="Bcs-0c-7as" firstAttribute="top" secondItem="UNU-tp-IOd" secondAttribute="top" constant="28" id="nQI-ZP-cKs"/>
+                                    <constraint firstItem="exd-HC-qBe" firstAttribute="top" secondItem="UNU-tp-IOd" secondAttribute="top" constant="19" id="IKU-hE-VFu"/>
+                                    <constraint firstAttribute="trailing" secondItem="exd-HC-qBe" secondAttribute="trailing" constant="52" id="JWm-CZ-Ork"/>
+                                    <constraint firstItem="exd-HC-qBe" firstAttribute="leading" secondItem="UNU-tp-IOd" secondAttribute="leading" constant="51" id="boP-uk-7qh"/>
+                                    <constraint firstAttribute="bottom" secondItem="exd-HC-qBe" secondAttribute="bottom" constant="20" id="yJJ-ET-HPD"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="UNU-tp-IOd" firstAttribute="centerX" secondItem="Rzf-Xo-jif" secondAttribute="centerX" id="9G1-lY-PLu"/>
-                            <constraint firstItem="UNU-tp-IOd" firstAttribute="centerY" secondItem="Rzf-Xo-jif" secondAttribute="centerY" id="9rL-1s-Lnf"/>
+                            <constraint firstItem="UNU-tp-IOd" firstAttribute="centerX" secondItem="Rzf-Xo-jif" secondAttribute="centerX" id="DX4-lg-esQ"/>
+                            <constraint firstItem="UNU-tp-IOd" firstAttribute="centerY" secondItem="Rzf-Xo-jif" secondAttribute="centerY" id="dOn-4T-jJb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VUn-dI-9Mq"/>
                     </view>
