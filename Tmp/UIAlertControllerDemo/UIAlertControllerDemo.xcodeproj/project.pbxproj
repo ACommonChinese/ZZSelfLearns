@@ -16,6 +16,8 @@
 		3603A9331FE7B26500D53483 /* BMAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3603A9321FE7B26500D53483 /* BMAlertController.m */; };
 		3603A9591FE7E7A300D53483 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3603A9571FE7E7A300D53483 /* TestViewController.m */; };
 		3603A95C1FE7E7E900D53483 /* TestViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3603A95B1FE7E7E900D53483 /* TestViewController.storyboard */; };
+		DA9E363A1FE807580057FA95 /* BMCommonAlertContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9E36391FE807580057FA95 /* BMCommonAlertContentView.m */; };
+		DA9E363C1FE807620057FA95 /* BMCommonAlertContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA9E363B1FE807620057FA95 /* BMCommonAlertContentView.xib */; };
 		EB27621037CFCC2D30E896A6 /* libPods-UIAlertControllerDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F140A1F572224CC1341C5EB7 /* libPods-UIAlertControllerDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +39,9 @@
 		3603A9571FE7E7A300D53483 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		3603A95B1FE7E7E900D53483 /* TestViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TestViewController.storyboard; sourceTree = "<group>"; };
 		CEDAA934C7BE7367203DF703 /* Pods-UIAlertControllerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIAlertControllerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UIAlertControllerDemo/Pods-UIAlertControllerDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		DA9E36381FE807580057FA95 /* BMCommonAlertContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMCommonAlertContentView.h; sourceTree = "<group>"; };
+		DA9E36391FE807580057FA95 /* BMCommonAlertContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMCommonAlertContentView.m; sourceTree = "<group>"; };
+		DA9E363B1FE807620057FA95 /* BMCommonAlertContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BMCommonAlertContentView.xib; sourceTree = "<group>"; };
 		F140A1F572224CC1341C5EB7 /* libPods-UIAlertControllerDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UIAlertControllerDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -79,6 +84,9 @@
 				3603A91F1FE7AE8F00D53483 /* ViewController.m */,
 				3603A9311FE7B26500D53483 /* BMAlertController.h */,
 				3603A9321FE7B26500D53483 /* BMAlertController.m */,
+				DA9E36381FE807580057FA95 /* BMCommonAlertContentView.h */,
+				DA9E36391FE807580057FA95 /* BMCommonAlertContentView.m */,
+				DA9E363B1FE807620057FA95 /* BMCommonAlertContentView.xib */,
 				3603A9211FE7AE8F00D53483 /* Main.storyboard */,
 				3603A9561FE7E7A300D53483 /* TestViewController.h */,
 				3603A9571FE7E7A300D53483 /* TestViewController.m */,
@@ -170,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3603A9281FE7AE8F00D53483 /* LaunchScreen.storyboard in Resources */,
+				DA9E363C1FE807620057FA95 /* BMCommonAlertContentView.xib in Resources */,
 				3603A9251FE7AE8F00D53483 /* Assets.xcassets in Resources */,
 				3603A9231FE7AE8F00D53483 /* Main.storyboard in Resources */,
 				3603A95C1FE7E7E900D53483 /* TestViewController.storyboard in Resources */,
@@ -239,6 +248,7 @@
 				3603A92B1FE7AE8F00D53483 /* main.m in Sources */,
 				3603A91D1FE7AE8F00D53483 /* AppDelegate.m in Sources */,
 				3603A9591FE7E7A300D53483 /* TestViewController.m in Sources */,
+				DA9E363A1FE807580057FA95 /* BMCommonAlertContentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +385,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = UIAlertControllerDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.com.weizhenliu.UIAlertControllerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -389,6 +400,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = UIAlertControllerDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.com.weizhenliu.UIAlertControllerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

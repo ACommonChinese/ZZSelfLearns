@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "BMAlertController.h"
+#import "BMCommonAlertContentView.h"
 
 @interface ViewController ()
 
@@ -17,18 +18,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (IBAction)buttonClick:(id)sender {
-    BMAlertControllerConfig *config = [[BMAlertControllerConfig alloc] init];
-    config.titleLabel.text = @"Hello title";
-    config.titleLabel.font = [UIFont boldSystemFontOfSize:20.0f];
-    config.titleLabel.textAlignment = NSTextAlignmentCenter;
-    config.titleLabel.backgroundColor = [UIColor greenColor];
-    config.messageTextView.text = @"Hello message";
-    BMAlertController *controller = [BMAlertController alertControllerWithConfig:config];
+    BMCommonAlertContentView *contentView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass(BMCommonAlertContentView.class) owner:nil options:nil].firstObject;
+    contentView.textView.text = @"BMCommonAlertContentView *contentView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass(BMCommonAlertContentView.class) owner:nil options:nil].firstObject;BMCommonAlertContentView *contentView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass(BMCommonAlertContentView.class) owner:nil options:nil].firstObject;BMCommonAlertContentView *contentView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass(BMCommonAlertContentView.class) owner:nil options:nil].firstObject;";
+    contentView.backgroundColor = [UIColor purpleColor];
+    BMAlertController *controller = [BMAlertController alertControllerWithContentView:contentView];
     [controller show];
+    __weak __typeof(controller) weakController = controller;
+    [contentView setCallbackHandler:^{
+        [weakController dismiss];
+    }];
+    
+    
+//    BMAlertControllerConfig *config = [[BMAlertControllerConfig alloc] init];
+//    config.titleLabel.text = @"Hello title";
+//    config.titleLabel.font = [UIFont boldSystemFontOfSize:20.0f];
+//    config.titleLabel.textAlignment = NSTextAlignmentCenter;
+//    config.titleLabel.backgroundColor = [UIColor greenColor];
+//    config.messageTextView.text = @"Hello message";
+//    BMAlertController *controller = [BMAlertController alertControllerWithConfig:config];
+//    [controller show];
     
 //    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Title" message:@"Message" preferredStyle:UIAlertControllerStyleAlert];
 //    UIAlertAction *action_1 = [UIAlertAction actionWithTitle:@"Hei" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

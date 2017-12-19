@@ -31,34 +31,15 @@
 @end
 
 /////////////////////////////////////////////////////////////////////////////////////
-//                           BMAlertController配置类                               //
-/////////////////////////////////////////////////////////////////////////////////////
-
-@interface BMAlertControllerConfig : NSObject
-
-/// 头部label
-@property (nonatomic, readonly) UILabel *titleLabel;
-
-@property (nonatomic, readonly) UITextView *messageTextView;
-/// 弹框默认宽
-@property (nonatomic) CGFloat defaultWidth;
-/// 圆角
-@property (nonatomic) CGFloat cornerRadius;
-/// 交互Buttons
-@property (nonatomic) NSArray<UIButton *> *actionButtons;
-@end
-
-/////////////////////////////////////////////////////////////////////////////////////
 //                           BMAlertController控制器                                //
 /////////////////////////////////////////////////////////////////////////////////////
 
 @interface BMAlertController : UIViewController
 
-/// 构造器 - 使用BMAlertControllerConfig对象
-+ (BMAlertController *)alertControllerWithConfig:(BMAlertControllerConfig *)config;
+@property (nonatomic, weak) id<BMAlertControllerProtocol> delegate;
 
 /// 构造器 - 使用customView对象
-+ (BMAlertController *)alertControllerWithCustomView:(UIView *)customView;
++ (BMAlertController *)alertControllerWithContentView:(UIView *)contentView;
 
 /// 显示
 - (void)show;

@@ -9,38 +9,8 @@
 #import "BMAlertController.h"
 #import <Masonry.h>
 
-@implementation BMAlertControllerConfig
-@synthesize titleLabel = _titleLabel;
-@synthesize messageTextView = _messageTextView;
-
-- (instancetype)init {
-    if (self = [super init]) {
-        self.defaultWidth = 300;
-        self.cornerRadius = 5;
-    }
-    return self;
-}
-
-- (UILabel *)titleLabel {
-    if (_titleLabel == nil) {
-        _titleLabel = [[UILabel alloc] init];
-    }
-    return _titleLabel;
-}
-
-- (UITextView *)messageTextView {
-    if (_messageTextView == nil) {
-        _messageTextView = [[UITextView alloc] init];
-    }
-    return _messageTextView;
-}
-
-@end
-
 @interface BMAlertController ()
 
-/// config配置信息对象
-@property (nonatomic, strong) BMAlertControllerConfig *config;
 /// 显示的内容视图
 @property (nonatomic, strong) UIView *contentView;
 
@@ -73,72 +43,65 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     if (!self.previewWindow) return;
-    // CGRect transitionFromRect = CGRectMake(0, 0, 100, 100)
-    
-    
-//    CGRect transitionToRect   = self.contentView.frame;
-//    [UIView animateWithDuration:0.7 delay:0.1 usingSpringWithDamping:0.5 initialSpringVelocity:1 options:UIViewAnimationOptionTransitionNone animations:^{
-//        self.contentView.frame = transitionToRect;
+
+    [self.view addSubview:self.contentView];
+    self.contentView.transform = CGAffineTransformMakeScale(0.0, 0.0);
+    __weak __typeof(self) weakSelf = self;
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(@300);
+        make.center.equalTo(weakSelf.view);
+    }];
+//    [UIView animateWithDuration:0.25 animations:^{
+//        weakSelf.contentView.transform = CGAffineTransformIdentity;
 //    } completion:^(BOOL finished) {
-//       // [self previewControllerDidShow];
+//        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(alertControllerDidShow:)]) {
+//            [weakSelf.delegate alertControllerDidShow:weakSelf];
+//        }
 //    }];
+    
+    [UIView animateWithDuration:0.7 delay:0.1 usingSpringWithDamping:0.5 initialSpringVelocity:1 options:UIViewAnimationOptionTransitionNone animations:^{
+        weakSelf.contentView.transform = CGAffineTransformIdentity;
+        self.view.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.8];
+    } completion:^(BOOL finished) {
+        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(alertControllerDidShow:)]) {
+            [weakSelf.delegate alertControllerDidShow:weakSelf];
+        }
+    }];
 }
 
 /// 构造器 - 使用BMAlertControllerConfig对象
-+ (BMAlertController *)alertControllerWithConfig:(BMAlertControllerConfig *)config {
-    if (!config) return nil;
++ (BMAlertController *)alertControllerWithContentView:(UIView *)contentView {
+    if (!contentView) return nil;
     BMAlertController *controller = [[BMAlertController alloc] init];
-    controller.config = config;
-    return controller;
-}
-
-/// 构造器 - 使用customView对象
-+ (BMAlertController *)alertControllerWithCustomView:(UIView *)customView {
-    if (!customView) return nil;
-    BMAlertController *controller = [[BMAlertController alloc] init];
-    controller.contentView = customView;
+    controller.contentView = contentView;
     return controller;
 }
 
 /// 显示
 - (void)show {
-    // Prepare the content view for show
-    [self loadContentView];
-    
     // Let the content view show with window
     [self initPreviewWindowIfNeeded];
     self.previewWindow.rootViewController = self;
     self.previewWindow.hidden = NO;
 }
 
-- (void)loadContentView {
-    if (!self.contentView) {
-        self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.config.defaultWidth, 5)];
-        self.contentView.backgroundColor = [UIColor redColor];
-        [self.view addSubview:self.contentView];
-        __weak __typeof(self) weakSelf = self;
-        [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.width.equalTo(@(weakSelf.config.defaultWidth));
-            make.center.equalTo(weakSelf.view);
-        }];
-        
-        UILabel *titleLabel = self.config.titleLabel;
-        UITextView *messageTextView = self.config.messageTextView;
-        [self.contentView addSubview:titleLabel];
-        [self.contentView addSubview:messageTextView];
-        messageTextView.backgroundColor = [UIColor purpleColor];
-        [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.and.right.and.top.equalTo(@0);
-            
-        }];
-    }
-}
-
-- (void)resetContentView {}
-
 /// 消失
 - (void)dismiss {
-    
+    // [self previewcontroller];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(alertControllerWillDismiss:)]) {
+        [self.delegate alertControllerWillDismiss:self];
+    }
+    self.showing = NO;
+    [UIView animateWithDuration:.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.view.alpha = 0;
+        // self.view.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.8];
+    } completion:^(BOOL finished) {
+        [self.contentView removeFromSuperview];
+        self.previewWindow.hidden = YES;
+        self.showing = NO;
+        self.previewWindow.rootViewController = nil;
+        self.previewWindow = nil;
+    }];
 }
 
 - (void)initPreviewWindowIfNeeded {
@@ -149,5 +112,8 @@
     }
 }
 
+- (void)dealloc {
+    NSLog(@"Did dealloc!");
+}
 
 @end
