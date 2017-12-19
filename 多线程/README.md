@@ -210,7 +210,7 @@ NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget
 1. 一个自定义的初始化方法；
 2. main 方法
 
-我们需要用一个自定义的初始化方法来将创建的 operation 置于一个已知的状态，并且重写 main 方法来执行我们的任务。当然，我们也可以实现一些其他的额外方法，比如实现 NSCoding 协议来允许我们归档和解档 operation 等。下面的示例代码展示了如何自定义一个简单的 operation ：
+我们需要用一个自定义的初始化方法来将创建的 operation 置于一个已知的状态，并且重写 main 方法来执行我们的任务。当然，我们也可以实现一些其他的额外方法，比如实现 NSCoding 协议来允许我们归档和解档 operation 等。下面的示例代码展示了如何自定义一个简单的 operation 
 
 ```objective-c
 @interface OQNonConcurrentOperation : NSOperation

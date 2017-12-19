@@ -59,10 +59,22 @@
 //        }
 //    }];
     
-    [UIView animateWithDuration:0.7 delay:0.1 usingSpringWithDamping:0.5 initialSpringVelocity:1 options:UIViewAnimationOptionTransitionNone animations:^{
-        weakSelf.contentView.transform = CGAffineTransformIdentity;
+//    [UIView animateWithDuration:0.7 delay:0.1 usingSpringWithDamping:0.5 initialSpringVelocity:1 options:UIViewAnimationOptionTransitionNone animations:^{
+//        weakSelf.contentView.transform = CGAffineTransformIdentity;
+//        self.view.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.8];
+//    } completion:^(BOOL finished) {
+//        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(alertControllerDidShow:)]) {
+//            [weakSelf.delegate alertControllerDidShow:weakSelf];
+//        }
+//    }];
+//
+    
+    [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//        weakSelf.contentView.transform = CGAffineTransformIdentity;
+        weakSelf.contentView.transform = CGAffineTransformMakeScale(1.2, 1.2);
         self.view.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.8];
     } completion:^(BOOL finished) {
+        weakSelf.contentView.transform = CGAffineTransformIdentity;
         if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(alertControllerDidShow:)]) {
             [weakSelf.delegate alertControllerDidShow:weakSelf];
         }
