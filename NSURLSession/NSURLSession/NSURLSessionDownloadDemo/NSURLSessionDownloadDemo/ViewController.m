@@ -123,7 +123,8 @@ static NSString * const kBackgroundSessionID = @"cn.edu.scnu.DownloadTask.Backgr
 
 - (NSURLSessionDownloadTask *)backgroundDownloadTask {
     if (_backgroundDownloadTask == nil) {
-        NSString *imageURLStr   = @"http://dlsw.baidu.com/sw-search-sp/soft/2a/25677/QQ_V4.0.0.1419920162.dmg"; // @"http://farm3.staticflickr.com/2831/9823890176_82b4165653_b_d.jpg";
+        // NSString *imageURLStr   = @"http://dlsw.baidu.com/sw-search-sp/soft/2a/25677/QQ_V4.0.0.1419920162.dmg"; // @"http://farm3.staticflickr.com/2831/9823890176_82b4165653_b_d.jpg";
+        NSString *imageURLStr = @"http://dlsw.baidu.com/sw-search-sp/soft/2a/25677/QQ_V4.0.0.1419920162.dmg";
         NSURLRequest *request   = [NSURLRequest requestWithURL:[NSURL URLWithString:imageURLStr]];
         _backgroundDownloadTask = [self.backgroundSession downloadTaskWithRequest:request];
     }
@@ -180,6 +181,7 @@ static NSString * const kBackgroundSessionID = @"cn.edu.scnu.DownloadTask.Backgr
  */
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     // 计算当前下载进度并更新视图
+    NSLog(@"下载中...");
     double downloadProgress = totalBytesWritten / (double)totalBytesExpectedToWrite;
     [self setDownloadProgress:downloadProgress];
 }
