@@ -22,7 +22,10 @@
 
 // 后台下载任务完成后，程序被唤醒，该方法将被调用
 - (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(nonnull NSString *)identifier completionHandler:(nonnull void (^)())completionHandler {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+    
+    // completionHandler();
+    
+    NSLog(@"===============》%@", NSStringFromSelector(_cmd));
     
     // 设置回调的完成代码块
     self.backgroundURLSessionCompletionHandler = completionHandler;
@@ -48,6 +51,10 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    NSLog(@"APP killed!");
+    
+    
+    
 }
 
 @end

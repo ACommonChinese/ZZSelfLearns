@@ -70,6 +70,13 @@ static NSString * const kBackgroundSessionID = @"cn.edu.scnu.DownloadTask.Backgr
 - (IBAction)backgroundDownload:(id)sender {
     [self setDownloadButtonsWithEnabled:NO];
     self.imageView.image = nil;
+    
+//    [self.backgroundSession getTasksWithCompletionHandler:^(NSArray<NSURLSessionDataTask *> * _Nonnull dataTasks, NSArray<NSURLSessionUploadTask *> * _Nonnull uploadTasks, NSArray<NSURLSessionDownloadTask *> * _Nonnull downloadTasks) {
+//        for (NSURLSessionDownloadTask *task in downloadTasks) {
+//            NSLog(@"Got it!!!!!!!");
+//        }
+//    }];
+//
     [self.backgroundDownloadTask resume];
 }
 
@@ -86,7 +93,13 @@ static NSString * const kBackgroundSessionID = @"cn.edu.scnu.DownloadTask.Backgr
         }];
     }
     if (_backgroundDownloadTask) {
-        [_backgroundDownloadTask cancel], _backgroundDownloadTask = nil;
+        
+        
+        [_backgroundDownloadTask cancelByProducingResumeData:^(NSData * _Nullable resumeData) {
+            self.partialData = resumeData;
+            _backgroundDownloadTask = nil;
+        }];
+        // [_backgroundDownloadTask cancel], _backgroundDownloadTask = nil;
     }
     
     [self setDownloadProgress:0.0];
@@ -123,14 +136,20 @@ static NSString * const kBackgroundSessionID = @"cn.edu.scnu.DownloadTask.Backgr
 
 - (NSURLSessionDownloadTask *)backgroundDownloadTask {
     if (_backgroundDownloadTask == nil) {
-        // NSString *imageURLStr   = @"http://dlsw.baidu.com/sw-search-sp/soft/2a/25677/QQ_V4.0.0.1419920162.dmg"; // @"http://farm3.staticflickr.com/2831/9823890176_82b4165653_b_d.jpg";
-        NSString *imageURLStr = @"http://dlsw.baidu.com/sw-search-sp/soft/2a/25677/QQ_V4.0.0.1419920162.dmg";
-        NSURLRequest *request   = [NSURLRequest requestWithURL:[NSURL URLWithString:imageURLStr]];
-        _backgroundDownloadTask = [self.backgroundSession downloadTaskWithRequest:request];
+        // add later
+        if (self.partialData) {
+            _backgroundDownloadTask = [self.backgroundSession downloadTaskWithResumeData:_partialData];
+        } else {
+            // NSString *imageURLStr   = @"http://dlsw.baidu.com/sw-search-sp/soft/2a/25677/QQ_V4.0.0.1419920162.dmg"; // @"http://farm3.staticflickr.com/2831/9823890176_82b4165653_b_d.jpg";
+            NSString *imageURLStr = @"http://dlsw.baidu.com/sw-search-sp/soft/2a/25677/QQ_V4.0.0.1419920162.dmg";
+            NSURLRequest *request   = [NSURLRequest requestWithURL:[NSURL URLWithString:imageURLStr]];
+            _backgroundDownloadTask = [self.backgroundSession downloadTaskWithRequest:request];
+        }
     }
     return _backgroundDownloadTask;
 }
 
+// 对于后台任务，NSURLSessionConfiguration设置了ID，再次启动时会收到上次强退的那个任务的结果（失败），直接跳到didCompleteWithError，所以进来就会直接弹出失败
 //当前的session
 - (NSURLSession *)currentSession {
     if (!_currentSession) {
@@ -193,9 +212,13 @@ static NSString * const kBackgroundSessionID = @"cn.edu.scnu.DownloadTask.Backgr
  *  @param downloadTask task
  *  @param location     磁盘缓存的位置（比如tmp）
  */
+// 经测试，程序进入后台后代理方法“下载中”未得到调用，但此方法会得到调用
 - (void)URLSession:(NSURLSession *)session downloadTask:(nonnull NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(nonnull NSURL *)location {
     NSLog(@"URL: %@", downloadTask.currentRequest.URL.absoluteString);
     NSLog(@"下载完成：%@", location);
+    
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"t" message:@"messag" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+//    [alertView show];
     
     // 把下载完成后的文件移到目标路径并刷新视图
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -250,5 +273,40 @@ static NSString * const kBackgroundSessionID = @"cn.edu.scnu.DownloadTask.Backgr
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes {
     NSLog(@"Resume download at: %lld", fileOffset);
 }
+
+// 代理方法 下载完成回调 didCompleteWithError
+// App在后台的时候下载还会继续，当下载完成后会和AppDelegate交互：- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(nonnull NSString *)identifier completionHandler:(nonnull void (^)())completionHandler
+// 当程序再进来，此方法会得到调用
+// 该方法执行的前提条件：1-App进入后台 2-在后台把数据下载完成 3-再从后台启动APP
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
+    NSData *resumeData = error.userInfo[NSURLSessionDownloadTaskResumeData];
+
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (appDelegate.backgroundURLSessionCompletionHandler) {
+        void (^completionHandler)() = appDelegate.backgroundURLSessionCompletionHandler;
+        appDelegate.backgroundURLSessionCompletionHandler = nil;
+        completionHandler();
+    }
+    NSLog(@"All tasks are finished!");
+    
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"App从后台被杀死进来，All task finished" message:[NSString stringWithFormat:@"App resume data length: %ld", resumeData.length] delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+//    [alertView show];
+    
+    // 程序被杀掉，再次开启时会调用这里
+    // 取到断点data,再次开启下载任务
+//    NSLog(@"后台重启");
+//    NSData *resumeData = error.userInfo[NSURLSessionDownloadTaskResumeData];
+//    NSLog(@"APP resumeData length: %ld", resumeData.length);
+}
+
+//[self.session getTasksWithCompletionHandler:^(NSArray<NSURLSessionDataTask *> * _Nonnull dataTasks, NSArray<NSURLSessionUploadTask *> * _Nonnull uploadTasks, NSArray<NSURLSessionDownloadTask *> * _Nonnull downloadTasks) {
+//    for (NSURLSessionDownloadTask *task in downloadTasks) {
+//        [self.currentDownloadTask setObject:task forKey:[NSString stringWithFormat:@"%lu",task.taskIdentifier]];
+//    }
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        finished();
+//    });
+//
+//}];
 
 @end
