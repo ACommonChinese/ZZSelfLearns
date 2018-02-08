@@ -1,0 +1,20 @@
+直接运行python文件:
+-- test.py --
+#!/usr/local/bin/python
+print("\"Hello World!\"")
+
+给予其执行权限:
+sudo chmod +x test.py
+
+-- run.command --
+./test.py
+
+给予其执行权限:
+sudo chmod +x run.command
+
+在shell上执行命令:
+./run.command
+或下接运行:
+./test.py
+
+
