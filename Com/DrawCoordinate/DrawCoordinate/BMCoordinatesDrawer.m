@@ -3,7 +3,7 @@
 //  DrawCoordinate
 //
 //  Created by liuweizhen on 2018/10/23.
-//  Copyright © 2018年 banma. All rights reserved.
+//  Copyright © 2018年 liuxing8807@126.com. All rights reserved.
 //
 
 /**
@@ -41,137 +41,11 @@
  */
 
 #import "BMCoordinatesDrawer.h"
-
-@interface BMLocationCoordinate2D : NSObject <NSCopying>
-
-@property (nonatomic, assign) double longitude;
-@property (nonatomic, assign) double latitude;
-
-+ (instancetype)coordinateWithLongitude:(double)longitude latitude:(double)latitude;
-
-@end
-
-@implementation BMLocationCoordinate2D
-
-+ (instancetype)coordinateWithLongitude:(double)longitude latitude:(double)latitude {
-    BMLocationCoordinate2D *location = BMLocationCoordinate2D.new;
-    location.longitude = longitude;
-    location.latitude = latitude;
-    return location;
-}
-
-- (id)copyWithZone:(nullable NSZone *)zone {
-    BMLocationCoordinate2D *coordinate = [[[self class] alloc] init];
-    coordinate.longitude = self.longitude;
-    coordinate.latitude = self.latitude;
-    return coordinate;
-}
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"%lf -- %lf", self.longitude, self.latitude];
-}
-
-@end
-
-@interface BMCoordinateLocationInfo : NSObject
-
-/// 经度最小值
-@property (nonatomic, assign) double minLongitude;
-
-/// 纬度最小值
-@property (nonatomic, assign) double minLatitude;
-
-/// 经度最大值
-@property (nonatomic, assign) double maxLongitude;
-
-/// 纬度最大值
-@property (nonatomic, assign) double maxLatitude;
-
-/// 经度缩放比例
-@property (nonatomic, assign) double scaleLongitude;
-
-/// 纬度缩放比例
-@property (nonatomic, assign) double scaleLatitude;
-
-/// 经纬度坐标点
-@property (nonatomic, strong) NSMutableArray<BMLocationCoordinate2D *> *coordinates;
-
-/// 经纬度坐标点
-@property (nonatomic, strong) NSMutableArray<BMLocationCoordinate2D *> *screenCoordinates;
-
-- (instancetype)initWithCoordinatesStr:(NSString *)coordinateStr width:(double)width height:(double)height;
-
-@end
-
-@implementation BMCoordinateLocationInfo
-
-- (instancetype)initWithCoordinatesStr:(NSString *)coordinateStr width:(double)width height:(double)height {
-    if (!coordinateStr || coordinateStr.length <= 0) {
-        return nil;
-    }
-    if (self = [super init]) {
-        NSArray *coordinates = [coordinateStr componentsSeparatedByString:@";"];
-        NSMutableArray *locations = [NSMutableArray arrayWithCapacity:coordinates.count];
-        // NSLog(@"--------------  %@", coordinates);
-        for (NSInteger i = 0; i < coordinates.count; i++) {
-            NSString *coordinate  = coordinates[i];
-            NSArray *location = [coordinate componentsSeparatedByString:@","];
-            BMLocationCoordinate2D *location2D = [BMLocationCoordinate2D coordinateWithLongitude:[location.firstObject doubleValue] latitude:[location.lastObject doubleValue]];
-            [locations addObject:location2D];
-        }
-        [self getInfoWithLocations:locations width:width height:height];
-    }
-    return self;
-}
-
-- (void)getInfoWithLocations:(NSArray<BMLocationCoordinate2D *> *)locations width:(double)width height:(double)height {
-    BMLocationCoordinate2D *firstLocation = locations[0];
-    double minLongitude = firstLocation.longitude;
-    double minLatitude  = firstLocation.latitude;
-    double maxLongitude = firstLocation.longitude;
-    double maxLatitude  = firstLocation.latitude;
-    for (BMLocationCoordinate2D *coordinate in locations) {
-        if (coordinate.longitude < minLongitude) {
-            minLongitude = coordinate.longitude;
-        }
-        if (coordinate.longitude > maxLongitude) {
-            maxLongitude = coordinate.longitude;
-        }
-        if (coordinate.latitude < minLatitude) {
-            minLatitude = coordinate.latitude;
-        }
-        if (coordinate.latitude > maxLatitude) {
-            maxLatitude = coordinate.latitude;
-        }
-    }
-    
-    double vectorLongitude = -minLongitude;
-    double vectorLatitude = -minLatitude;
-    
-    NSArray *coordinates = [locations copy];
-    for (BMLocationCoordinate2D *coordinate in coordinates) {
-        coordinate.longitude += vectorLongitude;
-        coordinate.latitude += vectorLatitude;
-    }
-    self.coordinates  = [NSMutableArray arrayWithArray:coordinates];
-    self.minLongitude = MAX(0, minLongitude + vectorLongitude);
-    self.minLatitude  = MAX(0, minLatitude + vectorLatitude);
-    self.maxLongitude = MAX(0, maxLongitude + vectorLongitude);
-    self.maxLatitude  = MAX(0, maxLatitude + vectorLatitude);
-    self.scaleLongitude = (self.maxLongitude - self.minLongitude) / width;
-    self.scaleLatitude = (self.maxLatitude - self.minLatitude) / height;
-    NSMutableArray<BMLocationCoordinate2D *> *screenCoordinates = [NSMutableArray arrayWithCapacity:self.coordinates.count];
-    for (BMLocationCoordinate2D *coordinate in self.coordinates) {
-        [screenCoordinates addObject:[BMLocationCoordinate2D coordinateWithLongitude:coordinate.longitude / self.scaleLongitude latitude:coordinate.latitude / self.scaleLatitude]];
-    }
-    self.screenCoordinates = screenCoordinates;
-}
-
-@end
+#import "BMCoordinatesInfo.h"
 
 @interface BMCoordinatesDrawer ()
 
-@property (nonatomic, strong) BMCoordinateLocationInfo *coordinateInfo;
+@property (nonatomic, strong) BMCoordinatesInfo *coordinateInfo;
 
 @end
 
@@ -179,7 +53,15 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        // Set the default value here, such as color, line width, etc...
+        self.lineColor        = [UIColor whiteColor];
+        self.lineWidth        = 2.0;
+        self.lineCap          = kCGLineCapRound;
+        self.startPointColor  = [UIColor redColor]; // #4BD6B3
+        self.endPointColor    = [UIColor blueColor]; // #FF5500
+        self.startPointRadius = 5.0;
+        self.endPointRadius   = 5.0;
+        self.marginInsets     = UIEdgeInsetsZero;
+        // etc...
     }
     return self;
 }
@@ -197,19 +79,21 @@
         return nil;
     }
     
-    self.coordinateInfo = [[BMCoordinateLocationInfo alloc] initWithCoordinatesStr:config.coordinates width:config.width height:config.height];
+    config.width -= 20;
+    config.height -= 20;
+    
+    self.coordinateInfo = [[BMCoordinatesInfo alloc] initWithCoordinatesStr:config.coordinates width:config.width height:config.height margin:config.marginInsets];
     
     UIGraphicsBeginImageContext(CGSizeMake(config.width, config.height));
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextTranslateCTM(context, 0, config.height);
     CGContextScaleCTM(context, 1.0, -1.0);
-    CGContextSetLineWidth(context, 2);
-    CGContextSetLineCap(context, kCGLineCapRound);
-    CGContextSetRGBFillColor(context, 1, 0, 0, 1.0);
-    CGContextSetRGBStrokeColor(context, 0.5,0, 0.8, 1.0);
-    NSArray *screenCoordinates = self.coordinateInfo.screenCoordinates;
-    NSLog(@"%@", screenCoordinates);
     
+    CGContextSetLineWidth(context, config.lineWidth);
+    CGContextSetLineCap(context, config.lineCap);
+    CGContextSetStrokeColorWithColor(context, config.lineColor.CGColor);
+    
+    NSArray *screenCoordinates = self.coordinateInfo.screenCoordinates;
     CGPoint points[screenCoordinates.count];
     for (NSInteger i = 0; i < screenCoordinates.count; i++) {
         BMLocationCoordinate2D *coordinate = screenCoordinates[i];
@@ -217,7 +101,19 @@
     }
     CGContextAddLines(context, points, screenCoordinates.count);
     CGContextStrokePath(context);
+    
+    BMLocationCoordinate2D *startCoordinate = screenCoordinates.firstObject;
+    CGContextSetFillColorWithColor(context, config.startPointColor.CGColor);
+    CGContextAddArc(context, startCoordinate.longitude, startCoordinate.latitude, config.startPointRadius, 0, 2*M_PI, 0);
+    CGContextDrawPath(context, kCGPathFill);
+    
+    BMLocationCoordinate2D *endCoordinate = screenCoordinates.lastObject;
+    CGContextSetFillColorWithColor(context, config.endPointColor.CGColor);
+    CGContextAddArc(context, endCoordinate.longitude, endCoordinate.latitude, config.endPointRadius, 0, 2*M_PI, 0);
+    CGContextDrawPath(context, kCGPathFill);
+    
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     return image;
 }
 

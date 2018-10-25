@@ -3,7 +3,7 @@
 //  DrawCoordinate
 //
 //  Created by liuweizhen on 2018/10/23.
-//  Copyright © 2018年 banma. All rights reserved.
+//  Copyright © 2018年 liuxing8807@126.com. All rights reserved.
 //
 
 #import "AppDelegate.h"

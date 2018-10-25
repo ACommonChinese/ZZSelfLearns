@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA45A99821815B48000B04A6 /* BMCoordinatesInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA45A99721815B48000B04A6 /* BMCoordinatesInfo.m */; };
 		DAEDD76D217F29BB00A78DE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEDD76C217F29BB00A78DE0 /* AppDelegate.m */; };
 		DAEDD770217F29BB00A78DE0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEDD76F217F29BB00A78DE0 /* ViewController.m */; };
 		DAEDD773217F29BB00A78DE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAEDD771217F29BB00A78DE0 /* Main.storyboard */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA45A99621815B48000B04A6 /* BMCoordinatesInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMCoordinatesInfo.h; sourceTree = "<group>"; };
+		DA45A99721815B48000B04A6 /* BMCoordinatesInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMCoordinatesInfo.m; sourceTree = "<group>"; };
 		DAEDD768217F29BB00A78DE0 /* DrawCoordinate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawCoordinate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAEDD76B217F29BB00A78DE0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DAEDD76C217F29BB00A78DE0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -70,6 +73,8 @@
 				DAEDD771217F29BB00A78DE0 /* Main.storyboard */,
 				DAEDD781217F29F900A78DE0 /* BMCoordinatesDrawer.h */,
 				DAEDD782217F29F900A78DE0 /* BMCoordinatesDrawer.m */,
+				DA45A99621815B48000B04A6 /* BMCoordinatesInfo.h */,
+				DA45A99721815B48000B04A6 /* BMCoordinatesInfo.m */,
 				DAEDD784217F2C1700A78DE0 /* coordinates.txt */,
 				DAEDD774217F29BD00A78DE0 /* Assets.xcassets */,
 				DAEDD776217F29BD00A78DE0 /* LaunchScreen.storyboard */,
@@ -153,6 +158,7 @@
 				DAEDD770217F29BB00A78DE0 /* ViewController.m in Sources */,
 				DAEDD77B217F29BD00A78DE0 /* main.m in Sources */,
 				DAEDD76D217F29BB00A78DE0 /* AppDelegate.m in Sources */,
+				DA45A99821815B48000B04A6 /* BMCoordinatesInfo.m in Sources */,
 				DAEDD783217F29F900A78DE0 /* BMCoordinatesDrawer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

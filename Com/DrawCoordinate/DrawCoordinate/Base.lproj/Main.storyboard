@@ -19,7 +19,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qIs-t9-BPC">
                                 <rect key="frame" x="45.5" y="54" width="284" height="290"/>
-                                <color key="backgroundColor" red="0.99607843139999996" green="0.96862745100000003" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="290" id="LG5-o8-LFq"/>
                                     <constraint firstAttribute="width" constant="284" id="S1y-WS-Ns3"/>
