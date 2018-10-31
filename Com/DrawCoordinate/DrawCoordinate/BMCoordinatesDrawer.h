@@ -48,6 +48,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// margin inset for canvas, UIEdgeInsetsZero as default
 @property (nonatomic, assign) UIEdgeInsets marginInsets;
 
+/// pick draw point step, 1 as default
+@property (nonatomic, assign) NSUInteger pickStep;
+
 @end
 
 /**

@@ -17,20 +17,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qIs-t9-BPC">
-                                <rect key="frame" x="45.5" y="54" width="284" height="290"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qIs-t9-BPC">
+                                <rect key="frame" x="6" y="37" width="360" height="260"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="290" id="LG5-o8-LFq"/>
-                                    <constraint firstAttribute="width" constant="284" id="S1y-WS-Ns3"/>
-                                </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2n7-P4-C7C">
-                                <rect key="frame" x="45" y="394" width="285" height="69"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bod-mZ-3av">
+                                <rect key="frame" x="6" y="305" width="360" height="260"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2n7-P4-C7C">
+                                <rect key="frame" x="6" y="573" width="360" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="69" id="T1x-bM-Ri2"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Draw">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -41,22 +41,16 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="2n7-P4-C7C" firstAttribute="leading" secondItem="qIs-t9-BPC" secondAttribute="leading" id="VRm-SW-RoQ"/>
-                            <constraint firstItem="qIs-t9-BPC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bXa-94-bAc"/>
-                            <constraint firstItem="2n7-P4-C7C" firstAttribute="top" secondItem="qIs-t9-BPC" secondAttribute="bottom" constant="50" id="fxZ-WU-Mfg"/>
-                            <constraint firstItem="qIs-t9-BPC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="34" id="od9-DP-aem"/>
-                            <constraint firstItem="2n7-P4-C7C" firstAttribute="trailing" secondItem="qIs-t9-BPC" secondAttribute="trailing" id="vvu-Ih-ICR"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="qIs-t9-BPC" id="PlN-0p-C5H"/>
+                        <outlet property="imageView2" destination="Bod-mZ-3av" id="rHI-L3-dxw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-311.19999999999999" y="86.806596701649184"/>
+            <point key="canvasLocation" x="-1247.2" y="81.409295352323838"/>
         </scene>
     </scenes>
 </document>

@@ -43,11 +43,28 @@
 @implementation BMCoordinatesInfo
 
 - (instancetype)initWithCoordinatesStr:(NSString *)coordinateStr width:(double)width height:(double)height margin:(UIEdgeInsets)marginInsets {
+    return [self initWithCoordinatesStr:coordinateStr width:width height:height margin:marginInsets pickStep:1];
+}
+
+- (instancetype)initWithCoordinatesStr:(NSString *)coordinateStr
+                                 width:(double)width
+                                height:(double)height
+                                margin:(UIEdgeInsets)marginInsets
+                              pickStep:(NSUInteger)pickStep {
     if (!coordinateStr || coordinateStr.length <= 0) {
         return nil;
     }
     if (self = [super init]) {
         NSArray *coordinates = [coordinateStr componentsSeparatedByString:@";"];
+        if (pickStep != 1) {
+            NSMutableArray *pickCoordinates = [[NSMutableArray alloc] initWithObjects:coordinates.firstObject, nil];
+            for (NSInteger i = 1; i < coordinates.count; i++) {
+                if (i % pickStep == 0) {
+                    [pickCoordinates addObject:coordinates[i]];
+                }
+            }
+            coordinates = pickCoordinates;
+        }
         NSMutableArray *locations = [NSMutableArray arrayWithCapacity:coordinates.count];
         for (NSInteger i = 0; i < coordinates.count; i++) {
             NSString *coordinate  = coordinates[i];
@@ -115,6 +132,10 @@
     self.scaleLongitude = (self.maxLongitude - self.minLongitude) / (width - marginInsets.left - marginInsets.right);
     NSAssert(height > marginInsets.top + marginInsets.bottom, @"margin vertical is invalid. greater than canvas height");
     self.scaleLatitude = (self.maxLatitude - self.minLatitude) / (height - marginInsets.top - marginInsets.bottom);
+}
+
+- (void)dealloc {
+    NSLog(@"BMCoordinatesInfo dealloc");
 }
 
 @end

@@ -53,6 +53,12 @@ NS_ASSUME_NONNULL_BEGIN
                                 height:(double)height
                                 margin:(UIEdgeInsets)marginInsets;
 
+- (instancetype)initWithCoordinatesStr:(NSString *)coordinateStr
+                                 width:(double)width
+                                height:(double)height
+                                margin:(UIEdgeInsets)marginInsets
+                              pickStep:(NSUInteger)pickStep;
+
 @end
 
 NS_ASSUME_NONNULL_END

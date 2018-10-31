@@ -17,7 +17,7 @@
  * 0.943333333328 * 60 = 56.599999999679994   约56.6秒
  */
 
-/**
+/** 坐标转换后：
  Y 纬度 latitude
  |
  |
@@ -56,11 +56,12 @@
         self.lineColor        = [UIColor whiteColor];
         self.lineWidth        = 2.0;
         self.lineCap          = kCGLineCapRound;
-        self.startPointColor  = [UIColor redColor]; // #4BD6B3
-        self.endPointColor    = [UIColor blueColor]; // #FF5500
+        self.startPointColor  = [UIColor redColor];
+        self.endPointColor    = [UIColor blueColor];
         self.startPointRadius = 5.0;
         self.endPointRadius   = 5.0;
         self.marginInsets     = UIEdgeInsetsZero;
+        self.pickStep         = 1;
         // etc...
     }
     return self;
@@ -79,10 +80,10 @@
         return nil;
     }
     
-    config.width -= 20;
-    config.height -= 20;
+    config.width -= (config.marginInsets.left + config.marginInsets.right);
+    config.height -= (config.marginInsets.top + config.marginInsets.bottom);
     
-    self.coordinateInfo = [[BMCoordinatesInfo alloc] initWithCoordinatesStr:config.coordinates width:config.width height:config.height margin:config.marginInsets];
+    self.coordinateInfo = [[BMCoordinatesInfo alloc] initWithCoordinatesStr:config.coordinates width:config.width height:config.height margin:config.marginInsets pickStep:config.pickStep];
     
     UIGraphicsBeginImageContext(CGSizeMake(config.width, config.height));
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -114,6 +115,9 @@
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
+    self.coordinateInfo = nil;
+    
     return image;
 }
 

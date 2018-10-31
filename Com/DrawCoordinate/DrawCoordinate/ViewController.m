@@ -12,6 +12,7 @@
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView2;
 
 @end
 
@@ -31,12 +32,26 @@
     else {
         BMCoordinatesDrawer *drawer = [[BMCoordinatesDrawer alloc] init];
         __weak __typeof(self) weakSelf = self;
+        CFTimeInterval startTime = CACurrentMediaTime(); // mach_absolute_time
+        NSLog(@"start: %lf", startTime);
         self.imageView.image = [drawer drawImageWithConfig:^(BMCoordinatesDrawerConfig * _Nonnull config) {
             config.width            = weakSelf.imageView.frame.size.width;
             config.height           = weakSelf.imageView.frame.size.height;
             config.coordinates      = string;
             config.startPointRadius = 5;
             config.endPointRadius   = 5;
+            config.marginInsets     = UIEdgeInsetsMake(10, 10, 10, 10);
+        }];
+        CFTimeInterval endTime = CACurrentMediaTime();
+        NSLog(@"duration: %lf", endTime - startTime);
+        
+        self.imageView2.image = [drawer drawImageWithConfig:^(BMCoordinatesDrawerConfig * _Nonnull config) {
+            config.width            = weakSelf.imageView.frame.size.width;
+            config.height           = weakSelf.imageView.frame.size.height;
+            config.coordinates      = string;
+            config.startPointRadius = 5;
+            config.endPointRadius   = 5;
+            config.pickStep         = 6;
             config.marginInsets     = UIEdgeInsetsMake(10, 10, 10, 10);
         }];
     }
