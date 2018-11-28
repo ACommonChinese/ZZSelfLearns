@@ -1606,3 +1606,122 @@ int main(int argc, const char * argv[]) {
 先运行程序A,然后立即运行程序B,根据打印你可以清楚的发现，当程序A刚运行的时候，程序B一直处于等待中，当大概10秒过后，程序B便打印出了信息, 以上便实现了两上不同程序之间的互斥。/Users/liuweizhen/Desktop/TestDistributedLock/test.txt, 是一个文件或文件夹的地址，如果该文件或文件夹不存在，那么在tryLock返回YES时，会自动创建该文件/文件夹。在结束的时候该文件/文件夹会被清除，所以在选择的该路径的时候，应该选择一个不存在的路径，以防止误删了文件。
 
 
+
+### dispatch_barrier_sync/async
+
+`dispatch_barrier_sync(queue,void(^block)())`会将queue中barrier前面添加的任务block全部执行后, 再执行barrier任务的block,再执行barrier后面添加的任务block. 另外，由于是sync, 它会阻塞当前线程，导致在queue中barrier前面添加的任务的block执行完成之前当前线程阻塞;
+
+`dispatch_barrier_async雷同于dispatch_barrier_sync, 但由于是async, 因此它不影响当前线程的执行。`
+
+
+
+```objective-c
+
++ (void)testSync {
+    dispatch_queue_t queue = dispatch_queue_create("thread", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(queue, ^{
+        sleep(3);
+        NSLog(@"test1");
+    });
+    dispatch_async(queue, ^{
+        NSLog(@"test2");
+    });
+    dispatch_async(queue, ^{
+        NSLog(@"test3");
+    });
+    dispatch_barrier_sync(queue, ^{ // sync会阻塞当前线程，因此"hello"和"world"的打印在test1/2/3之后
+        sleep(1);
+        for (int i = 0; i < 50; i++) {
+            if (i == 10 ) {
+                NSLog(@"point1");
+            } else if (i == 20){
+                NSLog(@"point2");
+            } else if (i == 40){
+                NSLog(@"point3");
+            }
+        }
+    });
+    NSLog(@"hello");
+    dispatch_async(queue, ^{
+        NSLog(@"test4");
+    });
+    NSLog(@"world");
+    dispatch_async(queue, ^{
+        NSLog(@"test5");
+    });
+    dispatch_async(queue, ^{
+        NSLog(@"test6");
+    });
+    /**
+     test2
+     test3
+     test1
+     point1
+     point2
+     point3
+     hello
+     world
+     test4
+     test5
+     test6
+     结论：dispatch_barrier_sync(queue,void(^block)())会将queue中barrier前面添加的任务block全部执行后, 再执行barrier任务的block,再执行barrier后面添加的任务block. 另外，由于是sync, 它会阻塞当前线程，导致在queue中barrier前面添加的任务的block执行完成之前当前线程阻塞
+     */
+}
+
++ (void)testAsync {
+    dispatch_queue_t queue = dispatch_queue_create("thread", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(queue, ^{
+        sleep(3);
+        NSLog(@"test1");
+    });
+    dispatch_async(queue, ^{
+        NSLog(@"test2");
+    });
+    dispatch_async(queue, ^{
+        NSLog(@"test3");
+    });
+    dispatch_barrier_async(queue, ^{ // sync会阻塞线程
+        sleep(1);
+        for (int i = 0; i < 50; i++) {
+            if (i == 10 ) {
+                NSLog(@"point1");
+            } else if (i == 20){
+                NSLog(@"point2");
+            } else if (i == 40){
+                NSLog(@"point3");
+            }
+        }
+    });
+    NSLog(@"hello");
+    dispatch_async(queue, ^{
+        NSLog(@"test4");
+    });
+    NSLog(@"world");
+    dispatch_async(queue, ^{
+        NSLog(@"test5");
+    });
+    dispatch_async(queue, ^{
+        NSLog(@"test6");
+    });
+    /**
+     test2
+     test3
+     hello
+     world
+     test1
+     point1
+     point2
+     point3
+     test6
+     test4
+     test5
+
+     类同dispatch_async, 但由于是async, 因此它不影响当前线程的执行。
+     */
+}
+```
+
+
+
+
+
