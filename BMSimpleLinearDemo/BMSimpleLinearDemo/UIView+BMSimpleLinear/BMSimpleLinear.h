@@ -1,0 +1,55 @@
+///***************************************************************************************
+// *
+// *  Project:        ZXQ
+// *
+// *  Copyright ©     2014-2018年 DaLiu Technologies Co.,Ltd
+// *                  All rights reserved.
+// *
+// *  This software is supplied only under the terms of a license agreement,
+// *  nondisclosure agreement or other written agreement with DaLiu Technologies
+// *  Co.,Ltd. Use, redistribution or other disclosure of any parts of this
+// *  software is prohibited except in accordance with the terms of such written
+// *  agreement with DaLiu Technologies Co.,Ltd. This software is confidential
+// *  and proprietary information of DaLiu Technologies Co.,Ltd.
+// *
+// ***************************************************************************************
+// *
+// *  Header Name: BMSimpleLinearPrevious.h
+// *
+// *  General Description: Copyright and file header.
+// *
+// *  Created by liuweizhen on 2018/4/12.
+// *
+// *  liuxing8807@126.com
+// *
+// ****************************************************************************************/
+
+#import <Foundation/Foundation.h>
+@import UIKit;
+
+@interface BMSimpleLinearPrevious : NSObject
+
+@property (nonatomic, weak) UIView *view;
+@property (nonatomic, weak) UIView *superview;
+@property (nonatomic, assign) CGFloat marginTop;
+
+@end
+
+@interface BMSimpleLinearNext : NSObject
+
+@property (nonatomic, weak) UIView *view;
+@property (nonatomic, weak) UIView *superview;
+@property (nonatomic, assign) CGFloat marginBottom;
+
+@end
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                          Separator                                             //
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface BMSimpleLinear : NSObject
+
+@property (nonatomic, strong) BMSimpleLinearPrevious *previous;
+@property (nonatomic, strong) BMSimpleLinearNext *next;
+
+@end
