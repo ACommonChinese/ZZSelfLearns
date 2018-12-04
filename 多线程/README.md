@@ -712,7 +712,7 @@ Suspending a queue does not cause already executing operations to pause in the m
 
 参考: [这里]([http://www.jianshu.com/p/ea1985006e1a](http://www.jianshu.com/p/ea1985006e1a))
 
-在OC中我们考虑使用上面提到的信号量来解决此问题, 下面是一个示例, 数组作为缓冲区, 生产者往数组中放入数据, 最多可以放入5个元素, 如果数组已满则等待, 待消费者消费后唤醒生产者继续生产; 同理, 消费者从数组中取数据, 如果数组中没有数据则等待, 待生产者生产数据后唤醒消费者消费:
+在OC中我们考虑使用上面提到的信号量(semaphore ['seməfɔ:] 信号；旗语；臂板信号机)来解决此问题, 下面是一个示例, 数组作为缓冲区, 生产者往数组中放入数据, 最多可以放入5个元素, 如果数组已满则等待, 待消费者消费后唤醒生产者继续生产; 同理, 消费者从数组中取数据, 如果数组中没有数据则等待, 待生产者生产数据后唤醒消费者消费:
 
 ```objective-c
 #import "ViewController.h"
