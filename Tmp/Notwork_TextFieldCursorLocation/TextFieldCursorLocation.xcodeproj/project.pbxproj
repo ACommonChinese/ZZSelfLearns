@@ -7,16 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA2E9EF521B7774300AD71D7 /* InputingValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2E9EF421B7774300AD71D7 /* InputingValidator.m */; };
 		DA8E80F121AFED59008EA918 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8E80F021AFED59008EA918 /* AppDelegate.m */; };
 		DA8E80F421AFED59008EA918 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8E80F321AFED59008EA918 /* ViewController.m */; };
 		DA8E80F721AFED59008EA918 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA8E80F521AFED59008EA918 /* Main.storyboard */; };
 		DA8E80F921AFED5A008EA918 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA8E80F821AFED5A008EA918 /* Assets.xcassets */; };
 		DA8E80FC21AFED5A008EA918 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA8E80FA21AFED5A008EA918 /* LaunchScreen.storyboard */; };
 		DA8E80FF21AFED5A008EA918 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8E80FE21AFED5A008EA918 /* main.m */; };
-		DA8E810A21B110E3008EA918 /* BMTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8E810921B110E3008EA918 /* BMTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA2E9EF321B7774300AD71D7 /* InputingValidator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputingValidator.h; sourceTree = "<group>"; };
+		DA2E9EF421B7774300AD71D7 /* InputingValidator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputingValidator.m; sourceTree = "<group>"; };
 		DA8E80EC21AFED59008EA918 /* TextFieldCursorLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextFieldCursorLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA8E80EF21AFED59008EA918 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DA8E80F021AFED59008EA918 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -27,8 +29,6 @@
 		DA8E80FB21AFED5A008EA918 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA8E80FD21AFED5A008EA918 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA8E80FE21AFED5A008EA918 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DA8E810821B110E3008EA918 /* BMTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMTextField.h; sourceTree = "<group>"; };
-		DA8E810921B110E3008EA918 /* BMTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,13 +65,13 @@
 				DA8E80F021AFED59008EA918 /* AppDelegate.m */,
 				DA8E80F221AFED59008EA918 /* ViewController.h */,
 				DA8E80F321AFED59008EA918 /* ViewController.m */,
+				DA2E9EF321B7774300AD71D7 /* InputingValidator.h */,
+				DA2E9EF421B7774300AD71D7 /* InputingValidator.m */,
 				DA8E80F521AFED59008EA918 /* Main.storyboard */,
 				DA8E80F821AFED5A008EA918 /* Assets.xcassets */,
 				DA8E80FA21AFED5A008EA918 /* LaunchScreen.storyboard */,
 				DA8E80FD21AFED5A008EA918 /* Info.plist */,
 				DA8E80FE21AFED5A008EA918 /* main.m */,
-				DA8E810821B110E3008EA918 /* BMTextField.h */,
-				DA8E810921B110E3008EA918 /* BMTextField.m */,
 			);
 			path = TextFieldCursorLocation;
 			sourceTree = "<group>";
@@ -146,10 +146,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA8E810A21B110E3008EA918 /* BMTextField.m in Sources */,
 				DA8E80F421AFED59008EA918 /* ViewController.m in Sources */,
 				DA8E80FF21AFED5A008EA918 /* main.m in Sources */,
 				DA8E80F121AFED59008EA918 /* AppDelegate.m in Sources */,
+				DA2E9EF521B7774300AD71D7 /* InputingValidator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +291,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = E97K6G9K4T;
 				INFOPLIST_FILE = TextFieldCursorLocation/Info.plist;
@@ -310,7 +311,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = E97K6G9K4T;
 				INFOPLIST_FILE = TextFieldCursorLocation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -318,7 +319,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.banma.smartTravel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.banma.smartTravel";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

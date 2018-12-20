@@ -7,12 +7,13 @@
 //
 
 #import "ViewController.h"
-#import "BMTextField.h"
+#import "InputingValidator.h"
 
-@interface ViewController ()
+@interface ViewController () <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet BMTextField *textField;
 @property (nonatomic, copy) NSString *oldText;
+
+@property (nonatomic, strong) UITextField *textField;
 
 @end
 
@@ -21,8 +22,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _textField.maxLength = 11;
-    _textField.digits = @"0123456789";
+    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(20, 100, self.view.frame.size.width-40, 40)];
+    self.textField.borderStyle = UITextBorderStyleBezel;
+    self.textField.delegate = self;
+    [self.view addSubview:self.textField];
+}
+
+#pragma mark - <UITextFieldDelegate>
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return [InputingValidator validatePhone:textField shouldChangeCharactersInRange:range replacementString:string];
 }
 
 @end
