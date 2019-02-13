@@ -1,0 +1,254 @@
+{\rtf1\ansi\ansicpg936\cocoartf1671\cocoasubrtf100
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;\f1\fnil\fcharset0 Consolas;\f2\fnil\fcharset0 Consolas-Bold;
+}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww12600\viewh7800\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs26 \cf0 \'b2\'ce\'bf\'bc\'c1\'b4\'bd\'d3\'a3\'ba
+\f1 \
+{\field{\*\fldinst{HYPERLINK "https://www.jianshu.com/p/833448c30d70"}}{\fldrslt https://www.jianshu.com/p/833448c30d70}}\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\partightenfactor0
+
+\f0 \cf0 \'cf\'e0\'b9\'d8\'c0\'e0
+\f1 \
+WKWebView\
+WKWebViewConfiguration\
+WKUserScript\
+WKUserContentController\
+WKWebsiteDataStore\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+
+\f0 \'cf\'e0\'b9\'d8\'d0\'ad\'d2\'e9
+\f1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\partightenfactor0
+\cf0 WKNavigationDelegate\
+WKUIDelegate\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+// 
+\f0 \'b5\'bc\'ba\'bd\'b4\'fa\'c0\'ed
+\f1 \
+@property (nullable, nonatomic, weak) id <WKNavigationDelegate> navigationDelegate;\
+// UI
+\f0 \'b4\'fa\'c0\'ed
+\f1 \
+@property (nullable, nonatomic, weak) id <WKUIDelegate> UIDelegate;\
+\
+// 
+\f0 \'d2\'b3\'c3\'e6\'b1\'ea\'cc\'e2
+\f1 , 
+\f0 \'d2\'bb\'b0\'e3\'ca\'b9\'d3\'c3
+\f1 KVO
+\f0 \'b6\'af\'cc\'ac\'bb\'f1\'c8\'a1
+\f1 \
+@property (nullable, nonatomic, readonly, copy) NSString *title;\
+// 
+\f0 \'d2\'b3\'c3\'e6\'bc\'d3\'d4\'d8\'bd\'f8\'b6\'c8
+\f1 , 
+\f0 \'d2\'bb\'b0\'e3\'ca\'b9\'d3\'c3
+\f1 KVO
+\f0 \'b6\'af\'cc\'ac\'bb\'f1\'c8\'a1
+\f1 \
+@property (nonatomic, readonly) double estimatedProgress;\
+\
+// 
+\f0 \'bf\'c9\'b7\'b5\'bb\'d8\'b5\'c4\'d2\'b3\'c3\'e6\'c1\'d0\'b1\'ed
+\f1 , 
+\f0 \'d2\'d1\'b4\'f2\'bf\'aa\'b9\'fd\'b5\'c4\'cd\'f8\'d2\'b3
+\f1 , 
+\f0 \'d3\'d0\'b5\'e3\'c0\'e0\'cb\'c6\'d3\'da
+\f1 navigationController
+\f0 \'b5\'c4
+\f1 viewControllers
+\f0 \'ca\'f4\'d0\'d4
+\f1 \
+@property (nonatomic, readonly, strong) WKBackForwardList *backForwardList;\
+\
+// 
+\f0 \'d2\'b3\'c3\'e6
+\f1 url\
+@property (nullable, nonatomic, readonly, copy) NSURL *URL;\
+// 
+\f0 \'d2\'b3\'c3\'e6\'ca\'c7\'b7\'f1\'d4\'da\'bc\'d3\'d4\'d8\'d6\'d0
+\f1 \
+@property (nonatomic, readonly, getter=isLoading) BOOL loading;\
+// 
+\f0 \'ca\'c7\'b7\'f1\'bf\'c9\'b7\'b5\'bb\'d8
+\f1 \
+@property (nonatomic, readonly) BOOL canGoBack;\
+// 
+\f0 \'ca\'c7\'b7\'f1\'bf\'c9\'cf\'f2\'c7\'b0
+\f1 \
+@property (nonatomic, readonly) BOOL canGoForward;\
+// WKWebView
+\f0 \'bc\'cc\'b3\'d0\'d7\'d4
+\f1 UIView, 
+\f0 \'cb\'f9\'d2\'d4\'c8\'e7\'b9\'fb\'cf\'eb\'c9\'e8\'d6\'c3
+\f1 scrollView
+\f0 \'b5\'c4\'d2\'bb\'d0\'a9\'ca\'f4\'d0\'d4
+\f1 , 
+\f0 \'d0\'e8\'d2\'aa\'b6\'d4\'b4\'cb\'ca\'f4\'d0\'d4\'bd\'f8\'d0\'d0\'c5\'e4\'d6\'c3
+\f1 \
+@property (nonatomic, readonly, strong) UIScrollView *scrollView;\
+// 
+\f0 \'ca\'c7\'b7\'f1\'d4\'ca\'d0\'ed\'ca\'d6\'ca\'c6\'d7\'f3\'bb\'ac\'b7\'b5\'bb\'d8\'c9\'cf\'d2\'bb\'bc\'b6
+\f1 , 
+\f0 \'c0\'e0\'cb\'c6\'b5\'bc\'ba\'bd\'bf\'d8\'d6\'c6\'b5\'c4\'d7\'f3\'bb\'ac\'b7\'b5\'bb\'d8
+\f1 \
+@property (nonatomic) BOOL allowsBackForwardNavigationGestures;\
+\
+//
+\f0 \'d7\'d4\'b6\'a8\'d2\'e5
+\f1 UserAgent, 
+\f0 \'bb\'e1\'b8\'b2\'b8\'c7\'c4\'ac\'c8\'cf\'b5\'c4\'d6\'b5
+\f1  ,iOS 9
+\f0 \'d6\'ae\'ba\'f3\'d3\'d0\'d0\'a7
+\f1 \
+@property (nullable, nonatomic, copy) NSString *customUserAgent\
+\
+\
+// 
+\f0 \'b4\'f8\'c5\'e4\'d6\'c3\'d0\'c5\'cf\'a2\'b5\'c4\'b3\'f5\'ca\'bc\'bb\'af\'b7\'bd\'b7\'a8
+\f1 \
+// configuration 
+\f0 \'c5\'e4\'d6\'c3\'d0\'c5\'cf\'a2
+\f1 \
+- (instancetype)initWithFrame:(CGRect)frame configuration:(WKWebViewConfiguration *)configuration\
+// 
+\f0 \'bc\'d3\'d4\'d8\'c7\'eb\'c7\'f3
+\f1 \
+- (nullable WKNavigation *)loadRequest:(NSURLRequest *)request;\
+// 
+\f0 \'bc\'d3\'d4\'d8
+\f1 HTML\
+- (nullable WKNavigation *)loadHTMLString:(NSString *)string baseURL:(nullable NSURL *)baseURL;\
+// 
+\f0 \'b7\'b5\'bb\'d8\'c9\'cf\'d2\'bb\'bc\'b6
+\f1 \
+- (nullable WKNavigation *)goBack;\
+// 
+\f0 \'c7\'b0\'bd\'f8\'cf\'c2\'d2\'bb\'bc\'b6
+\f1 , 
+\f0 \'d0\'e8\'d2\'aa\'d4\'f8\'be\'ad\'b4\'f2\'bf\'aa\'b9\'fd
+\f1 , 
+\f0 \'b2\'c5\'c4\'dc\'c7\'b0\'bd\'f8
+\f1 \
+- (nullable WKNavigation *)goForward;\
+// 
+\f0 \'cb\'a2\'d0\'c2\'d2\'b3\'c3\'e6
+\f1 \
+- (nullable WKNavigation *)reload;\
+// 
+\f0 \'b8\'f9\'be\'dd\'bb\'ba\'b4\'e6\'d3\'d0\'d0\'a7\'c6\'da\'c0\'b4\'cb\'a2\'d0\'c2\'d2\'b3\'c3\'e6
+\f1 \
+- (nullable WKNavigation *)reloadFromOrigin;\
+// 
+\f0 \'cd\'a3\'d6\'b9\'bc\'d3\'d4\'d8\'d2\'b3\'c3\'e6
+\f1 \
+- (void)stopLoading;\
+// 
+\f0 \'d6\'b4\'d0\'d0
+\f1 JavaScript
+\f0 \'b4\'fa\'c2\'eb
+\f1 \
+- (void)evaluateJavaScript:(NSString *)javaScriptString completionHandler:(void (^ _Nullable)(_Nullable id, NSError * _Nullable error))completionHandler;\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 -- 
+\f2\b\fs32 WKWebViewConfiguration
+\f1\b0\fs26  --\
+\
+// 
+\f0 \'cd\'a8\'b9\'fd\'b4\'cb\'ca\'f4\'d0\'d4\'c0\'b4\'d6\'b4\'d0\'d0
+\f1 JavaScript
+\f0 \'b4\'fa\'c2\'eb\'c0\'b4\'d0\'de\'b8\'c4\'d2\'b3\'c3\'e6\'b5\'c4\'d0\'d0\'ce\'aa
+\f1 \
+@property (nonatomic, strong) WKUserContentController *userContentController;\
+\
+//***********
+\f0 \'cf\'c2\'c3\'e6\'ca\'f4\'d0\'d4\'d2\'bb\'b0\'e3\'b2\'bb\'d0\'e8\'d2\'aa\'c9\'e8\'d6\'c3
+\f1 \
+// 
+\f0 \'ca\'d7\'d1\'a1\'cf\'ee\'c9\'e8\'d6\'c3
+\f1 ,  \
+//
+\f0 \'bf\'c9\'c9\'e8\'d6\'c3\'d7\'ee\'d0\'a1\'d7\'d6\'ba\'c5
+\f1 , 
+\f0 \'ca\'c7\'b7\'f1\'d4\'ca\'d0\'ed\'d6\'b4\'d0\'d0
+\f1 js\
+//
+\f0 \'ca\'c7\'b7\'f1\'cd\'a8\'b9\'fd
+\f1 js
+\f0 \'d7\'d4\'b6\'af\'b4\'f2\'bf\'aa\'d0\'c2\'b5\'c4\'b4\'b0\'bf\'da
+\f1 \
+@property (nonatomic, strong) WKPreferences *preferences;\
+// 
+\f0 \'ca\'c7\'b7\'f1\'d4\'ca\'d0\'ed\'b2\'a5\'b7\'c5\'c3\'bd\'cc\'e5\'ce\'c4\'bc\'fe
+\f1 \
+@property (nonatomic) BOOL allowsAirPlayForMediaPlayback\
+// 
+\f0 \'d0\'e8\'d2\'aa\'d3\'c3\'bb\'a7\'c0\'b4\'b2\'d9\'d7\'f7\'b2\'c5\'c4\'dc\'b2\'a5\'b7\'c5\'b5\'c4\'b6\'e0\'c3\'bd\'cc\'e5\'c0\'e0\'d0\'cd
+\f1 \
+@property (nonatomic) WKAudiovisualMediaTypes mediaTypesRequiringUserActionForPlayback\
+// 
+\f0 \'ca\'c7\'ca\'b9\'d3\'c3
+\f1 h5
+\f0 \'b5\'c4\'ca\'d3\'c6\'b5\'b2\'a5\'b7\'c5\'c6\'f7\'d4\'da\'cf\'df\'b2\'a5\'b7\'c5
+\f1 , 
+\f0 \'bb\'b9\'ca\'c7\'ca\'b9\'d3\'c3\'d4\'ad\'c9\'fa\'b2\'a5\'b7\'c5\'c6\'f7\'c8\'ab\'c6\'c1\'b2\'a5\'b7\'c5
+\f1 \
+@property (nonatomic) BOOL allowsInlineMediaPlayback;\
+\
+-- 
+\f2\b\fs32 WKUserContentController
+\f1\b0\fs26  --\
+\
+WKUserContentController 
+\f0 \'ca\'c7
+\f1 JavaScript
+\f0 \'d3\'eb\'d4\'ad\'c9\'fa\'bd\'f8\'d0\'d0\'bd\'bb\'bb\'a5\'b5\'c4\'c7\'c5\'c1\'ba
+\f1 \
+\
+// 
+\f0 \'d7\'a2\'c8\'eb
+\f1 JavaScript
+\f0 \'d3\'eb\'d4\'ad\'c9\'fa\'bd\'bb\'bb\'a5\'d0\'ad\'d2\'e9
+\f1 \
+// JS 
+\f0 \'b6\'cb\'bf\'c9\'cd\'a8\'b9\'fd
+\f1  window.webkit.messageHandlers.<name>.postMessage(<messageBody>) 
+\f0 \'b7\'a2\'cb\'cd\'cf\'fb\'cf\'a2
+\f1 \
+- (void)addScriptMessageHandler:(id <WKScriptMessageHandler>)scriptMessageHandler name:(NSString *)name;\
+// 
+\f0 \'d2\'c6\'b3\'fd\'d7\'a2\'c8\'eb\'b5\'c4\'d0\'ad\'d2\'e9
+\f1 , 
+\f0 \'d4\'da
+\f1 deinit
+\f0 \'b7\'bd\'b7\'a8\'d6\'d0\'b5\'f7\'d3\'c3
+\f1 \
+- (void)removeScriptMessageHandlerForName:(NSString *)name;\
+\
+// 
+\f0 \'cd\'a8\'b9\'fd
+\f1 WKUserScript
+\f0 \'d7\'a2\'c8\'eb\'d0\'e8\'d2\'aa\'d6\'b4\'d0\'d0\'b5\'c4
+\f1 JavaScript
+\f0 \'b4\'fa\'c2\'eb
+\f1 \
+- (void)addUserScript:(WKUserScript *)userScript;\
+// 
+\f0 \'d2\'c6\'b3\'fd\'cb\'f9\'d3\'d0\'d7\'a2\'c8\'eb\'b5\'c4
+\f1 JavaScript
+\f0 \'b4\'fa\'c2\'eb
+\f1 \
+- (void)removeAllUserScripts;\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\partightenfactor0
+\cf0 \
+}
