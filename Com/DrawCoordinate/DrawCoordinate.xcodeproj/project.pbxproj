@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DA45A99821815B48000B04A6 /* BMCoordinatesInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DA45A99721815B48000B04A6 /* BMCoordinatesInfo.m */; };
+		DAB0689C2227C155003E7994 /* coordinates_2.txt in Resources */ = {isa = PBXBuildFile; fileRef = DAB0689B2227C155003E7994 /* coordinates_2.txt */; };
 		DAEDD76D217F29BB00A78DE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEDD76C217F29BB00A78DE0 /* AppDelegate.m */; };
 		DAEDD770217F29BB00A78DE0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEDD76F217F29BB00A78DE0 /* ViewController.m */; };
 		DAEDD773217F29BB00A78DE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAEDD771217F29BB00A78DE0 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		DA45A99621815B48000B04A6 /* BMCoordinatesInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMCoordinatesInfo.h; sourceTree = "<group>"; };
 		DA45A99721815B48000B04A6 /* BMCoordinatesInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMCoordinatesInfo.m; sourceTree = "<group>"; };
+		DAB0689B2227C155003E7994 /* coordinates_2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = coordinates_2.txt; sourceTree = "<group>"; };
 		DAEDD768217F29BB00A78DE0 /* DrawCoordinate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawCoordinate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAEDD76B217F29BB00A78DE0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DAEDD76C217F29BB00A78DE0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				DA45A99621815B48000B04A6 /* BMCoordinatesInfo.h */,
 				DA45A99721815B48000B04A6 /* BMCoordinatesInfo.m */,
 				DAEDD784217F2C1700A78DE0 /* coordinates.txt */,
+				DAB0689B2227C155003E7994 /* coordinates_2.txt */,
 				DAEDD774217F29BD00A78DE0 /* Assets.xcassets */,
 				DAEDD776217F29BD00A78DE0 /* LaunchScreen.storyboard */,
 				DAEDD779217F29BD00A78DE0 /* Info.plist */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAEDD785217F2C1700A78DE0 /* coordinates.txt in Resources */,
+				DAB0689C2227C155003E7994 /* coordinates_2.txt in Resources */,
 				DAEDD778217F29BD00A78DE0 /* LaunchScreen.storyboard in Resources */,
 				DAEDD775217F29BD00A78DE0 /* Assets.xcassets in Resources */,
 				DAEDD773217F29BB00A78DE0 /* Main.storyboard in Resources */,

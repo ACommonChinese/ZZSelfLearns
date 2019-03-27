@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InteractViewController">
+            <connections>
+                <outlet property="topView" destination="Gix-3f-3pU" id="reD-SY-XRh"/>
+                <outlet property="view" destination="iN0-l3-epB" id="5Vk-HS-Wmy"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gix-3f-3pU">
+                    <rect key="frame" x="0.0" y="44" width="414" height="409"/>
+                    <color key="backgroundColor" red="0.0" green="0.85490196080000003" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qvQ-aT-LQG">
+                    <rect key="frame" x="0.0" y="453" width="414" height="409"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMT-u3-S5r">
+                            <rect key="frame" x="0.0" y="5" width="414" height="49"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49" id="KVC-ZE-k8g"/>
+                            </constraints>
+                            <state key="normal" title="Call JS: clear()">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="callJS_clear:" destination="-1" eventType="touchUpInside" id="OtQ-Qj-mtp"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYH-iY-xXm">
+                            <rect key="frame" x="0.0" y="54" width="414" height="49"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49" id="pdR-W6-lAS"/>
+                            </constraints>
+                            <state key="normal" title="Call JS: showMobile('15276768876')">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="callJS_showMobile:" destination="-1" eventType="touchUpInside" id="DWm-sF-aBS"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Om-sn-4wR">
+                            <rect key="frame" x="0.0" y="103" width="414" height="49"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49" id="9E3-D7-OPo"/>
+                            </constraints>
+                            <state key="normal" title="Call JS: showName('小红')">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="callJS_showName:" destination="-1" eventType="touchUpInside" id="cdA-t8-ZZo"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qto-I6-7NO">
+                            <rect key="frame" x="0.0" y="152" width="414" height="49"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49" id="6Or-nu-riM"/>
+                            </constraints>
+                            <state key="normal" title="Call JS: showMessage'18870707070','OK'">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="callJS_showMessage:" destination="-1" eventType="touchUpInside" id="mdx-gf-DTT"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="mYH-iY-xXm" firstAttribute="top" secondItem="BMT-u3-S5r" secondAttribute="bottom" id="0TK-EF-R3m"/>
+                        <constraint firstItem="BMT-u3-S5r" firstAttribute="leading" secondItem="qvQ-aT-LQG" secondAttribute="leading" id="1Fh-41-I8m"/>
+                        <constraint firstAttribute="trailing" secondItem="Qto-I6-7NO" secondAttribute="trailing" id="318-hd-YbC"/>
+                        <constraint firstAttribute="trailing" secondItem="BMT-u3-S5r" secondAttribute="trailing" id="A1A-Tk-BZv"/>
+                        <constraint firstItem="BMT-u3-S5r" firstAttribute="top" secondItem="qvQ-aT-LQG" secondAttribute="top" constant="5" id="AwI-Z1-Yqx"/>
+                        <constraint firstItem="4Om-sn-4wR" firstAttribute="leading" secondItem="qvQ-aT-LQG" secondAttribute="leading" id="Qo4-86-OQI"/>
+                        <constraint firstAttribute="trailing" secondItem="4Om-sn-4wR" secondAttribute="trailing" id="TuM-Ul-fOe"/>
+                        <constraint firstItem="4Om-sn-4wR" firstAttribute="top" secondItem="mYH-iY-xXm" secondAttribute="bottom" id="buD-Yd-gir"/>
+                        <constraint firstItem="Qto-I6-7NO" firstAttribute="top" secondItem="4Om-sn-4wR" secondAttribute="bottom" id="mGY-dT-Hv2"/>
+                        <constraint firstItem="mYH-iY-xXm" firstAttribute="leading" secondItem="qvQ-aT-LQG" secondAttribute="leading" id="mYA-hO-gMq"/>
+                        <constraint firstAttribute="trailing" secondItem="mYH-iY-xXm" secondAttribute="trailing" id="pRA-Vn-4Xc"/>
+                        <constraint firstItem="Qto-I6-7NO" firstAttribute="leading" secondItem="qvQ-aT-LQG" secondAttribute="leading" id="t7E-O8-SVS"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="qvQ-aT-LQG" firstAttribute="top" secondItem="Gix-3f-3pU" secondAttribute="bottom" id="APm-A2-sm3"/>
+                <constraint firstItem="qvQ-aT-LQG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="HDN-sY-I2a"/>
+                <constraint firstItem="Gix-3f-3pU" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="L7l-a1-vRd"/>
+                <constraint firstItem="qvQ-aT-LQG" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="fuK-A2-WA8"/>
+                <constraint firstItem="Gix-3f-3pU" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="m4Z-9R-Dhf"/>
+                <constraint firstItem="Gix-3f-3pU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="mA9-Qf-pPq"/>
+                <constraint firstItem="qvQ-aT-LQG" firstAttribute="height" secondItem="Gix-3f-3pU" secondAttribute="height" id="s1f-H3-ylP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="qvQ-aT-LQG" secondAttribute="bottom" id="tCg-MJ-9Ai"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-462" y="-175"/>
+        </view>
+    </objects>
+</document>

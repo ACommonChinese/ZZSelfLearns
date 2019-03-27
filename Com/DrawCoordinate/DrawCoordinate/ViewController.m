@@ -24,7 +24,7 @@
 
 - (IBAction)draw:(id)sender {
     NSError *error = nil;
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"coordinates" ofType:@"txt"];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"coordinates_2" ofType:@"txt"];
     NSString *string = [[NSString alloc] initWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&error];
     if (!string || error) {
         NSLog(@"read file error: %@", error);
