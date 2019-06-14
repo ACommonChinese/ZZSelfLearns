@@ -16,6 +16,9 @@
 		DA27C1AA1CC78124007AE45B /* 1.html in Resources */ = {isa = PBXBuildFile; fileRef = DA27C1A91CC78124007AE45B /* 1.html */; };
 		DA27C1AC1CC781BD007AE45B /* 2.html in Resources */ = {isa = PBXBuildFile; fileRef = DA27C1AB1CC781BD007AE45B /* 2.html */; };
 		DA27C1AE1CC78A53007AE45B /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA27C1AD1CC78A53007AE45B /* JavaScriptCore.framework */; };
+		DAB2C2D72265CE0B00BC4ADD /* 3.html in Resources */ = {isa = PBXBuildFile; fileRef = DAB2C2D62265CE0A00BC4ADD /* 3.html */; };
+		DAB2C2EC2265EAD800BC4ADD /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = DAB2C2EB2265EAD800BC4ADD /* index.html */; };
+		DAB2C2F02265EB7400BC4ADD /* BMJSHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB2C2EF2265EB7400BC4ADD /* BMJSHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,11 @@
 		DA27C1A91CC78124007AE45B /* 1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 1.html; sourceTree = "<group>"; };
 		DA27C1AB1CC781BD007AE45B /* 2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 2.html; sourceTree = "<group>"; };
 		DA27C1AD1CC78A53007AE45B /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		DAB2C2D62265CE0A00BC4ADD /* 3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 3.html; sourceTree = "<group>"; };
+		DAB2C2EB2265EAD800BC4ADD /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		DAB2C2ED2265EB2500BC4ADD /* BMJSExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMJSExport.h; sourceTree = "<group>"; };
+		DAB2C2EE2265EB7300BC4ADD /* BMJSHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMJSHandler.h; sourceTree = "<group>"; };
+		DAB2C2EF2265EB7400BC4ADD /* BMJSHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMJSHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +79,13 @@
 				DA27C1981CC78115007AE45B /* ViewController.h */,
 				DA27C1991CC78115007AE45B /* ViewController.m */,
 				DA27C19B1CC78115007AE45B /* Main.storyboard */,
+				DAB2C2ED2265EB2500BC4ADD /* BMJSExport.h */,
+				DAB2C2EE2265EB7300BC4ADD /* BMJSHandler.h */,
+				DAB2C2EF2265EB7400BC4ADD /* BMJSHandler.m */,
+				DAB2C2EB2265EAD800BC4ADD /* index.html */,
 				DA27C1A91CC78124007AE45B /* 1.html */,
 				DA27C1AB1CC781BD007AE45B /* 2.html */,
+				DAB2C2D62265CE0A00BC4ADD /* 3.html */,
 				DA27C19E1CC78115007AE45B /* Assets.xcassets */,
 				DA27C1A01CC78115007AE45B /* LaunchScreen.storyboard */,
 				DA27C1A31CC78115007AE45B /* Info.plist */,
@@ -128,6 +141,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -146,8 +160,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAB2C2EC2265EAD800BC4ADD /* index.html in Resources */,
 				DA27C1AC1CC781BD007AE45B /* 2.html in Resources */,
 				DA27C1A21CC78115007AE45B /* LaunchScreen.storyboard in Resources */,
+				DAB2C2D72265CE0B00BC4ADD /* 3.html in Resources */,
 				DA27C1AA1CC78124007AE45B /* 1.html in Resources */,
 				DA27C19F1CC78115007AE45B /* Assets.xcassets in Resources */,
 				DA27C19D1CC78115007AE45B /* Main.storyboard in Resources */,
@@ -163,6 +179,7 @@
 			files = (
 				DA27C19A1CC78115007AE45B /* ViewController.m in Sources */,
 				DA27C1971CC78115007AE45B /* AppDelegate.m in Sources */,
+				DAB2C2F02265EB7400BC4ADD /* BMJSHandler.m in Sources */,
 				DA27C1941CC78115007AE45B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

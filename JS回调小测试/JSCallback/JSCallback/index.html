@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>测试native方法</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .item {
+      width: 180px;
+      height: 28px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      margin: 30px auto 0;
+      text-align: center;
+      line-height: 28px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="item" id="getWebview">获取webview</div>
+    <div class="item" id="checkBgc">查询主题背景色</div>
+    <div class="item" id="toastBtn">提示信息Toast</div>
+    <div class="item" id="getParamBtn">获取请求参数</div>
+    <div class="item" id="daliu">大刘自测</div>
+  </div>
+  <script>
+    // window.webview()
+    document.getElementById('getWebview').onclick = function () {
+      alert('window.webview():' + window.webview)
+      console.log(window.webview)
+    }
+    // window.getButtonPrimaryColor()
+    document.getElementById('checkBgc').onclick = function () {
+      //alert('window.getButtonPrimaryColor():' + window.getButtonPrimaryColor)
+      console.log(window.getButtonPrimaryColor("haha"))
+    }
+    // window.webview.messageToastAction
+    document.getElementById('toastBtn').onclick = function () {
+      //alert('window.webview.messageToastAction():' + window.webview.messageToastAction)
+      //console.log(window.webview.messageToastAction)
+      // window.webview.messageToastAction
+    }
+    // window.webview.getNativeData
+    document.getElementById('getParamBtn').onclick = function () {
+      // alert('window.webview.getNativeData():' + window.webview.getNativeData)
+      // console.log(window.webview.getNativeData)
+      // window.getNativeData
+
+      // window.getNativeData('hello banma!')
+      window.webview.getNativeData('hello banma!')
+    }
+    document.getElementById('daliu').onclick = function() {
+      window.daliu('haha')
+    }
+  </script>
+</body>
+</html>

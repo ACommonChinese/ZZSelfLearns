@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "BMJSHandler.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 
 @interface ViewController () <UIWebViewDelegate>
@@ -20,7 +21,7 @@
     [super viewDidLoad];
     
     self.webView.delegate = self;
-    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"2" ofType:@"html"]];
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"]];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
@@ -42,39 +43,12 @@
 // 2.html
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     JSContext *context=[webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    // js call Client
-    context[@"lianBi"] =
-    ^(NSString *title ,NSString *content ,NSString *url,NSString *image,NSString *mobileNumber) {
-        NSLog(@"%@", title); // hello world!
-    };
-    
-    // 1.html
-    context[@"onShare"] = ^(NSString *title ,NSString *content ,NSString *url,NSString *image) {
-        NSLog(@"title==%@content==%@url==%@image= %@", title,content,url,image);
-    };
-    
-    context[@"lianBi"] =
-    ^(NSString *title ,NSString *content ,NSString *url,NSString *image,NSString *mobileNumber) {
-        NSLog(@"%@", title); // hello world!
-    };
-    
-    NSString *contextName = @"lianBi";
-    context[contextName] =
-    ^(NSString *title ,NSString *content ,NSString *url,NSString *image,NSString *mobileNumber) {
-        NSString *methodName = [NSString stringWithFormat:@"web_%@:", @"scanQRcode"];
-        SEL selector = NSSelectorFromString(methodName);
-        if ([self respondsToSelector:selector]) {
-            [self performSelector:selector withObject:title];
-        }
-    };
-  
-    // oc/native -> JS
-    [webView stringByEvaluatingJavaScriptFromString:@"alert('xxx')"];
+    context[@"webview"] = [BMJSHandler sharedHandler];
 }
 
 - (void)web_scanQRcode:(id)obj {
     NSLog(@"called! %@", obj);
-    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"1" ofType:@"html"]];
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"2" ofType:@"html"]];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 

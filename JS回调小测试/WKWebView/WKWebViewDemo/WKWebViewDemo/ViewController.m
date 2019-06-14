@@ -95,7 +95,7 @@
 
 - (void)toInteract {
     InteractViewController *controller = [[InteractViewController alloc] init];
-    [self presentViewController:controller animated:YES completion:nil];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

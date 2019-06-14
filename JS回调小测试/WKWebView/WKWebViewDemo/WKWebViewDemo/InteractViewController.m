@@ -9,7 +9,7 @@
 #import "InteractViewController.h"
 #import <WebKit/WebKit.h>
 
-@interface InteractViewController () <WKScriptMessageHandler>
+@interface InteractViewController () <WKScriptMessageHandler, WKNavigationDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (nonatomic, strong) WKWebView *webView;
@@ -31,11 +31,20 @@
     [self.webView loadHTMLString:[NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil] baseURL:baseURL];
     [self.topView addSubview:self.webView];
     
+    self.webView.navigationDelegate = self;
+    
     WKUserContentController *userCC = config.userContentController;
     // JS调用OC添加处理脚本
     [userCC addScriptMessageHandler:self name:@"showMobile"];
     [userCC addScriptMessageHandler:self name:@"showName"];
     [userCC addScriptMessageHandler:self name:@"showMessage"];
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
+    __weak __typeof(self) weakSelf = self;
+    [webView evaluateJavaScript:@"document.title" completionHandler:^(id _Nullable title, NSError * _Nullable error) {
+        weakSelf.title = title;
+    }];
 }
 
 #pragma mark - <WKScriptMessageHandler>
